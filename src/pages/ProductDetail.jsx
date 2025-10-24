@@ -1,46 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
-import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import { ArrowLeft, Check } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { createPageUrl } from "@/utils";
 
 export default function ProductDetail() {
-  const navigate = useNavigate();
-  const [productId, setProductId] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState(null);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    setProductId(id);
-  }, []);
+  const product = {
+    name: "Lock & Go Setting Spray",
+    price: 30,
+    description: "Our award-winning formula that keeps your makeup locked in place for up to 16 hours. Sweat-resistant, transfer-proof, and feather-light.",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
+  };
 
-  const { data: product, isLoading } = useQuery({
-    queryKey: ['product', productId],
-    queryFn: async () => {
-      const products = await base44.entities.Product.filter({ id: productId });
-      return products[0];
+  const accordionData = [
+    {
+      id: "ingredients",
+      title: "Ingredients",
+      content: "Water, SD Alcohol 40-B, PVP, Aloe Barbadensis Leaf Juice, Chamomilla Recutita (Matricaria) Flower Extract, Cucumis Sativus (Cucumber) Fruit Extract, Glycerin, Polysorbate 20, Phenoxyethanol, Ethylhexylglycerin, Fragrance."
     },
-    enabled: !!productId,
-  });
+    {
+      id: "howtouse",
+      title: "How to Use",
+      content: "Hold bottle 8-10 inches from face. Close eyes and mist in an 'X' and 'T' motion across face. Allow to dry for 30 seconds. For maximum hold, apply before and after makeup application. Shake well before use."
+    },
+    {
+      id: "benefits",
+      title: "Benefits",
+      content: "• 16-hour long-lasting hold\n• Sweat and water resistant formula\n• Transfer-proof protection\n• Weightless, breathable finish\n• Non-sticky, quick-drying\n• Suitable for all skin types\n• Dermatologist tested\n• Vegan & cruelty-free"
+    }
+  ];
 
   const addToCart = () => {
     const cart = JSON.parse(localStorage.getItem('forta-cart') || '[]');
-    const existingItem = cart.find(item => item.id === product.id);
+    const existingItem = cart.find(item => item.name === product.name);
 
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
       cart.push({
-        id: product.id,
+        id: 'lock-and-go',
         name: product.name,
         price: product.price,
-        image: product.images?.[0],
+        image: product.image,
         quantity: quantity
       });
     }
@@ -51,144 +55,261 @@ export default function ProductDetail() {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-      </div>
-    );
-  }
-
-  if (!product) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-black/60">Product not found</p>
-      </div>
-    );
-  }
-
-  const images = product.images || ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800'];
-
   return (
-    <div className="min-h-screen bg-[#F8F8F8]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        {/* Back Button */}
-        <button
-          onClick={() => navigate(createPageUrl("Shop"))}
-          className="flex items-center gap-2 text-sm text-black/60 hover:text-black mb-8 transition-colors"
+    <div className="bg-[#F8F8F8]">
+      {/* Hero Image Section */}
+      <section className="relative h-[70vh] md:h-screen bg-[#F8F8F8] overflow-hidden">
+        <motion.div
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+          className="h-full"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Shop
-        </button>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center"
+        >
+          <p className="text-sm text-black/60 font-light tracking-[0.3em]">SCROLL TO EXPLORE</p>
+        </motion.div>
+      </section>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
-          {/* Images */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="aspect-[3/4] bg-white mb-4 overflow-hidden"
+      {/* Product Info Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <p className="text-xs text-black/40 font-light tracking-[0.2em] mb-4">
+              SIGNATURE FORMULA
+            </p>
+            <h1 className="text-5xl md:text-6xl font-light tracking-tight text-[#0A1A2F] mb-6">
+              {product.name}
+            </h1>
+            <p className="text-3xl font-medium text-black mb-8">
+              ${product.price}
+            </p>
+            <p className="text-lg text-black/70 font-light leading-relaxed max-w-2xl mx-auto">
+              {product.description}
+            </p>
+          </motion.div>
+
+          {/* Buy Button Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-md mx-auto space-y-6"
+          >
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <label className="text-sm font-light tracking-wide">Quantity</label>
+              <div className="flex items-center border-2 border-black/20">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-5 py-3 hover:bg-black/5 transition-colors text-lg"
+                >
+                  −
+                </button>
+                <span className="px-8 py-3 border-x-2 border-black/20 min-w-[80px] text-center font-medium">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-5 py-3 hover:bg-black/5 transition-colors text-lg"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <Button
+              onClick={addToCart}
+              disabled={added}
+              className="w-full h-16 bg-black text-white hover:bg-[#0A1A2F] text-sm font-medium tracking-[0.2em] transition-all"
             >
-              <img
-                src={images[selectedImage]}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
+              {added ? (
+                <span className="flex items-center gap-2">
+                  <Check className="w-5 h-5" />
+                  ADDED TO CART
+                </span>
+              ) : (
+                'ADD TO CART'
+              )}
+            </Button>
+
+            <p className="text-xs text-center text-black/40 font-light">
+              Free shipping on orders over $50
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Performance Proof Section */}
+      <section className="relative h-[80vh] bg-black text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+            alt="Athlete using Forta"
+            className="w-full h-full object-cover opacity-60"
+          />
+        </div>
+
+        <div className="relative z-10 h-full flex items-center justify-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1 }}
+            className="text-center max-w-3xl"
+          >
+            <h2 className="text-5xl md:text-6xl font-light tracking-tight mb-8">
+              Performance Proof
+            </h2>
+            <p className="text-xl font-light leading-relaxed text-white/90 mb-12">
+              Tested by elite athletes, trusted by performers. Lock & Go has been 
+              rigorously tested in extreme conditions—from marathon training to stage 
+              performances under hot lights. When failure isn't an option.
+            </p>
             
-            {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`aspect-square bg-white overflow-hidden transition-opacity ${
-                      selectedImage === index ? 'opacity-100' : 'opacity-40 hover:opacity-70'
-                    }`}
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Product Info */}
-          <div className="space-y-8">
-            <div>
-              <p className="text-xs text-black/40 font-light tracking-wider mb-2">
-                {product.category?.toUpperCase()}
-              </p>
-              <h1 className="text-4xl md:text-5xl font-light tracking-tight text-[#0A1A2F] mb-4">
-                {product.name}
-              </h1>
-              <p className="text-2xl font-medium text-black">
-                ${product.price?.toFixed(2)}
-              </p>
+            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+              {[
+                { stat: "16", label: "Hours" },
+                { stat: "100%", label: "Sweat-Proof" },
+                { stat: "1000+", label: "Athletes" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.6 }}
+                  className="border-t-2 border-white/30 pt-4"
+                >
+                  <div className="text-4xl font-light mb-2">{item.stat}</div>
+                  <div className="text-sm text-white/70 font-light tracking-wide">
+                    {item.label}
+                  </div>
+                </motion.div>
+              ))}
             </div>
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="border-t border-black/10 pt-8">
-              <p className="text-base text-black/80 font-light leading-relaxed">
-                {product.long_description || product.description}
-              </p>
-            </div>
+      {/* Accordions Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-light tracking-tight text-[#0A1A2F] mb-12 text-center"
+          >
+            Product Details
+          </motion.h2>
 
-            {product.benefits && product.benefits.length > 0 && (
-              <div>
-                <h3 className="text-sm font-medium tracking-wide mb-4">Key Benefits</h3>
-                <ul className="space-y-2">
-                  {product.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-black/70 font-light">
-                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {product.ingredients && (
-              <div>
-                <h3 className="text-sm font-medium tracking-wide mb-3">Ingredients</h3>
-                <p className="text-xs text-black/60 font-light leading-relaxed">
-                  {product.ingredients}
-                </p>
-              </div>
-            )}
-
-            {/* Add to Cart */}
-            <div className="border-t border-black/10 pt-8 space-y-4">
-              <div className="flex items-center gap-4">
-                <label className="text-sm font-light">Quantity</label>
-                <div className="flex items-center border border-black/20">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-2 hover:bg-black/5 transition-colors"
-                  >
-                    −
-                  </button>
-                  <span className="px-6 py-2 border-x border-black/20 min-w-[60px] text-center">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-2 hover:bg-black/5 transition-colors"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              <Button
-                onClick={addToCart}
-                disabled={product.stock === 0 || added}
-                className="w-full h-14 bg-black text-white hover:bg-black/90 text-sm font-medium tracking-wider"
+          <div className="space-y-4">
+            {accordionData.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="border-b border-black/10"
               >
-                {added ? 'ADDED TO CART' : product.stock === 0 ? 'OUT OF STOCK' : 'ADD TO CART'}
-              </Button>
-            </div>
+                <button
+                  onClick={() => setOpenAccordion(openAccordion === item.id ? null : item.id)}
+                  className="w-full flex items-center justify-between py-6 text-left hover:opacity-70 transition-opacity"
+                >
+                  <span className="text-lg font-light tracking-wide text-[#0A1A2F]">
+                    {item.title}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: openAccordion === item.id ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown className="w-5 h-5 text-black/40" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {openAccordion === item.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-6 text-base text-black/70 font-light leading-relaxed whitespace-pre-line">
+                        {item.content}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
+
+      {/* Tagline Footer */}
+      <section className="bg-black text-white py-32">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1 }}
+          className="text-center px-6"
+        >
+          <h2 className="text-6xl md:text-8xl font-light tracking-tight">
+            You Move—
+            <br />
+            <span className="font-normal">It Stays.</span>
+          </h2>
+        </motion.div>
+      </section>
+
+      {/* Sliding Text Banner */}
+      <div className="bg-white border-t border-black/10">
+        <motion.div
+          animate={{
+            x: [-1000, 0],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 25,
+              ease: "linear",
+            },
+          }}
+          className="flex whitespace-nowrap py-4"
+        >
+          {Array(12).fill(0).map((_, i) => (
+            <span key={i} className="inline-flex items-center mx-6 text-sm font-light tracking-[0.2em] text-black/60">
+              LOCK IN YOUR EDGE
+              <span className="mx-6 text-black/20">●</span>
+              FORTA PERFORMANCE
+              <span className="mx-6 text-black/20">●</span>
+            </span>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
