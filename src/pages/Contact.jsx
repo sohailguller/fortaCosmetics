@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -224,33 +225,6 @@ ${formData.message}
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom Banner */}
-      <div className="bg-black border-t border-white/10">
-        <motion.div
-          animate={{
-            x: [-1000, 0],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 25,
-              ease: "linear",
-            },
-          }}
-          className="flex whitespace-nowrap py-4"
-        >
-          {Array(12).fill(0).map((_, i) => (
-            <span key={i} className="inline-flex items-center mx-6 text-sm font-light tracking-[0.2em] text-white/60">
-              WE'RE HERE TO HELP
-              <span className="mx-6 text-white/20">●</span>
-              GET IN TOUCH
-              <span className="mx-6 text-white/20">●</span>
-            </span>
-          ))}
         </motion.div>
       </div>
     </div>

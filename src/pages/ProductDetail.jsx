@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
@@ -284,33 +285,6 @@ export default function ProductDetail() {
           </h2>
         </motion.div>
       </section>
-
-      {/* Sliding Text Banner */}
-      <div className="bg-white border-t border-black/10">
-        <motion.div
-          animate={{
-            x: [-1000, 0],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 25,
-              ease: "linear",
-            },
-          }}
-          className="flex whitespace-nowrap py-4"
-        >
-          {Array(12).fill(0).map((_, i) => (
-            <span key={i} className="inline-flex items-center mx-6 text-sm font-light tracking-[0.2em] text-black/60">
-              LOCK IN YOUR EDGE
-              <span className="mx-6 text-black/20">●</span>
-              FORTA PERFORMANCE
-              <span className="mx-6 text-black/20">●</span>
-            </span>
-          ))}
-        </motion.div>
-      </div>
     </div>
   );
 }

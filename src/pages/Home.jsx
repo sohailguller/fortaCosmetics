@@ -34,10 +34,10 @@ export default function Home() {
           className="flex whitespace-nowrap py-3"
         >
           {Array(10).fill(0).map((_, i) => (
-            <span key={i} className="inline-flex items-center mx-8 text-sm font-light tracking-[0.2em]">
-              LOCK IN YOUR EDGE
+            <span key={i} className="inline-flex items-center text-sm font-light tracking-[0.2em]">
+              <span className="mx-8">LOCK IN YOUR EDGE</span>
               <span className="mx-8 text-black/40">●</span>
-              FORTA PERFORMANCE COSMETICS
+              <span className="mx-8">FORTA PERFORMANCE COSMETICS</span>
               <span className="mx-8 text-black/40">●</span>
             </span>
           ))}

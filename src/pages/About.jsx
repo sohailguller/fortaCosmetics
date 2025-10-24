@@ -253,33 +253,6 @@ export default function About() {
           </h2>
         </motion.div>
       </section>
-
-      {/* Closing Banner */}
-      <div className="bg-white border-t border-black/10">
-        <motion.div
-          animate={{
-            x: [0, -1000],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 25,
-              ease: "linear",
-            },
-          }}
-          className="flex whitespace-nowrap py-4"
-        >
-          {Array(12).fill(0).map((_, i) => (
-            <span key={i} className="inline-flex items-center mx-6 text-sm font-light tracking-[0.2em] text-black/60">
-              BUILT FOR MOTION
-              <span className="mx-6 text-black/20">●</span>
-              DESIGNED FOR LIFE
-              <span className="mx-6 text-black/20">●</span>
-            </span>
-          ))}
-        </motion.div>
-      </div>
     </div>
   );
 }
