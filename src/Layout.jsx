@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -8,6 +9,11 @@ export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [cartCount, setCartCount] = React.useState(0);
+
+  // Scroll to top on page navigation
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   React.useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('forta-cart') || '[]');

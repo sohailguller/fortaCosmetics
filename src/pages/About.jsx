@@ -1,7 +1,13 @@
-import React from "react";
+
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function About() {
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts (on navigation)
+    window.scrollTo(0, 0);
+  }, []); // Empty dependency array ensures this runs only once on mount
+
   return (
     <div className="bg-black">
       {/* Hero Section with Background */}
@@ -138,14 +144,17 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-16">
             {[
               {
+                number: "(1)",
                 title: "Endurance",
                 description: "Every product is tested in real-world conditions. If it can't handle heat, sweat, and time, it doesn't make the cut."
               },
               {
+                number: "(2)",
                 title: "Integrity",
                 description: "Clean formulas, honest claims, transparent ingredients. No marketing fluff, just what works."
               },
               {
+                number: "(3)",
                 title: "Innovation",
                 description: "We don't follow trends—we engineer solutions. Performance cosmetics built by athletes, for everyone."
               }
@@ -158,8 +167,9 @@ export default function About() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center space-y-4"
               >
-                <div className="w-12 h-12 mx-auto border border-white/30 flex items-center justify-center mb-6">
-                  <div className="w-2 h-2 bg-white" />
+                {/* Updated number display */}
+                <div className="mb-6">
+                  <span className="text-4xl font-light text-white/60">{value.number}</span>
                 </div>
                 <h3 className="text-2xl font-light tracking-wide">
                   {value.title}
