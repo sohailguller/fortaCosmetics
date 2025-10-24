@@ -1,0 +1,70 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly product identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "long_description": {
+      "type": "string",
+      "description": "Detailed product information"
+    },
+    "price": {
+      "type": "number",
+      "description": "Product price in USD"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product image URLs"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "face",
+        "body",
+        "hair",
+        "tools",
+        "sets"
+      ],
+      "description": "Product category"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show on homepage"
+    },
+    "stock": {
+      "type": "number",
+      "default": 100,
+      "description": "Available inventory"
+    },
+    "ingredients": {
+      "type": "string",
+      "description": "Product ingredients"
+    },
+    "benefits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key benefits"
+    }
+  },
+  "required": [
+    "name",
+    "price",
+    "category"
+  ]
+}
