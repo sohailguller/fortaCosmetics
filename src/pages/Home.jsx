@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -150,7 +151,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference - Updated with Numbers */}
+      {/* The Forta Difference - Updated with Larger Numbers */}
       <section className="bg-black text-white py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.h2
@@ -189,8 +190,8 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: index * 0.15 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-6 border border-white/20 flex items-center justify-center">
-                  <span className="text-sm font-light">{value.number}</span>
+                <div className="mb-6">
+                  <span className="text-4xl font-light text-white/60">{value.number}</span>
                 </div>
                 <h3 className="text-xl font-medium tracking-wide mb-4">
                   {value.title}
