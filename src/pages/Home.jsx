@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
-  const heroRef = useRef(null);
+  const heroRef = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -150,7 +150,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Values Grid */}
+      {/* The Forta Difference - Updated with Numbers */}
       <section className="bg-black text-white py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.h2
@@ -166,14 +166,17 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-16">
             {[
               {
+                number: "(1)",
                 title: "Sweat-Proof",
                 description: "Tested in extreme conditions. Stays put through workouts, heat, and humidity."
               },
               {
+                number: "(2)",
                 title: "Clean Formula",
                 description: "No parabens, sulfates, or questionable ingredients. Just what works."
               },
               {
+                number: "(3)",
                 title: "All-Day Wear",
                 description: "From morning training to evening events. One application, zero touch-ups."
               }
@@ -187,7 +190,7 @@ export default function Home() {
                 className="text-center"
               >
                 <div className="w-16 h-16 mx-auto mb-6 border border-white/20 flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white" />
+                  <span className="text-sm font-light">{value.number}</span>
                 </div>
                 <h3 className="text-xl font-medium tracking-wide mb-4">
                   {value.title}
