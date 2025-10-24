@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { ShoppingBag, Menu, X, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Layout({ children, currentPageName }) {
@@ -60,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-wider">
+            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.3em]">
               FORTA
             </Link>
 
@@ -70,11 +70,11 @@ export default function Layout({ children, currentPageName }) {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`text-sm font-light tracking-wide transition-opacity duration-300 ${
+                  className={`text-sm font-light tracking-[0.15em] transition-opacity duration-300 ${
                     isActive(item.path) ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                   }`}
                 >
-                  {item.name}
+                  {item.name.toUpperCase()}
                 </Link>
               ))}
             </nav>
@@ -97,7 +97,6 @@ export default function Layout({ children, currentPageName }) {
                 )}
               </Link>
 
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="md:hidden"
@@ -123,11 +122,11 @@ export default function Layout({ children, currentPageName }) {
                     key={item.name}
                     to={item.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block text-lg font-light ${
+                    className={`block text-lg font-light tracking-wider ${
                       isActive(item.path) ? 'opacity-100' : 'opacity-60'
                     }`}
                   >
-                    {item.name}
+                    {item.name.toUpperCase()}
                   </Link>
                 ))}
               </nav>
@@ -141,49 +140,44 @@ export default function Layout({ children, currentPageName }) {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-black text-white mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div className="md:col-span-2">
-              <h3 className="text-2xl font-light tracking-wider mb-4">FORTA</h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed max-w-md">
-                High-performance cosmetics engineered for the modern individual. 
-                Clean formulations, clinical results.
-              </p>
-            </div>
+      {/* Minimalist Footer */}
+      <footer className="bg-black text-white border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            {/* Logo */}
+            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.3em]">
+              FORTA
+            </Link>
 
-            <div>
-              <h4 className="text-sm font-medium mb-4 tracking-wide">Shop</h4>
-              <nav className="space-y-3">
-                <Link to={createPageUrl("Shop")} className="block text-sm text-white/60 hover:text-white transition-colors">
-                  All Products
+            {/* Navigation */}
+            <nav className="flex flex-wrap justify-center gap-8">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="text-sm font-light tracking-wider text-white/60 hover:text-white transition-colors"
+                >
+                  {item.name.toUpperCase()}
                 </Link>
-                <Link to={createPageUrl("Shop") + "?category=face"} className="block text-sm text-white/60 hover:text-white transition-colors">
-                  Face
-                </Link>
-                <Link to={createPageUrl("Shop") + "?category=body"} className="block text-sm text-white/60 hover:text-white transition-colors">
-                  Body
-                </Link>
-              </nav>
-            </div>
+              ))}
+            </nav>
 
-            <div>
-              <h4 className="text-sm font-medium mb-4 tracking-wide">Company</h4>
-              <nav className="space-y-3">
-                <Link to={createPageUrl("About")} className="block text-sm text-white/60 hover:text-white transition-colors">
-                  About Us
-                </Link>
-                <Link to={createPageUrl("Contact")} className="block text-sm text-white/60 hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </nav>
+            {/* Social */}
+            <div className="flex items-center gap-6">
+              <a
+                href="https://instagram.com/forta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-white/10 text-center">
-            <p className="text-sm text-white/40 font-light">
-              © 2025 Forta. All rights reserved.
+          <div className="mt-12 pt-8 border-t border-white/10 text-center">
+            <p className="text-sm text-white/40 font-light tracking-wide">
+              © 2025 FORTA. ALL RIGHTS RESERVED.
             </p>
           </div>
         </div>
