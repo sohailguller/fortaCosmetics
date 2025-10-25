@@ -1,104 +1,103 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Home() {
-  const heroRef = React.useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
+  const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+  const timelineRef = React.useRef(null);
+  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  const testimonials = [
+    {
+      quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
+      author: "Sarah M.",
+      role: "Marathon Runner"
+    },
+    {
+      quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
+      author: "Jessica K.",
+      role: "Yoga Instructor"
+    },
+    {
+      quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
+      author: "Marcus T.",
+      role: "CrossFit Athlete"
+    }
+  ];
+
+  const timeline = [
+    { year: "2023", title: "Founded", description: "Forta launches with a mission to revolutionize performance cosmetics" },
+    { year: "2024", title: "Lock & Go", description: "Our flagship setting spray tested by 1000+ athletes" },
+    { year: "2025", title: "Expansion", description: "Growing our line with new performance-driven formulas" }
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
-    <div className="bg-black">
-      {/* Sliding Announcement Banner */}
-      <div className="bg-white text-black overflow-hidden border-b border-black/10">
+    <div className="bg-[#1a1a1a]">
+      {/* Full-Screen Hero */}
+      <section className="relative h-screen overflow-hidden">
         <motion.div
-          animate={{
-            x: [0, -1000],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 20,
-              ease: "linear",
-            },
-          }}
-          className="flex whitespace-nowrap py-3"
-        >
-          {Array(10).fill(0).map((_, i) => (
-            <span key={i} className="inline-flex items-center text-sm font-light tracking-[0.2em]">
-              <span className="mx-8">LOCK IN YOUR EDGE</span>
-              <span className="mx-8 text-black/40">●</span>
-              <span className="mx-8">FORTA PERFORMANCE COSMETICS</span>
-              <span className="mx-8 text-black/40">●</span>
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Full-Screen Hero Section */}
-      <section ref={heroRef} className="relative h-screen overflow-hidden">
-        <motion.div
-          style={{ opacity, scale }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
           className="absolute inset-0"
         >
-          <div className="absolute inset-0 bg-black/40 z-10" />
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4c90d3f27_fortaMosaic.jpg"
-            alt="Forta Performance"
-            className="w-full h-full object-cover"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+            alt="Forta Hero"
+            className="w-full h-full object-cover opacity-40"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/60 via-[#1a1a1a]/40 to-[#1a1a1a]" />
         </motion.div>
 
-        <div className="relative z-20 h-full flex items-center justify-center px-6">
+        <div className="relative z-10 h-full flex items-center justify-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-5xl"
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="text-center max-w-4xl"
           >
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-8 leading-[1.1]"
+              transition={{ duration: 1, delay: 0.5 }}
+              className="text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]"
             >
-              Performance That Persists.
+              Performance That
               <br />
-              <span className="font-normal">Makeup That Moves With You.</span>
+              <span className="font-normal">Doesn't Quit</span>
             </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="text-[#a0a0a0] text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto"
+            >
+              Engineered for athletes. Designed for endurance. Built for beauty that moves with you.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.9 }}
             >
               <Link to={createPageUrl("Shop")}>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative bg-white text-black px-12 py-5 text-sm font-medium tracking-[0.2em] overflow-hidden"
+                  whileHover={{ backgroundColor: "#ffffff", color: "#1a1a1a" }}
+                  className="group px-12 py-5 bg-transparent border-2 border-white text-white text-sm font-medium tracking-[0.2em] smooth-transition rounded-full"
                 >
-                  <span className="relative z-10 flex items-center gap-3">
-                    SHOP NOW
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-black"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity gap-3">
-                    SHOP NOW
+                  <span className="flex items-center gap-3">
+                    EXPLORE PRODUCTS
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </motion.button>
@@ -106,99 +105,222 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 bg-white rounded-full"
-            />
-          </motion.div>
-        </motion.div>
       </section>
 
-      {/* Brand Statement */}
-      <section className="bg-[#F8F8F8] py-32">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-light tracking-tight text-[#0A1A2F] mb-8 leading-tight">
-              Built for Athletes.
-              <br />
-              <span className="font-normal">Designed for Everyone.</span>
-            </h2>
-            <p className="text-lg md:text-xl text-black/60 font-light max-w-3xl mx-auto leading-relaxed">
-              Forta cosmetics are engineered for high-performance lifestyles. 
-              Sweat-resistant, long-lasting, and always comfortable—makeup that keeps up with your ambitions.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* The Forta Difference - Updated with Larger Numbers */}
-      <section className="bg-black text-white py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center"
-          >
-            The Forta Difference
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-16">
+      {/* Four-Card Grid */}
+      <section className="py-24 px-6 bg-[#0f0f0f]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              {
-                number: "(1)",
-                title: "Sweat-Proof",
-                description: "Tested in extreme conditions. Stays put through workouts, heat, and humidity."
-              },
-              {
-                number: "(2)",
-                title: "Clean Formula",
-                description: "No parabens, sulfates, or questionable ingredients. Just what works."
-              },
-              {
-                number: "(3)",
-                title: "All-Day Wear",
-                description: "From morning training to evening events. One application, zero touch-ups."
-              }
-            ].map((value, index) => (
+              { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
+              { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
+              { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg", link: "ProductDetail" },
+              { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7b0fe5c86_TheVaultStock-10413.jpg", link: "Contact" }
+            ].map((card, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <Link to={createPageUrl(card.link)}>
+                  <div className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-full object-cover opacity-60"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
+                      <h3 className="text-white text-2xl font-light tracking-wide">{card.title}</h3>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dark Editorial Section */}
+      <section className="py-32 px-6 bg-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">THE FORTA DIFFERENCE</p>
+            <h2 className="text-white text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight">
+              Built for Motion.
+              <br />
+              <span className="text-[#a0a0a0]">Refined for Beauty.</span>
+            </h2>
+            <p className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">
+              Every Forta formula is engineered for endurance. Tested in extreme conditions, 
+              trusted by athletes, designed for anyone who refuses to compromise between 
+              performance and aesthetics.
+            </p>
+            <Link to={createPageUrl("About")}>
+              <motion.button
+                whileHover={{ backgroundColor: "#8b7355" }}
+                className="px-8 py-4 bg-transparent border border-[#8b7355] text-[#8b7355] hover:text-white text-sm font-medium tracking-wider smooth-transition rounded-full"
+              >
+                OUR STORY
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[600px] rounded-3xl overflow-hidden"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
+              alt="Performance"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Light Product Section */}
+      <section className="py-32 px-6 bg-[#f5f5f0]">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[600px] rounded-3xl overflow-hidden order-2 lg:order-1"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
+              alt="Lock & Go"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:order-2"
+          >
+            <p className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">SIGNATURE PRODUCT</p>
+            <h2 className="text-[#1a1a1a] text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight">
+              Lock & Go
+              <br />
+              <span className="text-[#6b6b6b]">Setting Spray</span>
+            </h2>
+            <p className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">
+              16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, 
+              tested by elite athletes and trusted by anyone who demands more from their makeup.
+            </p>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-3xl font-light text-[#1a1a1a]">$30</span>
+            </div>
+            <Link to={createPageUrl("ProductDetail")}>
+              <motion.button
+                whileHover={{ backgroundColor: "#1a1a1a", color: "#ffffff" }}
+                className="px-8 py-4 bg-[#8b7355] text-white hover:bg-[#1a1a1a] text-sm font-medium tracking-wider smooth-transition rounded-full"
+              >
+                SHOP NOW
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Carousel */}
+      <section className="py-32 px-6 bg-[#0f0f0f]">
+        <div className="max-w-4xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-12 text-center"
+          >
+            TESTIMONIALS
+          </motion.p>
+
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentTestimonial}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
                 className="text-center"
               >
-                <div className="mb-6">
-                  <span className="text-4xl font-light text-white/60">{value.number}</span>
-                </div>
-                <h3 className="text-xl font-medium tracking-wide mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-white/60 font-light leading-relaxed">
-                  {value.description}
+                <p className="text-white text-2xl md:text-3xl font-light leading-relaxed mb-8 italic">
+                  "{testimonials[currentTestimonial].quote}"
                 </p>
+                <p className="text-[#a0a0a0] text-sm font-medium tracking-wider">
+                  {testimonials[currentTestimonial].author}
+                </p>
+                <p className="text-[#6b6b6b] text-xs font-light mt-1">
+                  {testimonials[currentTestimonial].role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="flex justify-center gap-4 mt-12">
+              <button
+                onClick={prevTestimonial}
+                className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section ref={timelineRef} className="py-32 px-6 bg-[#1a1a1a]">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-white text-4xl md:text-5xl font-light tracking-tight mb-20 text-center"
+          >
+            Our Journey
+          </motion.h2>
+
+          <div className="space-y-16">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -40 }}
+                animate={timelineInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.2, duration: 0.8 }}
+                className="flex gap-8 items-start"
+              >
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-[#8b7355] flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">{item.year}</span>
+                  </div>
+                </div>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-white text-2xl font-light tracking-wide mb-2">{item.title}</h3>
+                  <p className="text-[#a0a0a0] font-light leading-relaxed">{item.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -206,25 +328,25 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-[#F8F8F8] py-32">
+      <section className="py-32 px-6 bg-[#8b7355] text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto px-6 lg:px-8 text-center"
+          className="max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl font-light tracking-tight text-[#0A1A2F] mb-12">
-            Ready to Elevate Your Routine?
+          <h2 className="text-white text-5xl md:text-7xl font-light tracking-tight mb-8">
+            Ready to Experience
+            <br />
+            Performance Beauty?
           </h2>
           <Link to={createPageUrl("Shop")}>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-black text-white px-12 py-5 text-sm font-medium tracking-[0.2em] hover:bg-black/90 transition-colors inline-flex items-center gap-3"
+              whileHover={{ backgroundColor: "#1a1a1a" }}
+              className="px-12 py-5 bg-white text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white text-sm font-medium tracking-[0.2em] smooth-transition rounded-full"
             >
-              EXPLORE PRODUCTS
-              <ArrowRight className="w-4 h-4" />
+              SHOP FORTA
             </motion.button>
           </Link>
         </motion.div>
