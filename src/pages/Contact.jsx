@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -45,9 +44,8 @@ ${formData.message}
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F8F8]"> {/* Changed from bg-white to bg-[#F8F8F8] */}
+    <div className="min-h-screen bg-[#F8F8F8]">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 py-20 md:py-32">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,7 +61,6 @@ ${formData.message}
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-16">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -129,7 +126,6 @@ ${formData.message}
             </form>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -160,7 +156,7 @@ ${formData.message}
               </div>
             </div>
 
-            <div className="bg-white p-8 space-y-4"> {/* Changed from bg-[#F8F8F8] to bg-white */}
+            <div className="bg-white p-8 space-y-4">
               <h3 className="text-xl font-light text-[#0A1A2F]">
                 Response Time
               </h3>
@@ -181,7 +177,6 @@ ${formData.message}
           </motion.div>
         </div>
 
-        {/* Additional Info Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -214,7 +209,7 @@ ${formData.message}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="p-6 border border-black/10 bg-white" {/* Added bg-white */}
+                className="p-6 border border-black/10 bg-white"
               >
                 <h3 className="text-lg font-medium text-[#0A1A2F] mb-3">
                   {item.question}
