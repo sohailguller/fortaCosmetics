@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { base44 } from "@/base44"; // Assuming base44 is available globally or needs to be imported
+import { base44 } from "@/api/base44Client";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
