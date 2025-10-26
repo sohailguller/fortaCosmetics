@@ -147,7 +147,7 @@ export default function Layout({ children, currentPageName }) {
       {/* Sticky Header */}
       <header className={`sticky top-0 z-50 smooth-transition ${scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-20"> {/* Added 'relative' to parent for absolute positioning of logo */}
+          <div className="relative flex items-center justify-between h-20">
             {/* Left: Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
               {navigation.map((item) => (
@@ -231,9 +231,9 @@ export default function Layout({ children, currentPageName }) {
       {/* Footer */}
       <footer className="bg-[#0f0f0f] text-white border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          {/* Expanded Bracket Logo with Rotating Image */}
-          <div className="flex items-center justify-center mb-16">
-            <div className="relative w-full max-w-4xl">
+          {/* Expanded Bracket Logo with Rotating Image - Left Aligned */}
+          <div className="mb-16">
+            <div className="relative w-full max-w-2xl">
               {/* Expanded Bracket Logo */}
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
@@ -241,42 +241,18 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Rotating Image Inside Brackets */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35%] h-[60%]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentAthleteImage}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.8 }}
-                    className="w-full h-full rounded-full overflow-hidden"
-                  >
-                    <img
-                      src={athleteImages[currentAthleteImage]}
-                      alt="Athlete"
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </AnimatePresence>
+              {/* Image Inside Brackets - Centered between the two brackets */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28%] aspect-[2/1]">
+                <img
+                  src={athleteImages[currentAthleteImage]}
+                  alt="Athlete"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <Link to={createPageUrl("Home")} className="inline-block mb-6">
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
-                  alt="FORTA"
-                  className="h-8"
-                />
-              </Link>
-              <p className="text-sm text-[#6b6b6b] font-light leading-relaxed">
-                Performance cosmetics engineered for athletes, designed for everyone.
-              </p>
-            </div>
-
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
               <h3 className="text-sm font-medium tracking-wider mb-4">SHOP</h3>
               <nav className="space-y-3">
