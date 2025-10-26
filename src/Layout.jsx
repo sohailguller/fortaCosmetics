@@ -166,7 +166,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Center: Logo */}
             <Link to={createPageUrl("Home")} className="absolute left-1/2 -translate-x-1/2">
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7193_PrimaryLogo-_white-07.png"
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2616d000c_PrimaryLogo-_white-07.png"
                 alt="FORTA"
                 className="h-6 md:h-7 object-contain"
               />
