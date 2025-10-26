@@ -241,12 +241,16 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Image Inside Brackets - Centered between the two brackets */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28%] aspect-[2/1]">
+              {/* Image Inside Brackets - Precisely centered between opening and closing brackets */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22%] h-[45%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
                   alt="Athlete"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover"
+                  style={{
+                    borderRadius: '50%',
+                    objectFit: 'cover'
+                  }}
                 />
               </div>
             </div>
