@@ -241,8 +241,8 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Image Inside Brackets - Precisely centered between opening and closing brackets */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22%] h-[45%]">
+              {/* Image Inside Brackets - Shifted left to center between brackets */}
+              <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[22%] h-[45%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
                   alt="Athlete"
