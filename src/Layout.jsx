@@ -168,7 +168,7 @@ export default function Layout({ children, currentPageName }) {
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7193_PrimaryLogo-_white-07.png"
                 alt="FORTA"
-                className="h-6 md:h-7"
+                className="h-6 md:h-7 object-contain"
               />
             </Link>
 
