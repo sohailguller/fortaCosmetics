@@ -44,9 +44,9 @@ export default function Home() {
   const heroVideo = videos[0];
 
   const athleteImages = [
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
   ];
 
   const testimonials = [
@@ -115,7 +115,7 @@ export default function Home() {
             </video>
           ) : (
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
               alt="Forta Hero"
               className="w-full h-full object-cover opacity-40" />
           )}
@@ -191,7 +191,7 @@ export default function Home() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/92f95c900_Tagline-_white-17.png"
             alt="Move Boldly"
             className="h-6 md:h-8 object-contain opacity-70" />
 
@@ -209,10 +209,10 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {[
-            { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
-            { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
-            { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg", link: "ProductDetail" },
-            { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7b0fe5c86_TheVaultStock-10413.jpg", link: "Contact" }].
+            { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
+            { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
+            { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
+            { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
             map((card, index) =>
             <motion.div
               key={index}
@@ -326,7 +326,7 @@ export default function Home() {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
               alt="Performance"
               className="w-full h-full object-cover" />
 
@@ -346,7 +346,7 @@ export default function Home() {
             <motion.img
               whileHover={{ scale: 1.08, rotate: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/5fb18a134_productImage.jpg"
               alt="Lock & Go"
               className="w-full h-full object-cover" />
 
@@ -421,7 +421,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a3c5cc6f3_blur13.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a3c5cc6f3_blur13.png"
             alt="Background"
             className="w-full h-full object-cover opacity-90"
           />
