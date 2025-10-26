@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -15,7 +14,6 @@ export default function Home() {
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
-  // Parallax effects for hero
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -25,7 +23,6 @@ export default function Home() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  // Scroll-lock section animations
   const { scrollYProgress: scrollLockProgress } = useScroll({
     target: scrollLockRef,
     offset: ["start end", "end start"]
@@ -34,7 +31,6 @@ export default function Home() {
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-  // Fetch the most recent video for hero background
   const { data: videos } = useQuery({
     queryKey: ['hero-video'],
     queryFn: () => base44.entities.Video.list('-created_date', 1),
@@ -43,28 +39,23 @@ export default function Home() {
 
   const heroVideo = videos[0];
 
-  const athleteImages = [
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
-    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
-  ];
-
   const testimonials = [
-  {
-    quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
-    author: "Sarah M.",
-    role: "Marathon Runner"
-  },
-  {
-    quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
-    author: "Jessica K.",
-    role: "Yoga Instructor"
-  },
-  {
-    quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
-    author: "Marcus T.",
-    role: "CrossFit Athlete"
-  }];
+    {
+      quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
+      author: "Sarah M.",
+      role: "Marathon Runner"
+    },
+    {
+      quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
+      author: "Jessica K.",
+      role: "Yoga Instructor"
+    },
+    {
+      quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
+      author: "Marcus T.",
+      role: "CrossFit Athlete"
+    }
+  ];
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -74,7 +65,6 @@ export default function Home() {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  // Stagger animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -117,7 +107,8 @@ export default function Home() {
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
               alt="Forta Hero"
-              className="w-full h-full object-cover opacity-40" />
+              className="w-full h-full object-cover opacity-40"
+            />
           )}
 
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/60 via-[#1a1a1a]/40 to-[#1a1a1a]" />
@@ -188,8 +179,8 @@ export default function Home() {
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
             alt="Move Boldly"
-            className="h-6 md:h-8 object-contain opacity-70" />
-
+            className="h-6 md:h-8 object-contain opacity-70"
+          />
         </motion.div>
       </section>
 
@@ -227,8 +218,8 @@ export default function Home() {
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="w-full h-full object-cover opacity-60" />
-
+                        className="w-full h-full object-cover opacity-60"
+                      />
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
                       <motion.h3
@@ -321,10 +312,10 @@ export default function Home() {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
               alt="Performance"
-              className="w-full h-full object-cover" />
-
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         </motion.div>
       </section>
@@ -341,10 +332,10 @@ export default function Home() {
             <motion.img
               whileHover={{ scale: 1.08, rotate: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/5fb18a134_productImage.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
               alt="Lock & Go"
-              className="w-full h-full object-cover" />
-
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           <motion.div
@@ -356,10 +347,10 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={productInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.8 }} className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">DEBUT PRODUCT
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">
 
-
-
+              DEBUT PRODUCT
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -411,12 +402,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference - Updated Format with Background */}
+      {/* The Forta Difference */}
       <section className="relative bg-white text-black py-32 overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a3c5cc6f3_blur13.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a3c5cc6f3_blur13.png"
             alt="Background"
             className="w-full h-full object-cover opacity-90"
           />
@@ -558,7 +548,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Floating background elements */}
         <motion.div
           animate={{
             y: [0, -20, 0],
@@ -569,7 +558,8 @@ export default function Home() {
             duration: 8,
             ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-3xl" />
+          className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-3xl"
+        />
 
         <motion.div
           animate={{
@@ -581,9 +571,9 @@ export default function Home() {
             duration: 10,
             ease: "easeInOut"
           }}
-          className="absolute bottom-20 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
-
+          className="absolute bottom-20 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"
+        />
       </section>
-    </div>);
-
+    </div>
+  );
 }
