@@ -49,10 +49,31 @@ export default function Layout({ children, currentPageName }) {
   return (
     <div className="min-h-screen bg-[#1a1a1a]">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Custom Font Imports */
+        @font-face {
+          font-family: 'GT Sectra';
+          src: url('https://dl.dropboxusercontent.com/scl/fi/7ehv7fa316dfnoh8ovgor/GT-Sectra-Fine-Book.otf?rlkey=n9x18qjoy7y30be19n8aujath&st=3qvzhkw3') format('opentype');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        @font-face {
+          font-family: 'Aktiv Grotesk';
+          src: url('https://dl.dropboxusercontent.com/scl/fi/35sm2m0albyt6gofq2t3s/AktivGrotesk_Rg.ttf?rlkey=36puj9mfxck45sv5e76pgw1j9&st=m46vqfqm') format('truetype');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
         
+        /* Global Typography */
         * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+          font-family: 'Aktiv Grotesk', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+          letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-family: 'GT Sectra', Georgia, serif;
           letter-spacing: -0.02em;
         }
         
@@ -73,6 +94,17 @@ export default function Layout({ children, currentPageName }) {
         .smooth-transition {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* Button styles with brand fonts */
+        button {
+          font-family: 'Aktiv Grotesk', sans-serif;
+          letter-spacing: 0.1em;
+        }
+
+        /* Navigation uses Aktiv Grotesk */
+        nav a {
+          font-family: 'Aktiv Grotesk', sans-serif;
+        }
       `}</style>
 
       {/* Promo Bar */}
@@ -92,7 +124,7 @@ export default function Layout({ children, currentPageName }) {
       <header className={`sticky top-0 z-50 smooth-transition ${scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] text-white">
+            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] text-white" style={{fontFamily: 'GT Sectra, serif'}}>
               FORTA
             </Link>
 
@@ -170,7 +202,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] mb-6 block">
+              <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] mb-6 block" style={{fontFamily: 'GT Sectra, serif'}}>
                 FORTA
               </Link>
               <p className="text-sm text-[#6b6b6b] font-light leading-relaxed">
