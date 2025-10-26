@@ -16,7 +16,7 @@ export default function Shop() {
   const rightY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black">
+    <div ref={containerRef} className="min-h-screen bg-[#1a1a1a]">
       {/* Split Screen Layout */}
       <div className="relative min-h-screen grid lg:grid-cols-2">
         {/* Left Side - Lifestyle Image */}
@@ -101,7 +101,7 @@ export default function Shop() {
                 </p>
                 <p className="text-base text-black/70 font-light leading-relaxed">
                   Our award-winning setting spray that locks makeup in place for 
-                  up to 16 hours. Sweat-resistant, transfer-proof, and weightless. 
+                  up to 16 hours. Sweat-resistant, water-resistant, and weightless. 
                   The secret weapon of athletes and performers worldwide.
                 </p>
               </div>
@@ -172,7 +172,7 @@ export default function Shop() {
             <div className="grid md:grid-cols-3 gap-12 mt-16">
               {[
                 { stat: "16hrs", label: "Wear Time" },
-                { stat: "100%", label: "Sweat-Proof" },
+                { stat: "100%", label: "Sweat-Resistant" },
                 { stat: "0g", label: "Feels Like" }
               ].map((item, index) => (
                 <motion.div

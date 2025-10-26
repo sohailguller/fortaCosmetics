@@ -9,7 +9,7 @@ export default function About() {
   }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
-    <div className="bg-black">
+    <div className="bg-[#1a1a1a]">
       {/* Hero Section with Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -129,7 +129,7 @@ export default function About() {
       </section>
 
       {/* Values Grid */}
-      <section className="bg-black text-white py-32">
+      <section className="bg-[#1a1a1a] text-white py-32">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -238,7 +238,7 @@ export default function About() {
       </section>
 
       {/* Final Statement */}
-      <section className="bg-black text-white py-32">
+      <section className="bg-[#1a1a1a] text-white py-32">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
