@@ -147,15 +147,8 @@ export default function Layout({ children, currentPageName }) {
       {/* Sticky Header */}
       <header className={`sticky top-0 z-50 smooth-transition ${scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link to={createPageUrl("Home")} className="flex items-center">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
-                alt="FORTA"
-                className="h-8 md:h-10"
-              />
-            </Link>
-
+          <div className="relative flex items-center justify-between h-20"> {/* Added 'relative' to parent for absolute positioning of logo */}
+            {/* Left: Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
               {navigation.map((item) => (
                 <Link
@@ -170,6 +163,16 @@ export default function Layout({ children, currentPageName }) {
               ))}
             </nav>
 
+            {/* Center: Logo */}
+            <Link to={createPageUrl("Home")} className="absolute left-1/2 -translate-x-1/2">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
+                alt="FORTA"
+                className="h-6 md:h-7"
+              />
+            </Link>
+
+            {/* Right: Cart & Mobile Menu */}
             <div className="flex items-center space-x-6">
               <Link to={createPageUrl("Cart")} className="relative group">
                 <ShoppingBag className="w-5 h-5 text-white smooth-transition group-hover:scale-110" />
