@@ -241,8 +241,8 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Image Inside Brackets - Enlarged with rounded rectangle shape */}
-              <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[32%] h-[60%]">
+              {/* Image Inside Brackets - Wider and longer */}
+              <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[36%] h-[65%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
                   alt="Athlete"
