@@ -166,7 +166,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Center: Logo */}
             <Link to={createPageUrl("Home")} className="absolute left-1/2 -translate-x-1/2">
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7193_PrimaryLogo-_white-07.png"
                 alt="FORTA"
                 className="h-6 md:h-7"
               />
@@ -241,12 +241,13 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Image Inside Brackets - Centered between the two brackets */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28%] aspect-[2/1]">
+              {/* Image Inside Brackets - Centered horizontally and vertically with elongated shape */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[55%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
                   alt="Athlete"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover"
+                  style={{ borderRadius: '50%' }}
                 />
               </div>
             </div>
