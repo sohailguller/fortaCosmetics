@@ -10,6 +10,16 @@ export default function Layout({ children, currentPageName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [cartCount, setCartCount] = React.useState(0);
   const [scrolled, setScrolled] = React.useState(false);
+  const [currentAthleteImage, setCurrentAthleteImage] = React.useState(0);
+
+  const athleteImages = [
+    "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800",
+    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
+    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800",
+    "https://images.unsplash.com/photo-1485727749690-d091e8284ef3?w=800",
+    "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800",
+    "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800"
+  ];
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,6 +47,13 @@ export default function Layout({ children, currentPageName }) {
     window.addEventListener('cart-updated', handleCartUpdate);
     return () => window.removeEventListener('cart-updated', handleCartUpdate);
   }, [location]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAthleteImage((prev) => (prev + 1) % athleteImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [athleteImages.length]);
 
   const navigation = [
     { name: "Home", path: createPageUrl("Home") },
@@ -131,8 +148,12 @@ export default function Layout({ children, currentPageName }) {
       <header className={`sticky top-0 z-50 smooth-transition ${scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] text-white" style={{fontFamily: 'GT Sectra, serif'}}>
-              FORTA
+            <Link to={createPageUrl("Home")} className="flex items-center">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
+                alt="FORTA"
+                className="h-8 md:h-10"
+              />
             </Link>
 
             <nav className="hidden md:flex items-center space-x-10">
@@ -207,10 +228,55 @@ export default function Layout({ children, currentPageName }) {
       {/* Footer */}
       <footer className="bg-[#0f0f0f] text-white border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+          {/* Rotating Athlete Image with Brackets */}
+          <div className="flex items-center justify-center gap-8 mb-16">
+            <motion.img
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
+              alt="["
+              className="h-32 md:h-40 object-contain"
+            />
+
+            <div className="relative w-32 h-32 md:w-40 md:h-40">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentAthleteImage}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={athleteImages[currentAthleteImage]}
+                    alt="Athlete"
+                    className="w-full h-full object-cover rounded-full"
+                    style={{ clipPath: 'ellipse(50% 50% at 50% 50%)' }}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <motion.img
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
+              alt="]"
+              className="h-32 md:h-40 object-contain transform scale-x-[-1]"
+            />
+          </div>
+
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <Link to={createPageUrl("Home")} className="text-2xl font-light tracking-[0.2em] mb-6 block" style={{fontFamily: 'GT Sectra, serif'}}>
-                FORTA
+              <Link to={createPageUrl("Home")} className="inline-block mb-6">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f884d7197_PrimaryLogo-_white-07.png"
+                  alt="FORTA"
+                  className="h-8"
+                />
               </Link>
               <p className="text-sm text-[#6b6b6b] font-light leading-relaxed">
                 Performance cosmetics engineered for athletes, designed for everyone.

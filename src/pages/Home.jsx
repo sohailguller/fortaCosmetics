@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -162,20 +163,20 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Tagline instead of scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
         >
-          <motion.div
+          <motion.img
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="text-xs text-white/50 font-light tracking-[0.3em]"
-          >
-            SCROLL
-          </motion.div>
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
+            alt="Move Boldly"
+            className="h-6 md:h-8 object-contain opacity-70"
+          />
         </motion.div>
       </section>
 
