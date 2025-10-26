@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -60,7 +61,7 @@ export default function Layout({ children, currentPageName }) {
 
         @font-face {
           font-family: 'Aktiv Grotesk';
-          src: url('https://dl.dropboxusercontent.com/scl/fi/35sm2m0albyt6gofq2t3s/AktivGrotesk_Rg.ttf?rlkey=36puj9mfxck45sv5e76pgw1j9&st=m46vqfqm') format('truetype');
+          src: url('https://dl.dropboxusercontent.com/scl/fi/35sm2m0albyt6gofq2t3s/AktivGrotesk_Rg.ttf?rlkey=36puj9mfxck45sv5e76pgw1j9&st=m46vqfm') format('truetype');
           font-weight: 400;
           font-style: normal;
           font-display: swap;
@@ -72,9 +73,15 @@ export default function Layout({ children, currentPageName }) {
           letter-spacing: -0.01em;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        /* Only main headers use GT Sectra */
+        h1, h2 {
           font-family: 'GT Sectra', Georgia, serif;
           letter-spacing: -0.02em;
+        }
+
+        /* Subheadings and smaller headers use Aktiv Grotesk */
+        h3, h4, h5, h6, p, span, div {
+          font-family: 'Aktiv Grotesk', sans-serif;
         }
         
         :root {
