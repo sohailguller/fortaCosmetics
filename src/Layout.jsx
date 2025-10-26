@@ -81,21 +81,36 @@ export default function Layout({ children, currentPageName }) {
           font-display: swap;
         }
         
-        /* Global Typography */
+        /* Global Typography - Default to Aktiv Grotesk for paragraphs, subheads, buttons */
         * {
           font-family: 'Aktiv Grotesk', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
           letter-spacing: -0.01em;
         }
 
-        /* Only main headers use GT Sectra */
+        /* HEADING: GT Sectra Fine Book - Only for main headings (h1, h2) */
         h1, h2 {
           font-family: 'GT Sectra', Georgia, serif;
+          font-weight: 400;
           letter-spacing: -0.02em;
         }
 
-        /* Subheadings and smaller headers use Aktiv Grotesk */
-        h3, h4, h5, h6, p, span, div {
+        /* SUBHEAD, PARAGRAPH, BUTTONS, ACCENTS: Aktiv Grotesk Regular */
+        h3, h4, h5, h6, p, span, div, a, button, label, input, textarea {
+          font-family: 'Aktiv Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-weight: 400;
+        }
+
+        /* Ensure buttons have proper tracking */
+        button, .button {
           font-family: 'Aktiv Grotesk', sans-serif;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+        }
+
+        /* Navigation uses Aktiv Grotesk */
+        nav, nav a, nav button {
+          font-family: 'Aktiv Grotesk', sans-serif;
+          font-weight: 400;
         }
         
         :root {
@@ -114,17 +129,6 @@ export default function Layout({ children, currentPageName }) {
 
         .smooth-transition {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Button styles with brand fonts */
-        button {
-          font-family: 'Aktiv Grotesk', sans-serif;
-          letter-spacing: 0.1em;
-        }
-
-        /* Navigation uses Aktiv Grotesk */
-        nav a {
-          font-family: 'Aktiv Grotesk', sans-serif;
         }
       `}</style>
 

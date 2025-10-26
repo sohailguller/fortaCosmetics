@@ -9,10 +9,8 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
   const containerRef = useRef(null);
   const scrollLockRef = useRef(null);
-  const timelineRef = useRef(null);
   const productRevealRef = useRef(null);
 
-  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
   // Parallax effects for hero
@@ -56,13 +54,6 @@ export default function Home() {
     author: "Marcus T.",
     role: "CrossFit Athlete"
   }];
-
-
-  const timeline = [
-  { year: "2023", title: "Founded", description: "Forta launches with a mission to revolutionize performance cosmetics" },
-  { year: "2024", title: "Lock & Go", description: "Our flagship setting spray tested by 1000+ athletes" },
-  { year: "2025", title: "Expansion", description: "Growing our line with new performance-driven formulas" }];
-
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -277,8 +268,8 @@ export default function Home() {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">
 
-              Every Forta formula is engineered for endurance. Tested in extreme conditions, 
-              trusted by athletes, designed for anyone who refuses to compromise between 
+              Every Forta formula is engineered for endurance. Tested in extreme conditions,
+              trusted by athletes, designed for anyone who refuses to compromise between
               performance and aesthetics.
             </motion.p>
             <motion.div
@@ -368,7 +359,7 @@ export default function Home() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">
 
-              16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, 
+              16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you,
               tested by elite athletes and trusted by anyone who demands more from their makeup.
             </motion.p>
             <motion.div
@@ -503,63 +494,6 @@ export default function Home() {
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline Section with Scroll-Lock Animation */}
-      <section ref={timelineRef} className="py-32 px-6 bg-[#1a1a1a] min-h-screen flex items-center">
-        <div className="max-w-5xl mx-auto w-full">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-white text-4xl md:text-5xl font-light tracking-tight mb-20 text-center">
-
-            Our Journey
-          </motion.h2>
-
-          <div className="space-y-16">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-200px", amount: 0.8 }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                className="flex gap-8 items-start">
-
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  transition={{
-                    delay: 0.2,
-                    duration: 0.6,
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  className="flex-shrink-0">
-
-                  <div className="w-16 h-16 rounded-full bg-[#8b7355] flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">{item.year}</span>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                  className="flex-1 pt-2">
-
-                  <h3 className="text-white text-2xl font-light tracking-wide mb-2">{item.title}</h3>
-                  <p className="text-[#a0a0a0] font-light leading-relaxed">{item.description}</p>
-                </motion.div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
