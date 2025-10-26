@@ -1,0 +1,26 @@
+{
+  "name": "Video",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Video title"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL of the uploaded video file"
+    },
+    "file_size": {
+      "type": "number",
+      "description": "File size in bytes"
+    },
+    "description": {
+      "type": "string",
+      "description": "Video description"
+    }
+  },
+  "required": [
+    "title",
+    "file_url"
+  ]
+}
