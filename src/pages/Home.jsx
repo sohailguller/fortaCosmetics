@@ -115,7 +115,7 @@ export default function Home() {
             </video>
           ) : (
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
               alt="Forta Hero"
               className="w-full h-full object-cover opacity-40" />
           )}
@@ -136,21 +136,17 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.5 }} className="text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]">You don't have to sit still to look pretty.
-
-
-
-
-
+              transition={{ duration: 1.2, delay: 0.5 }} 
+              className="text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]">
+              You don't have to sit still to look pretty.
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }} className="text-[#a0a0a0] text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto">Performance cosmetics designed for those on the move
-
-
-
+              transition={{ duration: 1, delay: 0.8 }} 
+              className="text-[#a0a0a0] text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto">
+              Performance cosmetics designed for those on the move
             </motion.p>
 
             <motion.div
@@ -183,7 +179,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Static Tagline */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -191,7 +186,7 @@ export default function Home() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/92f95c900_Tagline-_white-17.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
             alt="Move Boldly"
             className="h-6 md:h-8 object-contain opacity-70" />
 
@@ -209,37 +204,37 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {[
-            { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
-            { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
-            { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
-            { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9eecc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
-            map((card, index) =>
-            <motion.div
-              key={index}
-              variants={itemVariants}>
+              { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
+              { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
+              { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
+              { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }
+            ].map((card, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}>
 
                 <Link to={createPageUrl(card.link)}>
                   <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
+                    whileHover={{ y: -8 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
 
                     <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="h-full">
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="h-full">
 
                       <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover opacity-60" />
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover opacity-60" />
 
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
                       <motion.h3
-                      initial={{ y: 10 }}
-                      whileHover={{ y: 0 }}
-                      className="text-white text-2xl font-light tracking-wide">
+                        initial={{ y: 10 }}
+                        whileHover={{ y: 0 }}
+                        className="text-white text-2xl font-light tracking-wide">
 
                         {card.title}
                       </motion.h3>
@@ -247,7 +242,7 @@ export default function Home() {
                   </motion.div>
                 </Link>
               </motion.div>
-            )}
+            ))}
           </motion.div>
         </div>
       </section>
