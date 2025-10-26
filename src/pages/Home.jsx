@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
@@ -31,6 +33,15 @@ export default function Home() {
 
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
+  // Fetch the most recent video for hero background
+  const { data: videos } = useQuery({
+    queryKey: ['hero-video'],
+    queryFn: () => base44.entities.Video.list('-created_date', 1),
+    initialData: []
+  });
+
+  const heroVideo = videos[0];
 
   const athleteImages = [
     "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
@@ -86,16 +97,28 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="bg-[#1a1a1a]">
-      {/* Full-Screen Hero with Parallax */}
+      {/* Full-Screen Hero with Video Background */}
       <section className="relative h-screen overflow-hidden">
         <motion.div
           style={{ scale: heroScale }}
           className="absolute inset-0">
 
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
-            alt="Forta Hero"
-            className="w-full h-full object-cover opacity-40" />
+          {heroVideo ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-40"
+            >
+              <source src={heroVideo.file_url} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+              alt="Forta Hero"
+              className="w-full h-full object-cover opacity-40" />
+          )}
 
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/60 via-[#1a1a1a]/40 to-[#1a1a1a]" />
         </motion.div>
