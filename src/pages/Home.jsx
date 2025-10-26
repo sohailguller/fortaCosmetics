@@ -34,6 +34,12 @@ export default function Home() {
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
+  const athleteImages = [
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
+  ];
+
   const testimonials = [
   {
     quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
@@ -163,16 +169,14 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Tagline instead of scroll indicator */}
+        {/* Static Tagline */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
-          <motion.img
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
             alt="Move Boldly"
             className="h-6 md:h-8 object-contain opacity-70" />
@@ -398,7 +402,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference - Staggered Grid */}
+      {/* The Forta Difference - Updated Format */}
       <section className="bg-black text-white py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.h2
@@ -411,54 +415,29 @@ export default function Home() {
             The Forta Difference
           </motion.h2>
 
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="max-w-2xl mx-auto">
             {[
-            {
-              number: "(1)",
-              title: "Sweat-Proof",
-              description: "Tested in extreme conditions. Stays put through workouts, heat, and humidity."
-            },
-            {
-              number: "(2)",
-              title: "Clean Formula",
-              description: "No parabens, sulfates, or questionable ingredients. Just what works."
-            },
-            {
-              number: "(3)",
-              title: "All-Day Wear",
-              description: "From morning training to evening events. One application, zero touch-ups."
-            }].
-            map((value, index) =>
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60, rotate: index % 2 === 0 ? -3 : 3 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.2,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="text-center">
-
-                <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.2, duration: 0.6, type: "spring" }}
-                className="mb-6">
-
-                  <span className="text-4xl font-light text-white/60">{value.number}</span>
-                </motion.div>
-                <h3 className="text-xl font-medium tracking-wide mb-4">
-                  {value.title}
+              { number: "(1)", title: "WATERPROOF" },
+              { number: "(2)", title: "SWEATPROOF" },
+              { number: "(3)", title: "LONG LASTING" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="mb-8"
+              >
+                <h3 className="text-2xl md:text-3xl font-light tracking-wide">
+                  {item.number} {item.title}
                 </h3>
-                <p className="text-white/60 font-light leading-relaxed">
-                  {value.description}
-                </p>
               </motion.div>
-            )}
+            ))}
           </div>
         </div>
       </section>
@@ -519,9 +498,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Timeline Section with Scroll-Activated Animation */}
-      <section ref={timelineRef} className="py-32 px-6 bg-[#1a1a1a]">
-        <div className="max-w-5xl mx-auto">
+      {/* Timeline Section with Scroll-Lock Animation */}
+      <section ref={timelineRef} className="py-32 px-6 bg-[#1a1a1a] min-h-screen flex items-center">
+        <div className="max-w-5xl mx-auto w-full">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -532,44 +511,46 @@ export default function Home() {
           </motion.h2>
 
           <div className="space-y-16">
-            {timeline.map((item, index) =>
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -60 }}
-              animate={timelineInView ? { opacity: 1, x: 0 } : {}}
-              transition={{
-                delay: index * 0.3,
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              className="flex gap-8 items-start">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-200px", amount: 0.8 }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="flex gap-8 items-start">
 
                 <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={timelineInView ? { scale: 1, rotate: 0 } : {}}
-                transition={{
-                  delay: index * 0.3 + 0.2,
-                  duration: 0.8,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                className="flex-shrink-0">
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true, margin: "-200px" }}
+                  transition={{
+                    delay: 0.2,
+                    duration: 0.6,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  className="flex-shrink-0">
 
                   <div className="w-16 h-16 rounded-full bg-[#8b7355] flex items-center justify-center">
                     <span className="text-white text-sm font-medium">{item.year}</span>
                   </div>
                 </motion.div>
                 <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={timelineInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.3 + 0.4, duration: 0.8 }}
-                className="flex-1 pt-2">
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-200px" }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="flex-1 pt-2">
 
                   <h3 className="text-white text-2xl font-light tracking-wide mb-2">{item.title}</h3>
                   <p className="text-[#a0a0a0] font-light leading-relaxed">{item.description}</p>
                 </motion.div>
               </motion.div>
-            )}
+            ))}
           </div>
         </div>
       </section>
