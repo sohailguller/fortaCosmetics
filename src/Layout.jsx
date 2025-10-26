@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { base44 } from "@/api/base44Client";
+import { base44 } from "@/api/base44Client"; // This import is no longer strictly needed for admin check if removed, but keeping it as it might be used elsewhere or in future.
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -53,21 +53,7 @@ export default function Layout({ children, currentPageName }) {
     return () => clearInterval(interval);
   }, [athleteImages.length]);
 
-  const [isAdmin, setIsAdmin] = React.useState(false);
-
-  React.useEffect(() => {
-    checkAdmin();
-  }, []);
-
-  const checkAdmin = async () => {
-    try {
-      const user = await base44.auth.me();
-      setIsAdmin(user?.role === 'admin');
-    } catch (error) {
-      setIsAdmin(false);
-      console.error("Error checking admin status:", error);
-    }
-  };
+  // Removed isAdmin state and related effects/functions as Video Uploader is being removed.
 
   const navigation = [
     { name: "Home", path: createPageUrl("Home") },
@@ -76,9 +62,7 @@ export default function Layout({ children, currentPageName }) {
     { name: "Contact", path: createPageUrl("Contact") },
   ];
 
-  const adminNavigation = [
-    { name: "Video Uploader", path: createPageUrl("VideoUploader") }
-  ];
+  // Removed adminNavigation array as Video Uploader is being removed.
 
   const isActive = (path) => location.pathname === path;
 
@@ -183,17 +167,7 @@ export default function Layout({ children, currentPageName }) {
                   {item.name}
                 </Link>
               ))}
-              {isAdmin && adminNavigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`text-sm font-light tracking-wider smooth-transition ${
-                    isActive(item.path) ? 'text-[#8b7355]' : 'text-[#8b7355]/60 hover:text-[#8b7355]'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {/* Removed adminNavigation mapping */}
             </nav>
 
             {/* Center: Logo */}
@@ -251,18 +225,7 @@ export default function Layout({ children, currentPageName }) {
                     {item.name}
                   </Link>
                 ))}
-                {isAdmin && adminNavigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block text-lg font-light ${
-                      isActive(item.path) ? 'text-[#8b7355]' : 'text-[#8b7355]/60'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {/* Removed adminNavigation mapping */}
               </nav>
             </motion.div>
           )}
