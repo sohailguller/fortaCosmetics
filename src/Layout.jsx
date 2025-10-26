@@ -231,45 +231,36 @@ export default function Layout({ children, currentPageName }) {
       {/* Footer */}
       <footer className="bg-[#0f0f0f] text-white border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          {/* Rotating Athlete Image with Brackets */}
-          <div className="flex items-center justify-center gap-8 mb-16">
-            <motion.img
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
-              alt="["
-              className="h-32 md:h-40 object-contain"
-            />
-
-            <div className="relative w-32 h-32 md:w-40 md:h-40">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentAthleteImage}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.6 }}
-                  className="absolute inset-0"
-                >
-                  <img
-                    src={athleteImages[currentAthleteImage]}
-                    alt="Athlete"
-                    className="w-full h-full object-cover rounded-full"
-                    style={{ clipPath: 'ellipse(50% 50% at 50% 50%)' }}
-                  />
-                </motion.div>
-              </AnimatePresence>
+          {/* Expanded Bracket Logo with Rotating Image */}
+          <div className="flex items-center justify-center mb-16">
+            <div className="relative w-full max-w-4xl">
+              {/* Expanded Bracket Logo */}
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
+                alt="FORTA"
+                className="w-full h-auto object-contain"
+              />
+              
+              {/* Rotating Image Inside Brackets */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35%] h-[60%]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentAthleteImage}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.8 }}
+                    className="w-full h-full rounded-full overflow-hidden"
+                  >
+                    <img
+                      src={athleteImages[currentAthleteImage]}
+                      alt="Athlete"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
-
-            <motion.img
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
-              alt="]"
-              className="h-32 md:h-40 object-contain transform scale-x-[-1]"
-            />
           </div>
 
           <div className="grid md:grid-cols-4 gap-12 mb-12">
