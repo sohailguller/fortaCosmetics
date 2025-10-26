@@ -402,15 +402,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference - Updated Format */}
-      <section className="bg-black text-white py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* The Forta Difference - Updated Format with Background */}
+      <section className="relative bg-white text-black py-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a3c5cc6f3_blur13.png"
+            alt="Background"
+            className="w-full h-full object-cover opacity-90"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center">
+            className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center text-[#0A1A2F]">
 
             The Forta Difference
           </motion.h2>
@@ -433,7 +442,7 @@ export default function Home() {
                 }}
                 className="mb-8"
               >
-                <h3 className="text-2xl md:text-3xl font-light tracking-wide">
+                <h3 className="text-2xl md:text-3xl font-light tracking-wide text-[#0A1A2F]">
                   {item.number} {item.title}
                 </h3>
               </motion.div>
