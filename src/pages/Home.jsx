@@ -178,7 +178,7 @@ export default function Home() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7035_blur13.png"
             alt="Move Boldly"
             className="h-6 md:h-8 object-contain opacity-70" />
 
@@ -209,7 +209,7 @@ export default function Home() {
                   <motion.div
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
+                  className="group relative h-[400px] bg-[#2a2a2a] rounded-lg overflow-hidden cursor-pointer">
 
                     <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -222,7 +222,7 @@ export default function Home() {
                       className="w-full h-full object-cover opacity-60" />
 
                     </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#8b7355]/80 to-transparent flex items-end p-8">
                       <motion.h3
                       initial={{ y: 10 }}
                       whileHover={{ y: 0 }} className="text-white text-2xl font-light uppercase tracking-wide">
