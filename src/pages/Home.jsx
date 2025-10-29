@@ -225,8 +225,8 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
                       <motion.h3
                       initial={{ y: 10 }}
-                      whileHover={{ y: 0 }}
-                      className="text-white text-2xl font-light tracking-wide">
+                      whileHover={{ y: 0 }} className="text-white text-2xl font-light uppercase tracking-wide">
+
 
                         {card.title}
                       </motion.h3>
@@ -276,7 +276,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.8 }} 
+              transition={{ delay: 0.7, duration: 0.8 }}
               className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">
               Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
             </motion.p>
@@ -346,7 +346,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={productInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.8 }} 
+              transition={{ delay: 0.5, duration: 0.8 }}
               className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">
               HERO PRODUCT
             </motion.p>
@@ -363,7 +363,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 0.8 }} 
+              transition={{ delay: 0.9, duration: 0.8 }}
               className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">
               16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, tested in the most extreme of scenarios and trusted by anyone who demands more from their makeup.
             </motion.p>
@@ -508,8 +508,8 @@ export default function Home() {
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/25fb0a76d_Screenshot2025-10-28at60718PM.png"
             alt="Gradient Background"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+
         </div>
 
         <motion.div
