@@ -40,22 +40,22 @@ export default function Home() {
   const heroVideo = videos[0];
 
   const testimonials = [
-    {
-      quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
-      author: "Sarah M.",
-      role: "Marathon Runner"
-    },
-    {
-      quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
-      author: "Jessica K.",
-      role: "Yoga Instructor"
-    },
-    {
-      quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
-      author: "Marcus T.",
-      role: "CrossFit Athlete"
-    }
-  ];
+  {
+    quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
+    author: "Sarah M.",
+    role: "Marathon Runner"
+  },
+  {
+    quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
+    author: "Jessica K.",
+    role: "Yoga Instructor"
+  },
+  {
+    quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
+    author: "Marcus T.",
+    role: "CrossFit Athlete"
+  }];
+
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -93,23 +93,23 @@ export default function Home() {
           style={{ scale: heroScale }}
           className="absolute inset-0">
 
-          {heroVideo ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover opacity-40"
-            >
+          {heroVideo ?
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-40">
+
               <source src={heroVideo.file_url} type="video/mp4" />
-            </video>
-          ) : (
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
-              alt="Forta Hero"
-              className="w-full h-full object-cover opacity-40"
-            />
-          )}
+            </video> :
+
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
+            alt="Forta Hero"
+            className="w-full h-full object-cover opacity-40" />
+
+          }
 
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/60 via-[#1a1a1a]/40 to-[#1a1a1a]" />
         </motion.div>
@@ -127,17 +127,17 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.5 }} 
-              className="text-white text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]">
-              You don't have to sit still to look pretty.
+              transition={{ duration: 1.2, delay: 0.5 }} className="text-white mb-6 text-4xl font-light normal-case tracking-tight leading-[1.1] md:text-6xl lg:text-6xl">You don't have to sit still to look pretty.
+
+
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }} 
-              className="text-[#a0a0a0] text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto">
-              Performance cosmetics designed for those on the move
+              transition={{ duration: 1, delay: 0.8 }} className="text-[#ffffff] mb-12 mx-auto text-lg font-light uppercase md:text-xl max-w-2xl">Performance cosmetics designed for those on the move
+
+
             </motion.p>
 
             <motion.div
@@ -179,8 +179,8 @@ export default function Home() {
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
             alt="Move Boldly"
-            className="h-6 md:h-8 object-contain opacity-70"
-          />
+            className="h-6 md:h-8 object-contain opacity-70" />
+
         </motion.div>
       </section>
 
@@ -195,37 +195,37 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {[
-              { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
-              { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
-              { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
-              { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }
-            ].map((card, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}>
+            { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
+            { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
+            { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
+            { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
+            map((card, index) =>
+            <motion.div
+              key={index}
+              variants={itemVariants}>
 
                 <Link to={createPageUrl(card.link)}>
                   <motion.div
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative h-[400px] bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer">
 
                     <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="h-full">
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-full">
 
                       <img
-                        src={card.image}
-                        alt={card.title}
-                        className="w-full h-full object-cover opacity-60"
-                      />
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-full object-cover opacity-60" />
+
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
                       <motion.h3
-                        initial={{ y: 10 }}
-                        whileHover={{ y: 0 }}
-                        className="text-white text-2xl font-light tracking-wide">
+                      initial={{ y: 10 }}
+                      whileHover={{ y: 0 }}
+                      className="text-white text-2xl font-light tracking-wide">
 
                         {card.title}
                       </motion.h3>
@@ -233,7 +233,7 @@ export default function Home() {
                   </motion.div>
                 </Link>
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </section>
@@ -314,8 +314,8 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
               alt="Performance"
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-cover" />
+
           </motion.div>
         </motion.div>
       </section>
@@ -334,8 +334,8 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
               alt="Lock & Go"
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-cover" />
+
           </motion.div>
 
           <motion.div
@@ -408,8 +408,8 @@ export default function Home() {
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a3c5cc6f3_blur13.png"
             alt="Background"
-            className="w-full h-full object-cover opacity-90"
-          />
+            className="w-full h-full object-cover opacity-90" />
+
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -425,27 +425,27 @@ export default function Home() {
 
           <div className="max-w-2xl mx-auto">
             {[
-              { number: "(1)", title: "WATERPROOF" },
-              { number: "(2)", title: "SWEATPROOF" },
-              { number: "(3)", title: "LONG LASTING" }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.2,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                className="mb-8"
-              >
+            { number: "(1)", title: "WATERPROOF" },
+            { number: "(2)", title: "SWEATPROOF" },
+            { number: "(3)", title: "LONG LASTING" }].
+            map((item, index) =>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.2,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="mb-8">
+
                 <h3 className="text-2xl md:text-3xl font-light tracking-wide text-[#0A1A2F]">
                   {item.number} {item.title}
                 </h3>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -558,8 +558,8 @@ export default function Home() {
             duration: 8,
             ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-3xl"
-        />
+          className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-3xl" />
+
 
         <motion.div
           animate={{
@@ -571,9 +571,9 @@ export default function Home() {
             duration: 10,
             ease: "easeInOut"
           }}
-          className="absolute bottom-20 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"
-        />
+          className="absolute bottom-20 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
+
       </section>
-    </div>
-  );
+    </div>);
+
 }
