@@ -279,26 +279,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scroll-Lock Section with Parallax */}
-      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a] py-16">
+      {/* Scroll-Lock Section - Full Bleed */}
+      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a]">
         <motion.div
           style={{ y: lockY, opacity: lockOpacity }}
-          className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-stretch">
-
+          className="w-full grid lg:grid-cols-2 items-stretch"
+        >
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-200px" }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col justify-center">
-
+            className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-0"
+          >
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">
-
+              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6"
+            >
               THE FORTA DIFFERENCE
             </motion.p>
             <motion.h2
@@ -306,8 +306,8 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="text-white text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight">
-
+              className="text-white text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
+            >
               Built for Motion.
               <br />
               <span className="text-[#a0a0a0]">Refined for Beauty.</span>
@@ -317,16 +317,16 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">
-
+              className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8"
+            >
               Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.9, duration: 0.8 }}>
-
+              transition={{ delay: 0.9, duration: 0.8 }}
+            >
               <Link to={createPageUrl("About")}>
                 <motion.button
                   whileHover={{
@@ -334,8 +334,8 @@ export default function Home() {
                     scale: 1.05
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-transparent border border-[#8b7355] text-[#8b7355] hover:text-white text-sm font-medium tracking-wider smooth-transition rounded-full">
-
+                  className="px-8 py-4 bg-transparent border border-[#8b7355] text-[#8b7355] hover:text-white text-sm font-medium tracking-wider smooth-transition rounded-full"
+                >
                   OUR STORY
                 </motion.button>
               </Link>
@@ -347,37 +347,35 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-200px" }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            // Removed style={{ y: lockImageY }} to remove parallax
-            className="relative -mr-6 lg:-mr-8 -my-16 overflow-hidden">
-
+            className="relative h-[500px] lg:h-auto overflow-hidden"
+          >
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
               alt="Performance"
-              className="w-full h-full object-cover min-h-[500px]" />
-
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Product Section with Parallax */}
-      <section ref={productRevealRef} className="py-32 px-6 bg-[#f5f5f0] overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-stretch">
+      {/* Product Section - Full Bleed */}
+      <section ref={productRevealRef} className="bg-[#f5f5f0]">
+        <div className="grid lg:grid-cols-2 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -60, rotate: -2 }}
             animate={productInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            // Removed style={{ y: productImageY }} to remove parallax
-            className="relative -ml-6 lg:-ml-8 -my-32 overflow-hidden order-2 lg:order-1">
-
+            className="relative h-[600px] lg:h-auto overflow-hidden order-2 lg:order-1"
+          >
             <motion.img
               whileHover={{ scale: 1.08 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
               alt="Lock & Go"
-              className="w-full h-full object-cover min-h-[600px]" />
-
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           <motion.div
@@ -385,22 +383,22 @@ export default function Home() {
             animate={productInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{ y: productTextY }}
-            className="order-1 lg:order-2 flex flex-col justify-center">
-
+            className="order-1 lg:order-2 flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-32"
+          >
             <motion.p
               initial={{ opacity: 0 }}
               animate={productInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">
-
+              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6"
+            >
               HERO PRODUCT
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7, duration: 1 }}
-              className="text-[#1a1a1a] text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight">
-
+              className="text-[#1a1a1a] text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
+            >
               Lock & Go
               <br />
               <span className="text-[#6b6b6b]">Setting Spray</span>
@@ -409,23 +407,23 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">
-
+              className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8"
+            >
               16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, tested in the most extreme of scenarios and trusted by anyone who demands more from their makeup.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1.1, duration: 0.8 }}
-              className="flex items-center gap-4 mb-8">
-
+              className="flex items-center gap-4 mb-8"
+            >
               <span className="text-3xl font-light text-[#1a1a1a]">$30</span>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.3, duration: 0.8 }}>
-
+              transition={{ delay: 1.3, duration: 0.8 }}
+            >
               <Link to={createPageUrl("ProductDetail")}>
                 <motion.button
                   whileHover={{
@@ -434,8 +432,8 @@ export default function Home() {
                     scale: 1.05
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[#8b7355] text-white text-sm font-medium tracking-wider smooth-transition rounded-full">
-
+                  className="px-8 py-4 bg-[#8b7355] text-white text-sm font-medium tracking-wider smooth-transition rounded-full"
+                >
                   SHOP NOW
                 </motion.button>
               </Link>
