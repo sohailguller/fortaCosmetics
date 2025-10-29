@@ -13,7 +13,7 @@ export default function Home() {
   const scrollLockRef = useRef(null);
   const productRevealRef = useRef(null);
   const fourCardRef = useRef(null);
-  const differenceRef = useRef(null);
+  // const differenceRef = useRef(null); // Removed: The Forta Difference section is being removed
   const testimonialsRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
@@ -51,13 +51,13 @@ export default function Home() {
   // productImageY removed as part of the change. It will no longer be used.
   const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
 
-  const { scrollYProgress: differenceProgress } = useScroll({
-    target: differenceRef,
-    offset: ["start end", "end start"]
-  });
-
-  const differenceY = useTransform(differenceProgress, [0, 1], [80, -80]);
-  const differenceScale = useTransform(differenceProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+  // Removed: The Forta Difference section is being removed
+  // const { scrollYProgress: differenceProgress } = useScroll({
+  //   target: differenceRef,
+  //   offset: ["start end", "end start"]
+  // });
+  // const differenceY = useTransform(differenceProgress, [0, 1], [80, -80]);
+  // const differenceScale = useTransform(differenceProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
 
   const { scrollYProgress: testimonialsProgress } = useScroll({
     target: testimonialsRef,
@@ -443,8 +443,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference with Parallax */}
-      <section ref={differenceRef} className="relative bg-white text-black py-32 overflow-hidden">
+      {/* Removed: The Forta Difference with Parallax */}
+      {/* <section ref={differenceRef} className="relative bg-white text-black py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
@@ -491,7 +491,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Carousel with Parallax */}
       <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
