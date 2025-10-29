@@ -402,7 +402,7 @@ export default function Home() {
       <section className="relative bg-white text-black py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a3c5cc6f3_blur13.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7035_blur13.png"
             alt="Background"
             className="w-full h-full object-cover opacity-90" />
 
@@ -503,10 +503,10 @@ export default function Home() {
       </section>
 
       {/* Final CTA with Gradient Background */}
-      <section className="py-32 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative py-32 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7035_Screenshot2025-10-28at53424PM.png"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8b7852f35_Screenshot2025-10-28at53424PM.png"
             alt="Gradient Background"
             className="w-full h-full object-cover"
           />
