@@ -14,10 +14,10 @@ export default function Layout({ children, currentPageName }) {
   const [currentAthleteImage, setCurrentAthleteImage] = React.useState(0);
 
   const athleteImages = [
-  "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
-  "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
-  "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"];
-
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg",
+    "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
+  ];
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,11 +54,11 @@ export default function Layout({ children, currentPageName }) {
   }, [athleteImages.length]);
 
   const navigation = [
-  { name: "Home", path: createPageUrl("Home") },
-  { name: "Shop", path: createPageUrl("Shop") },
-  { name: "About", path: createPageUrl("About") },
-  { name: "Contact", path: createPageUrl("Contact") }];
-
+    { name: "Home", path: createPageUrl("Home") },
+    { name: "Shop", path: createPageUrl("Shop") },
+    { name: "About", path: createPageUrl("About") },
+    { name: "Contact", path: createPageUrl("Contact") },
+  ];
 
   const isActive = (path) => location.pathname === path;
 
@@ -134,15 +134,15 @@ export default function Layout({ children, currentPageName }) {
       `}</style>
 
       {/* Promo Bar */}
-      <div className="bg-[#0A1A2F] text-white text-center py-2 text-xs font-light tracking-wider overflow-hidden">
+      <div className="bg-[#4A6FA5] text-white text-center py-2 text-xs font-light tracking-wider overflow-hidden">
         <motion.div
           animate={{ x: [0, -500] }}
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-          className="whitespace-nowrap">
-
-          {Array(8).fill("FREE SHIPPING ON ORDERS OVER $50").map((text, i) =>
-          <span key={i} className="mx-12">{text}</span>
-          )}
+          className="whitespace-nowrap"
+        >
+          {Array(8).fill("FREE SHIPPING ON ORDERS OVER $50").map((text, i) => (
+            <span key={i} className="mx-12">{text}</span>
+          ))}
         </motion.div>
       </div>
 
@@ -152,47 +152,47 @@ export default function Layout({ children, currentPageName }) {
           <div className="relative flex items-center justify-between h-20">
             {/* Left: Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
-              {navigation.map((item) =>
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`text-sm font-light tracking-wider smooth-transition ${
-                isActive(item.path) ? 'text-white' : 'text-[#6b6b6b] hover:text-white'}`
-                }>
-
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`text-sm font-light tracking-wider smooth-transition ${
+                    isActive(item.path) ? 'text-white' : 'text-[#6b6b6b] hover:text-white'
+                  }`}
+                >
                   {item.name}
                 </Link>
-              )}
+              ))}
             </nav>
 
             {/* Center: Logo */}
             <Link to={createPageUrl("Home")} className="absolute left-1/2 -translate-x-1/2">
-              <img
+              <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2616d000c_PrimaryLogo-_white-07.png"
                 alt="FORTA"
-                className="h-6 md:h-7 object-contain" />
-
+                className="h-6 md:h-7 object-contain"
+              />
             </Link>
 
             {/* Right: Cart & Mobile Menu */}
             <div className="flex items-center space-x-6">
               <Link to={createPageUrl("Cart")} className="relative group">
                 <ShoppingBag className="w-5 h-5 text-white smooth-transition group-hover:scale-110" />
-                {cartCount > 0 &&
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-2 -right-2 bg-[#8b7355] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
-
+                {cartCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-2 -right-2 bg-[#8b7355] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium"
+                  >
                     {cartCount}
                   </motion.span>
-                }
+                )}
               </Link>
 
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden text-white">
-
+                className="md:hidden text-white"
+              >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
@@ -200,29 +200,29 @@ export default function Layout({ children, currentPageName }) {
         </div>
 
         <AnimatePresence>
-          {mobileMenuOpen &&
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="md:hidden border-t border-white/10 overflow-hidden bg-[#1a1a1a]">
-
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden border-t border-white/10 overflow-hidden bg-[#1a1a1a]"
+            >
               <nav className="px-6 py-6 space-y-4">
-                {navigation.map((item) =>
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block text-lg font-light ${
-                isActive(item.path) ? 'text-white' : 'text-[#6b6b6b]'}`
-                }>
-
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block text-lg font-light ${
+                      isActive(item.path) ? 'text-white' : 'text-[#6b6b6b]'
+                    }`}
+                  >
                     {item.name}
                   </Link>
-              )}
+                ))}
               </nav>
             </motion.div>
-          }
+          )}
         </AnimatePresence>
       </header>
 
@@ -240,16 +240,16 @@ export default function Layout({ children, currentPageName }) {
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
                 alt="FORTA"
-                className="w-full h-auto object-contain" />
-
+                className="w-full h-auto object-contain"
+              />
               
               {/* Image Inside Brackets - Wider and longer */}
               <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[36%] h-[65%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
-                  alt="Athlete" className="mx-3 rounded-full w-full h-full object-cover" />
-
-
+                  alt="Athlete"
+                  className="w-full h-full object-cover rounded-3xl"
+                />
               </div>
             </div>
           </div>
@@ -282,12 +282,12 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="text-sm font-medium tracking-wider mb-4">CONNECT</h3>
               <p className="text-sm text-[#6b6b6b] mb-3">support@fortacosmetics.com</p>
-              <a
-                href="https://instagram.com/forta"
-                target="_blank"
+              <a 
+                href="https://instagram.com/forta" 
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-[#6b6b6b] hover:text-white smooth-transition">
-
+                className="text-sm text-[#6b6b6b] hover:text-white smooth-transition"
+              >
                 Instagram
               </a>
             </div>
@@ -300,6 +300,6 @@ export default function Layout({ children, currentPageName }) {
           </div>
         </div>
       </footer>
-    </div>);
-
+    </div>
+  );
 }
