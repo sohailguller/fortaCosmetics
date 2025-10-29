@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -239,10 +240,10 @@ export default function Home() {
       </section>
 
       {/* Scroll-Lock Section with Internal Animation */}
-      <section ref={scrollLockRef} className="relative min-h-screen flex items-center justify-center bg-[#1a1a1a] py-32">
+      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a] py-16">
         <motion.div
           style={{ y: lockY, opacity: lockOpacity }}
-          className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+          className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
 
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -275,11 +276,6 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7, duration: 0.8 }} className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
-
-
-
-
-
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -307,7 +303,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-200px" }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[600px] rounded-3xl overflow-hidden">
+            className="relative h-full min-h-[500px] overflow-hidden">
 
             <motion.img
               whileHover={{ scale: 1.05 }}
@@ -506,8 +502,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA with Hover Effect */}
-      <section className="py-32 px-6 bg-[#8b7355] text-center relative overflow-hidden">
+      {/* Final CTA with Gradient Background */}
+      <section className="py-32 px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7035_Screenshot2025-10-28at53424PM.png"
+            alt="Gradient Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -547,32 +551,6 @@ export default function Home() {
             </Link>
           </motion.div>
         </motion.div>
-
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 8,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-3xl" />
-
-
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0]
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 10,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-20 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
-
       </section>
     </div>);
 
