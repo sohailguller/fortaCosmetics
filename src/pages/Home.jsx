@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -12,6 +11,9 @@ export default function Home() {
   const containerRef = useRef(null);
   const scrollLockRef = useRef(null);
   const productRevealRef = useRef(null);
+  const fourCardRef = useRef(null);
+  const differenceRef = useRef(null);
+  const testimonialsRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
@@ -31,6 +33,37 @@ export default function Home() {
 
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const lockImageY = useTransform(scrollLockProgress, [0, 1], [50, -50]);
+
+  const { scrollYProgress: fourCardProgress } = useScroll({
+    target: fourCardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const cardY = useTransform(fourCardProgress, [0, 1], [100, -100]);
+
+  const { scrollYProgress: productProgress } = useScroll({
+    target: productRevealRef,
+    offset: ["start end", "end start"]
+  });
+
+  const productImageY = useTransform(productProgress, [0, 1], [100, -100]);
+  const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
+
+  const { scrollYProgress: differenceProgress } = useScroll({
+    target: differenceRef,
+    offset: ["start end", "end start"]
+  });
+
+  const differenceY = useTransform(differenceProgress, [0, 1], [80, -80]);
+  const differenceScale = useTransform(differenceProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+
+  const { scrollYProgress: testimonialsProgress } = useScroll({
+    target: testimonialsRef,
+    offset: ["start end", "end start"]
+  });
+
+  const testimonialsY = useTransform(testimonialsProgress, [0, 1], [60, -60]);
 
   const { data: videos } = useQuery({
     queryKey: ['hero-video'],
@@ -189,8 +222,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Four-Card Grid with Stagger Animation */}
-      <section className="py-24 px-6 bg-[#0f0f0f]">
+      {/* Four-Card Grid with Parallax */}
+      <section ref={fourCardRef} className="py-24 px-6 bg-[#0f0f0f] relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerVariants}
@@ -205,7 +238,11 @@ export default function Home() {
               { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
               { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }
             ].map((card, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                style={{ y: useTransform(cardY, (val) => val * (0.5 + index * 0.15)) }}
+              >
                 <Link to={createPageUrl(card.link)}>
                   <motion.div
                     whileHover={{ y: -8 }}
@@ -240,7 +277,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scroll-Lock Section with Internal Animation */}
+      {/* Scroll-Lock Section with Parallax */}
       <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a] py-16">
         <motion.div
           style={{ y: lockY, opacity: lockOpacity }}
@@ -308,6 +345,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-200px" }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: lockImageY }}
             className="relative -mr-6 lg:-mr-8 -my-16 overflow-hidden"
           >
             <motion.img
@@ -321,13 +359,14 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Product Section with Reveal Animation */}
-      <section ref={productRevealRef} className="py-32 px-6 bg-[#f5f5f0]">
+      {/* Product Section with Parallax */}
+      <section ref={productRevealRef} className="py-32 px-6 bg-[#f5f5f0] overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -60, rotate: -2 }}
             animate={productInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: productImageY }}
             className="relative -ml-6 lg:-ml-8 -my-32 overflow-hidden order-2 lg:order-1"
           >
             <motion.img
@@ -343,6 +382,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 60 }}
             animate={productInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: productTextY }}
             className="order-1 lg:order-2 flex flex-col justify-center"
           >
             <motion.p
@@ -402,8 +442,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Forta Difference */}
-      <section className="relative bg-white text-black py-32 overflow-hidden">
+      {/* The Forta Difference with Parallax */}
+      <section ref={differenceRef} className="relative bg-white text-black py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
@@ -418,6 +458,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
+            style={{ y: differenceY, scale: differenceScale }}
             className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center text-[#0A1A2F]"
           >
             The Forta Difference
@@ -439,6 +480,7 @@ export default function Home() {
                   delay: index * 0.2,
                   ease: [0.22, 1, 0.36, 1]
                 }}
+                style={{ y: useTransform(differenceY, (val) => val * (0.3 + index * 0.2)) }}
                 className="mb-8"
               >
                 <h3 className="text-2xl md:text-3xl font-light tracking-wide text-[#0A1A2F]">
@@ -450,13 +492,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Carousel */}
-      <section className="py-32 px-6 bg-[#0f0f0f]">
+      {/* Testimonials Carousel with Parallax */}
+      <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            style={{ y: testimonialsY }}
             className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-12 text-center"
           >
             TESTIMONIALS
