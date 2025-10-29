@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -12,69 +13,58 @@ export default function Home() {
   const scrollLockRef = useRef(null);
   const productRevealRef = useRef(null);
   const fourCardRef = useRef(null);
+  // const differenceRef = useRef(null); // Removed: The Forta Difference section is being removed
   const testimonialsRef = useRef(null);
-  const ctaRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
-  // Hero parallax
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  // Built for Motion section parallax
   const { scrollYProgress: scrollLockProgress } = useScroll({
     target: scrollLockRef,
     offset: ["start end", "end start"]
   });
 
-  const lockTextY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [150, 0, 0, -150]);
-  const lockTextOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const lockTextScale = useTransform(scrollLockProgress, [0, 0.3, 0.5, 1], [0.8, 1, 1, 0.9]);
+  const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
+  const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // lockImageY removed as part of the change. It will no longer be used.
 
-  // Four-card parallax
   const { scrollYProgress: fourCardProgress } = useScroll({
     target: fourCardRef,
     offset: ["start end", "end start"]
   });
 
-  const card1Y = useTransform(fourCardProgress, [0, 1], [120, -120]);
-  const card2Y = useTransform(fourCardProgress, [0, 1], [80, -80]);
-  const card3Y = useTransform(fourCardProgress, [0, 1], [100, -100]);
-  const card4Y = useTransform(fourCardProgress, [0, 1], [140, -140]);
+  const cardY = useTransform(fourCardProgress, [0, 1], [100, -100]);
 
-  // Product section parallax
   const { scrollYProgress: productProgress } = useScroll({
     target: productRevealRef,
     offset: ["start end", "end start"]
   });
 
-  const productTextY = useTransform(productProgress, [0, 1], [100, -100]);
-  const productTextScale = useTransform(productProgress, [0, 0.5, 1], [0.9, 1, 0.95]);
+  // productImageY removed as part of the change. It will no longer be used.
+  const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
 
-  // Testimonials parallax
+  // Removed: The Forta Difference section is being removed
+  // const { scrollYProgress: differenceProgress } = useScroll({
+  //   target: differenceRef,
+  //   offset: ["start end", "end start"]
+  // });
+  // const differenceY = useTransform(differenceProgress, [0, 1], [80, -80]);
+  // const differenceScale = useTransform(differenceProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+
   const { scrollYProgress: testimonialsProgress } = useScroll({
     target: testimonialsRef,
     offset: ["start end", "end start"]
   });
 
-  const testimonialsY = useTransform(testimonialsProgress, [0, 1], [80, -80]);
-  const testimonialsScale = useTransform(testimonialsProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
-
-  // CTA parallax
-  const { scrollYProgress: ctaProgress } = useScroll({
-    target: ctaRef,
-    offset: ["start end", "end start"]
-  });
-
-  const ctaY = useTransform(ctaProgress, [0, 1], [100, -100]);
-  const ctaScale = useTransform(ctaProgress, [0, 0.5, 1], [0.9, 1, 1]);
+  const testimonialsY = useTransform(testimonialsProgress, [0, 1], [60, -60]);
 
   const { data: videos } = useQuery({
     queryKey: ['hero-video'],
@@ -115,14 +105,14 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.2,
+        delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
@@ -131,11 +121,11 @@ export default function Home() {
   };
 
   return (
-    <div ref={containerRef} className="bg-[#1a1a1a] overflow-hidden">
-      {/* Full-Screen Hero with Enhanced Parallax */}
+    <div ref={containerRef} className="bg-[#1a1a1a]">
+      {/* Full-Screen Hero with Video Background */}
       <section className="relative h-screen overflow-hidden">
         <motion.div
-          style={{ scale: heroScale, y: heroY }}
+          style={{ scale: heroScale }}
           className="absolute inset-0"
         >
           {heroVideo ? (
@@ -155,24 +145,23 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/20 via-transparent to-[#1a1a1a]/60" />
         </motion.div>
 
         <motion.div
-          style={{ y: heroTextY, opacity: heroOpacity }}
+          style={{ y: heroY, opacity: heroOpacity }}
           className="relative z-10 h-full flex items-center justify-center px-6"
         >
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-center max-w-4xl"
           >
             <motion.h1
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.4, delay: 0.5 }}
-              className="text-white mb-6 text-4xl font-light normal-case tracking-tight leading-[1.1] md:text-6xl lg:text-7xl"
+              transition={{ duration: 1.2, delay: 0.5 }}
+              className="text-white mb-6 text-4xl font-light normal-case tracking-tight leading-[1.1] md:text-6xl lg:text-6xl"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
             >
               You don't have to sit still to look pretty.
@@ -181,7 +170,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.9 }}
+              transition={{ duration: 1, delay: 0.8 }}
               className="text-[#ffffff] mb-12 mx-auto text-lg font-light uppercase md:text-xl max-w-2xl"
               style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}
             >
@@ -191,7 +180,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
+              transition={{ duration: 1, delay: 1.1 }}
             >
               <Link to={createPageUrl("Shop")}>
                 <motion.button
@@ -222,7 +211,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.2, duration: 1 }}
+          transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
         >
           <img
@@ -234,7 +223,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Four-Card Grid with Advanced Parallax */}
+      {/* Four-Card Grid with Parallax */}
       <section ref={fourCardRef} className="py-24 px-6 bg-[#0f0f0f] relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -245,25 +234,25 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop", yTransform: card1Y },
-              { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About", yTransform: card2Y },
-              { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail", yTransform: card3Y },
-              { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact", yTransform: card4Y }
+              { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
+              { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
+              { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
+              { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }
             ].map((card, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                style={{ y: card.yTransform }}
+                style={{ y: useTransform(cardY, (val) => val * (0.5 + index * 0.15)) }}
               >
                 <Link to={createPageUrl(card.link)}>
                   <motion.div
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    whileHover={{ y: -8 }}
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="group relative h-[400px] bg-[#2a2a2a] overflow-hidden cursor-pointer"
                   >
                     <motion.div
-                      whileHover={{ scale: 1.15 }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                       className="h-full"
                     >
                       <img
@@ -289,17 +278,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Built for Motion Section with Enhanced Parallax */}
-      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a] py-16 overflow-hidden">
+      {/* Scroll-Lock Section with Parallax */}
+      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a] py-16">
         <motion.div
-          style={{ y: lockTextY, opacity: lockTextOpacity, scale: lockTextScale }}
+          style={{ y: lockY, opacity: lockOpacity }}
           className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-stretch"
         >
           <motion.div
-            initial={{ opacity: 0, x: -80 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-200px" }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col justify-center"
           >
             <motion.p
@@ -312,10 +301,10 @@ export default function Home() {
               THE FORTA DIFFERENCE
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 1.2 }}
+              transition={{ delay: 0.5, duration: 1 }}
               className="text-white text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
             >
               Built for Motion.
@@ -323,16 +312,16 @@ export default function Home() {
               <span className="text-[#a0a0a0]">Refined for Beauty.</span>
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
               className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8"
             >
               Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.9, duration: 0.8 }}
@@ -356,7 +345,8 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-200px" }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            // Removed style={{ y: lockImageY }} to remove parallax
             className="relative -mr-6 lg:-mr-8 -my-16 overflow-hidden"
           >
             <motion.img
@@ -370,13 +360,14 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Product Section with Advanced Parallax */}
+      {/* Product Section with Parallax */}
       <section ref={productRevealRef} className="py-32 px-6 bg-[#f5f5f0] overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-stretch">
           <motion.div
-            initial={{ opacity: 0, x: -80, rotate: -2 }}
+            initial={{ opacity: 0, x: -60, rotate: -2 }}
             animate={productInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            // Removed style={{ y: productImageY }} to remove parallax
             className="relative -ml-6 lg:-ml-8 -my-32 overflow-hidden order-2 lg:order-1"
           >
             <motion.img
@@ -389,10 +380,10 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 80 }}
+            initial={{ opacity: 0, x: 60 }}
             animate={productInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: productTextY, scale: productTextScale }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: productTextY }}
             className="order-1 lg:order-2 flex flex-col justify-center"
           >
             <motion.p
@@ -404,9 +395,9 @@ export default function Home() {
               HERO PRODUCT
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.7, duration: 1.2 }}
+              transition={{ delay: 0.7, duration: 1 }}
               className="text-[#1a1a1a] text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
             >
               Lock & Go
@@ -414,15 +405,15 @@ export default function Home() {
               <span className="text-[#6b6b6b]">Setting Spray</span>
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
               className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8"
             >
               16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, tested in the most extreme of scenarios and trusted by anyone who demands more from their makeup.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1.1, duration: 0.8 }}
               className="flex items-center gap-4 mb-8"
@@ -430,7 +421,7 @@ export default function Home() {
               <span className="text-3xl font-light text-[#1a1a1a]">$30</span>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1.3, duration: 0.8 }}
             >
@@ -452,31 +443,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Removed: The Forta Difference with Parallax */}
+      {/* <section ref={differenceRef} className="relative bg-white text-black py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
+            alt="Background"
+            className="w-full h-full object-cover opacity-90"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            style={{ y: differenceY, scale: differenceScale }}
+            className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center text-[#0A1A2F]"
+          >
+            The Forta Difference
+          </motion.h2>
+
+          <div className="max-w-2xl mx-auto">
+            {[
+              { number: "(1)", title: "WATERPROOF" },
+              { number: "(2)", title: "SWEATPROOF" },
+              { number: "(3)", title: "LONG LASTING" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                style={{ y: useTransform(differenceY, (val) => val * (0.3 + index * 0.2)) }}
+                className="mb-8"
+              >
+                <h3 className="text-2xl md:text-3xl font-light tracking-wide text-[#0A1A2F]">
+                  {item.number} {item.title}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
       {/* Testimonials Carousel with Parallax */}
-      <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f] overflow-hidden">
+      <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto">
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{ y: testimonialsY }}
-            transition={{ duration: 1 }}
             className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-12 text-center"
           >
             TESTIMONIALS
           </motion.p>
 
-          <motion.div 
-            style={{ scale: testimonialsScale }}
-            className="relative"
-          >
+          <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentTestimonial}
-                initial={{ opacity: 0, x: 100, scale: 0.9 }}
+                initial={{ opacity: 0, x: 100, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.9 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ opacity: 0, x: -100, scale: 0.95 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="text-center"
               >
                 <p className="text-white text-2xl md:text-3xl font-light leading-relaxed mb-8 italic">
@@ -493,7 +530,7 @@ export default function Home() {
 
             <div className="flex justify-center gap-4 mt-12">
               <motion.button
-                whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.2)" }}
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevTestimonial}
                 className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center"
@@ -501,7 +538,7 @@ export default function Home() {
                 <ChevronLeft className="w-5 h-5" />
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.2)" }}
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextTestimonial}
                 className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center"
@@ -509,15 +546,14 @@ export default function Home() {
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Final CTA with Enhanced Parallax */}
-      <section ref={ctaRef} className="relative py-32 px-6 text-center overflow-hidden">
+      {/* Final CTA with Gradient Background */}
+      <section className="relative py-32 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <motion.img
-            style={{ scale: useTransform(ctaProgress, [0, 1], [1, 1.2]) }}
+          <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/25fb0a76d_Screenshot2025-10-28at60718PM.png"
             alt="Gradient Background"
             className="w-full h-full object-cover"
@@ -525,18 +561,17 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ y: ctaY, scale: ctaScale }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl mx-auto relative z-10"
         >
           <motion.h2
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1.2 }}
+            transition={{ delay: 0.3, duration: 1 }}
             className="text-white text-5xl md:text-7xl font-light tracking-tight mb-8"
           >
             Ready to Experience
@@ -544,16 +579,16 @@ export default function Home() {
             Performance Beauty?
           </motion.h2>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
             <Link to={createPageUrl("Shop")}>
               <motion.button
                 whileHover={{
                   backgroundColor: "#1a1a1a",
-                  scale: 1.08
+                  scale: 1.05
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3 }}
