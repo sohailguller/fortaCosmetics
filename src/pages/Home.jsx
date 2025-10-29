@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -33,7 +34,7 @@ export default function Home() {
 
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const lockImageY = useTransform(scrollLockProgress, [0, 1], [50, -50]);
+  // lockImageY removed as part of the change. It will no longer be used.
 
   const { scrollYProgress: fourCardProgress } = useScroll({
     target: fourCardRef,
@@ -47,7 +48,7 @@ export default function Home() {
     offset: ["start end", "end start"]
   });
 
-  const productImageY = useTransform(productProgress, [0, 1], [100, -100]);
+  // productImageY removed as part of the change. It will no longer be used.
   const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
 
   const { scrollYProgress: differenceProgress } = useScroll({
@@ -345,7 +346,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-200px" }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: lockImageY }}
+            // Removed style={{ y: lockImageY }} to remove parallax
             className="relative -mr-6 lg:-mr-8 -my-16 overflow-hidden"
           >
             <motion.img
@@ -366,7 +367,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -60, rotate: -2 }}
             animate={productInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: productImageY }}
+            // Removed style={{ y: productImageY }} to remove parallax
             className="relative -ml-6 lg:-ml-8 -my-32 overflow-hidden order-2 lg:order-1"
           >
             <motion.img
