@@ -4,7 +4,6 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import VideoUploader from './pages/VideoUploader';
 import Layout from './Layout.jsx';
 
 
@@ -15,7 +14,6 @@ export const PAGES = {
     "Cart": Cart,
     "About": About,
     "Contact": Contact,
-    "VideoUploader": VideoUploader,
 }
 
 export const pagesConfig = {

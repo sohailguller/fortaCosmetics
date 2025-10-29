@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -11,7 +12,6 @@ export default function Layout({ children, currentPageName }) {
   const [cartCount, setCartCount] = React.useState(0);
   const [scrolled, setScrolled] = React.useState(false);
   const [currentAthleteImage, setCurrentAthleteImage] = React.useState(0);
-  const [isAdmin, setIsAdmin] = React.useState(false);
 
   const athleteImages = [
     "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg",
@@ -53,30 +53,11 @@ export default function Layout({ children, currentPageName }) {
     return () => clearInterval(interval);
   }, [athleteImages.length]);
 
-  React.useEffect(() => {
-    checkAdmin();
-  }, []);
-
-  const checkAdmin = async () => {
-    try {
-      const user = await base44.auth.me();
-      if (user && user.role === 'admin') {
-        setIsAdmin(true);
-      }
-    } catch (error) {
-      setIsAdmin(false);
-    }
-  };
-
   const navigation = [
     { name: "Home", path: createPageUrl("Home") },
     { name: "Shop", path: createPageUrl("Shop") },
     { name: "About", path: createPageUrl("About") },
     { name: "Contact", path: createPageUrl("Contact") },
-  ];
-
-  const adminNavigation = [
-    { name: "Video Upload", path: createPageUrl("VideoUploader") }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -182,17 +163,6 @@ export default function Layout({ children, currentPageName }) {
                   {item.name}
                 </Link>
               ))}
-              {isAdmin && adminNavigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`text-sm font-light tracking-wider smooth-transition ${
-                    isActive(item.path) ? 'text-white' : 'text-[#8b7355] hover:text-white'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
             </nav>
 
             {/* Center: Logo */}
@@ -245,18 +215,6 @@ export default function Layout({ children, currentPageName }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block text-lg font-light ${
                       isActive(item.path) ? 'text-white' : 'text-[#6b6b6b]'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                {isAdmin && adminNavigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block text-lg font-light ${
-                      isActive(item.path) ? 'text-white' : 'text-[#8b7355]'
                     }`}
                   >
                     {item.name}
