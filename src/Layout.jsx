@@ -232,10 +232,10 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Footer */}
       <footer className="bg-[#0f0f0f] text-white border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          {/* Expanded Bracket Logo with Rotating Image - Left Aligned */}
-          <div className="mb-16">
-            <div className="relative w-full max-w-2xl">
+        <div className="w-full px-6 lg:px-12 xl:px-16 py-12 md:py-16 lg:py-20">
+          {/* Expanded Bracket Logo with Rotating Image */}
+          <div className="mb-12 md:mb-16 lg:mb-20 flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
               {/* Expanded Bracket Logo */}
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4f99d6659_ExpandedBracket-_white-12.png"
@@ -243,7 +243,7 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full h-auto object-contain"
               />
               
-              {/* Image Inside Brackets - Wider and longer */}
+              {/* Image Inside Brackets */}
               <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[36%] h-[65%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
@@ -254,10 +254,10 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 xl:gap-24 mb-12 md:mb-16">
             <div>
-              <h3 className="text-sm font-medium tracking-wider mb-4">SHOP</h3>
-              <nav className="space-y-3">
+              <h3 className="text-sm font-medium tracking-wider mb-4 md:mb-6">SHOP</h3>
+              <nav className="space-y-3 md:space-y-4">
                 <Link to={createPageUrl("Shop")} className="block text-sm text-[#6b6b6b] hover:text-white smooth-transition">
                   All Products
                 </Link>
@@ -268,8 +268,8 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             <div>
-              <h3 className="text-sm font-medium tracking-wider mb-4">COMPANY</h3>
-              <nav className="space-y-3">
+              <h3 className="text-sm font-medium tracking-wider mb-4 md:mb-6">COMPANY</h3>
+              <nav className="space-y-3 md:space-y-4">
                 <Link to={createPageUrl("About")} className="block text-sm text-[#6b6b6b] hover:text-white smooth-transition">
                   About Us
                 </Link>
@@ -280,8 +280,8 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             <div>
-              <h3 className="text-sm font-medium tracking-wider mb-4">CONNECT</h3>
-              <p className="text-sm text-[#6b6b6b] mb-3">support@fortacosmetics.com</p>
+              <h3 className="text-sm font-medium tracking-wider mb-4 md:mb-6">CONNECT</h3>
+              <p className="text-sm text-[#6b6b6b] mb-3 md:mb-4">support@fortacosmetics.com</p>
               <a 
                 href="https://instagram.com/forta" 
                 target="_blank" 
@@ -293,7 +293,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/5 text-center">
+          <div className="pt-8 md:pt-12 border-t border-white/5 text-center">
             <p className="text-xs text-[#6b6b6b] font-light">
               © 2025 FORTA. ALL RIGHTS RESERVED.
             </p>
