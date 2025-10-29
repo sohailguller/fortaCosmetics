@@ -66,7 +66,7 @@ export default function Home() {
 
   const testimonialsY = useTransform(testimonialsProgress, [0, 1], [60, -60]);
 
-  const { data: videos } = useQuery({
+  const { data: videos = [] } = useQuery({
     queryKey: ['hero-video'],
     queryFn: () => base44.entities.Video.list('-created_date', 1),
     initialData: []
@@ -130,6 +130,7 @@ export default function Home() {
 
           {heroVideo ?
           <video
+            key={heroVideo.id} // Added key for unique video element
             autoPlay
             loop
             muted
@@ -240,7 +241,7 @@ export default function Home() {
             { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
             map((card, index) =>
             <motion.div
-              key={index}
+              key={`card-${index}`} // Added key for unique list items
               variants={itemVariants}
               style={{ y: useTransform(cardY, (val) => val * (0.5 + index * 0.15)) }}>
 
@@ -489,9 +490,7 @@ export default function Home() {
              ))}
            </div>
          </div>
-        </section> */
-
-      }
+        </section> */}
 
       {/* Testimonials Carousel with Parallax */}
       <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
@@ -509,7 +508,7 @@ export default function Home() {
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
-                key={currentTestimonial}
+                key={`testimonial-${currentTestimonial}`} // Added key for AnimatePresence
                 initial={{ opacity: 0, x: 100, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -100, scale: 0.95 }}
