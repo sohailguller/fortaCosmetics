@@ -593,7 +593,7 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
                 className="px-12 py-5 bg-white text-[#1a1a1a] text-sm font-medium tracking-[0.2em] smooth-transition rounded-full">
 
-                SHOP FORTA
+                JOIN THE WAITLIST
               </motion.button>
             </Link>
           </motion.div>
