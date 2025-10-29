@@ -274,12 +274,12 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">
+              transition={{ delay: 0.7, duration: 0.8 }} className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8">Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
 
-              Every Forta formula is engineered for endurance. Tested in extreme conditions,
-              trusted by athletes, designed for anyone who refuses to compromise between
-              performance and aesthetics.
+
+
+
+
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -347,10 +347,10 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={productInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">
+              transition={{ delay: 0.5, duration: 0.8 }} className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6">HERO PRODUCT
 
-              DEBUT PRODUCT
+
+
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -365,11 +365,11 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 0.8 }}
-              className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">
+              transition={{ delay: 0.9, duration: 0.8 }} className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8">16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, tested in the most extreme of scenarios and trusted by anyone who demands more from their makeup.
 
-              16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you,
-              tested by elite athletes and trusted by anyone who demands more from their makeup.
+
+
+
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
