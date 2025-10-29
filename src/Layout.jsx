@@ -244,11 +244,11 @@ export default function Layout({ children, currentPageName }) {
               />
               
               {/* Image Inside Brackets */}
-              <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[36%] h-[65%] p-3">
+              <div className="absolute top-1/2 left-[32%] -translate-x-1/2 -translate-y-1/2 w-[36%] h-[65%]">
                 <img
                   src={athleteImages[currentAthleteImage]}
                   alt="Athlete"
-                  className="w-full h-full object-cover rounded-[50px]"
+                  className="w-full h-full object-cover rounded-3xl"
                 />
               </div>
             </div>
