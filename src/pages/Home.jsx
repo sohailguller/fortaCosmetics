@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -6,6 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
@@ -13,7 +13,6 @@ export default function Home() {
   const scrollLockRef = useRef(null);
   const productRevealRef = useRef(null);
   const fourCardRef = useRef(null);
-  // const differenceRef = useRef(null); // Removed: The Forta Difference section is being removed
   const testimonialsRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
@@ -34,7 +33,6 @@ export default function Home() {
 
   const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  // lockImageY removed as part of the change. It will no longer be used.
 
   const { scrollYProgress: fourCardProgress } = useScroll({
     target: fourCardRef,
@@ -48,16 +46,7 @@ export default function Home() {
     offset: ["start end", "end start"]
   });
 
-  // productImageY removed as part of the change. It will no longer be used.
   const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
-
-  // Removed: The Forta Difference section is being removed
-  // const { scrollYProgress: differenceProgress } = useScroll({
-  //   target: differenceRef,
-  //   offset: ["start end", "end start"]
-  // });
-  // const differenceY = useTransform(differenceProgress, [0, 1], [80, -80]);
-  // const differenceScale = useTransform(differenceProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
 
   const { scrollYProgress: testimonialsProgress } = useScroll({
     target: testimonialsRef,
@@ -130,7 +119,7 @@ export default function Home() {
 
           {heroVideo ?
           <video
-            key={heroVideo.id} // Added key for unique video element
+            key={heroVideo.id}
             autoPlay
             loop
             muted
@@ -224,6 +213,24 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Scroll Animation Section - FOR THE ACTIVE */}
+      <section className="bg-[#f5f5f0] overflow-hidden">
+        <ContainerScroll
+          titleComponent={
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-[#1a1a1a] mb-8">
+              FOR THE <span className="font-normal">ACTIVE</span>
+            </h2>
+          }
+        >
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
+            alt="Lock & Go Setting Spray"
+            className="mx-auto rounded-2xl object-contain h-full w-full"
+            draggable={false}
+          />
+        </ContainerScroll>
+      </section>
+
       {/* Four-Card Grid with Parallax */}
       <section ref={fourCardRef} className="py-24 px-6 bg-[#0f0f0f] relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -241,7 +248,7 @@ export default function Home() {
             { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
             map((card, index) =>
             <motion.div
-              key={`card-${index}`} // Added key for unique list items
+              key={`card-${index}`}
               variants={itemVariants}
               style={{ y: useTransform(cardY, (val) => val * (0.5 + index * 0.15)) }}>
 
@@ -442,54 +449,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Removed: The Forta Difference with Parallax */}
-      {/* <section ref={differenceRef} className="relative bg-white text-black py-32 overflow-hidden">
-         <div className="absolute inset-0">
-           <img
-             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
-             alt="Background"
-             className="w-full h-full object-cover opacity-90"
-           />
-         </div>
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-           <motion.h2
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true, margin: "-100px" }}
-             transition={{ duration: 0.8 }}
-             style={{ y: differenceY, scale: differenceScale }}
-             className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center text-[#0A1A2F]"
-           >
-             The Forta Difference
-           </motion.h2>
-            <div className="max-w-2xl mx-auto">
-             {[
-               { number: "(1)", title: "WATERPROOF" },
-               { number: "(2)", title: "SWEATPROOF" },
-               { number: "(3)", title: "LONG LASTING" }
-             ].map((item, index) => (
-               <motion.div
-                 key={index}
-                 initial={{ opacity: 0, x: -30 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true, margin: "-100px" }}
-                 transition={{
-                   duration: 0.6,
-                   delay: index * 0.2,
-                   ease: [0.22, 1, 0.36, 1]
-                 }}
-                 style={{ y: useTransform(differenceY, (val) => val * (0.3 + index * 0.2)) }}
-                 className="mb-8"
-               >
-                 <h3 className="text-2xl md:text-3xl font-light tracking-wide text-[#0A1A2F]">
-                   {item.number} {item.title}
-                 </h3>
-               </motion.div>
-             ))}
-           </div>
-         </div>
-        </section> */}
-
       {/* Testimonials Carousel with Parallax */}
       <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto">
@@ -506,7 +465,7 @@ export default function Home() {
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
-                key={`testimonial-${currentTestimonial}`} // Added key for AnimatePresence
+                key={`testimonial-${currentTestimonial}`}
                 initial={{ opacity: 0, x: 100, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -100, scale: 0.95 }}
@@ -568,12 +527,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1 }} className="text-white text-5xl md:text-7xl font-light tracking-tight mb-8">Coming Soon
-
-
-
-
-
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-white text-5xl md:text-7xl font-light tracking-tight mb-8">
+            Coming Soon
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
