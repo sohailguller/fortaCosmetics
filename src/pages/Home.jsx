@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
@@ -14,6 +13,7 @@ export default function Home() {
   const productRevealRef = useRef(null);
   const fourCardRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const bottleScrollRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
@@ -25,6 +25,15 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  const { scrollYProgress: bottleScrollProgress } = useScroll({
+    target: bottleScrollRef,
+    offset: ["start end", "end start"]
+  });
+
+  const bottleY = useTransform(bottleScrollProgress, [0, 0.5, 1], [200, -50, -300]);
+  const bottleRotate = useTransform(bottleScrollProgress, [0, 0.5, 1], [15, 0, -5]);
+  const bottleScale = useTransform(bottleScrollProgress, [0, 0.5, 1], [0.8, 1.1, 1]);
 
   const { scrollYProgress: scrollLockProgress } = useScroll({
     target: scrollLockRef,
@@ -213,22 +222,37 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Scroll Animation Section - FOR THE ACTIVE */}
-      <section className="bg-[#f5f5f0] overflow-hidden">
-        <ContainerScroll
-          titleComponent={
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-[#1a1a1a] mb-8">
+      {/* Bottle Scroll Animation Section - FOR THE ACTIVE */}
+      <section ref={bottleScrollRef} className="relative min-h-[120vh] bg-[#f5f5f0] overflow-hidden flex items-center justify-center">
+        <div className="relative w-full max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-[#1a1a1a]">
               FOR THE <span className="font-normal">ACTIVE</span>
             </h2>
-          }
-        >
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
-            alt="Lock & Go Setting Spray"
-            className="mx-auto rounded-2xl object-contain h-full w-full"
-            draggable={false}
-          />
-        </ContainerScroll>
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: bottleY,
+              rotate: bottleRotate,
+              scale: bottleScale
+            }}
+            className="relative w-full max-w-2xl mx-auto"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/1b237e6e6_Untitleddesign12.png"
+              alt="Lock & Go Setting Spray"
+              className="w-full h-auto object-contain"
+              draggable={false}
+            />
+          </motion.div>
+        </div>
       </section>
 
       {/* Four-Card Grid with Parallax */}
