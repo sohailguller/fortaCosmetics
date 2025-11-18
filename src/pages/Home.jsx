@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -31,7 +32,7 @@ export default function Home() {
     offset: ["start end", "end start"]
   });
 
-  const bottleY = useTransform(bottleScrollProgress, [0, 0.5, 1], [200, -50, -300]);
+  const bottleY = useTransform(bottleScrollProgress, [0, 0.5, 1], [200, -50, -200]); // Changed from -300 to -200
   const bottleRotate = useTransform(bottleScrollProgress, [0, 0.5, 1], [15, 0, -5]);
   const bottleScale = useTransform(bottleScrollProgress, [0, 0.5, 1], [0.8, 1.1, 1]);
 
@@ -237,21 +238,23 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <motion.div
-            style={{ 
-              y: bottleY,
-              rotate: bottleRotate,
-              scale: bottleScale
-            }}
-            className="relative w-full max-w-2xl mx-auto"
-          >
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/1b237e6e6_Untitleddesign12.png"
-              alt="Lock & Go Setting Spray"
-              className="w-full h-auto object-contain"
-              draggable={false}
-            />
-          </motion.div>
+          <div className="relative w-full max-w-2xl mx-auto overflow-hidden" style={{ height: '70vh' }}>
+            <motion.div
+              style={{ 
+                y: bottleY,
+                rotate: bottleRotate,
+                scale: bottleScale
+              }}
+              className="relative w-full"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/1b237e6e6_Untitleddesign12.png"
+                alt="Lock & Go Setting Spray"
+                className="w-full h-auto object-contain"
+                draggable={false}
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
