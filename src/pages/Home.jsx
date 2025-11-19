@@ -37,8 +37,8 @@ export default function Home() {
           const newProgress = prev + delta * 0.0008;
           return Math.max(0, Math.min(1, newProgress));
         });
-      } else if (bottleProgress >= 0.98 && e.deltaY > 0) {
-        // Animation complete (with slight buffer), allow scrolling down
+      } else if (bottleProgress >= 0.995 && e.deltaY > 0) {
+        // Animation complete (with buffer), allow scrolling down
         setIsBottleLocked(false);
       } else if (!inView) {
         setIsBottleLocked(false);
@@ -56,7 +56,8 @@ export default function Home() {
   const bottleY = 200 - (400 * bottleProgress);
   const bottleRotate = 15 - (20 * bottleProgress);
   const bottleScale = 0.8 + (0.3 * bottleProgress);
-  const taglineOpacity = 1 - (bottleProgress * 0.3);
+  const taglineY = -30 + (30 * bottleProgress);
+  const taglineOpacity = 1 - (bottleProgress * 0.5);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -255,17 +256,20 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-16 md:pt-24">
           {/* Header with Tagline Image */}
           <motion.div
-            animate={{ opacity: taglineOpacity }}
-            transition={{ duration: 0.3 }}
+            animate={{ 
+              y: taglineY,
+              opacity: taglineOpacity 
+            }}
+            transition={{ type: "spring", stiffness: 100, damping: 30 }}
             className="text-center mb-20"
           >
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/194d2b340_Tagline-_black-16.png"
               alt="FOR THE ACTIVE"
-              className="w-full max-w-4xl mx-auto h-auto object-contain"
+              className="w-full max-w-3xl mx-auto h-auto object-contain"
             />
           </motion.div>
 
@@ -286,18 +290,6 @@ export default function Home() {
               draggable={false}
             />
           </motion.div>
-
-          {isBottleLocked && bottleProgress < 0.98 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center"
-            >
-              <p className="text-sm text-[#1a1a1a]/40 font-light tracking-wider">
-                SCROLL TO REVEAL
-              </p>
-            </motion.div>
-          )}
         </div>
       </section>
 
