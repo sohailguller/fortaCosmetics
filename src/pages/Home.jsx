@@ -57,7 +57,6 @@ export default function Home() {
   const bottleRotate = 15 - (20 * bottleProgress);
   const bottleScale = 0.8 + (0.3 * bottleProgress);
   const taglineY = -30 + (30 * bottleProgress);
-  const taglineOpacity = 1 - (bottleProgress * 0.5);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -260,8 +259,7 @@ export default function Home() {
           {/* Header with Tagline Image */}
           <motion.div
             animate={{ 
-              y: taglineY,
-              opacity: taglineOpacity 
+              y: taglineY
             }}
             transition={{ type: "spring", stiffness: 100, damping: 30 }}
             className="text-center mb-20"
