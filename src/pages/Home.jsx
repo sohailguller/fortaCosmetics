@@ -8,6 +8,8 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+  const [bottleProgress, setBottleProgress] = React.useState(0);
+  const [isBottleLocked, setIsBottleLocked] = React.useState(false);
   const containerRef = useRef(null);
   const scrollLockRef = useRef(null);
   const productRevealRef = useRef(null);
@@ -16,6 +18,44 @@ export default function Home() {
   const bottleScrollRef = useRef(null);
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
+
+  // Scroll lock effect for bottle animation
+  React.useEffect(() => {
+    const handleWheel = (e) => {
+      if (!bottleScrollRef.current) return;
+      
+      const rect = bottleScrollRef.current.getBoundingClientRect();
+      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight;
+      
+      if (inView && bottleProgress < 1) {
+        e.preventDefault();
+        setIsBottleLocked(true);
+        
+        // Update progress based on scroll direction
+        const delta = e.deltaY;
+        setBottleProgress((prev) => {
+          const newProgress = prev + delta * 0.001;
+          return Math.max(0, Math.min(1, newProgress));
+        });
+      } else if (bottleProgress >= 1 && e.deltaY > 0) {
+        // Animation complete, allow scrolling down
+        setIsBottleLocked(false);
+      } else if (!inView) {
+        setIsBottleLocked(false);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [bottleProgress]);
+
+  // Calculate bottle transforms based on progress
+  const bottleY = bottleProgress === 0 ? 200 : -200 + (400 * (1 - bottleProgress));
+  const bottleRotate = 15 - (20 * bottleProgress);
+  const bottleScale = 0.8 + (0.3 * bottleProgress);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -26,14 +66,7 @@ export default function Home() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  const { scrollYProgress: bottleScrollProgress } = useScroll({
-    target: bottleScrollRef,
-    offset: ["start end", "end start"]
-  });
 
-  const bottleY = useTransform(bottleScrollProgress, [0, 0.5, 1], [200, -50, -300]);
-  const bottleRotate = useTransform(bottleScrollProgress, [0, 0.5, 1], [15, 0, -5]);
-  const bottleScale = useTransform(bottleScrollProgress, [0, 0.5, 1], [0.8, 1.1, 1]);
 
   const { scrollYProgress: scrollLockProgress } = useScroll({
     target: scrollLockRef,
@@ -238,11 +271,12 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            style={{ 
+            animate={{ 
               y: bottleY,
               rotate: bottleRotate,
               scale: bottleScale
             }}
+            transition={{ type: "spring", stiffness: 100, damping: 30 }}
             className="relative w-full max-w-2xl mx-auto"
           >
             <img
@@ -252,6 +286,18 @@ export default function Home() {
               draggable={false}
             />
           </motion.div>
+
+          {isBottleLocked && bottleProgress < 1 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center"
+            >
+              <p className="text-sm text-[#1a1a1a]/40 font-light tracking-wider">
+                SCROLL TO REVEAL
+              </p>
+            </motion.div>
+          )}
         </div>
       </section>
 
