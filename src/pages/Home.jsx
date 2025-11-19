@@ -255,7 +255,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-16 md:pt-24">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-8 md:pt-12">
           {/* Header with Tagline Image */}
           <motion.div
             animate={{ 
