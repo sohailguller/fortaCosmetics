@@ -140,7 +140,7 @@ export default function Layout({ children, currentPageName }) {
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
           className="whitespace-nowrap">
 
-          {Array(8).fill("COMING 2026").map((text, i) =>
+          {Array(8).fill("FREE SHIPPING ON ORDERS OVER $50").map((text, i) =>
           <span key={i} className="mx-12">{text}</span>
           )}
         </motion.div>
