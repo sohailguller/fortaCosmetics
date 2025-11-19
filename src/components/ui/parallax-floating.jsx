@@ -7,7 +7,7 @@ import {
 } from "react";
 import { useAnimationFrame } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useMousePositionRef } from "@/components/hooks/use-mouse-position-ref";
+import { useMousePositionRef } from "../hooks/use-mouse-position-ref";
 
 const FloatingContext = createContext(null);
 
