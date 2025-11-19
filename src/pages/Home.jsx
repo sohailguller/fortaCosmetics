@@ -267,7 +267,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/194d2b340_Tagline-_black-16.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/fb2344435_Tagline-_black-16.png"
               alt="FOR THE ACTIVE"
               className="w-full max-w-3xl mx-auto h-auto object-contain"
             />
