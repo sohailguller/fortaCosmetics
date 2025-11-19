@@ -19,43 +19,14 @@ export default function Home() {
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
 
-  // Scroll lock effect for bottle animation
-  React.useEffect(() => {
-    const handleWheel = (e) => {
-      if (!bottleScrollRef.current) return;
-      
-      const rect = bottleScrollRef.current.getBoundingClientRect();
-      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight;
-      
-      if (inView && bottleProgress < 1) {
-        e.preventDefault();
-        setIsBottleLocked(true);
-        
-        // Update progress based on scroll direction
-        const delta = e.deltaY;
-        setBottleProgress((prev) => {
-          const newProgress = prev + delta * 0.001;
-          return Math.max(0, Math.min(1, newProgress));
-        });
-      } else if (bottleProgress >= 1 && e.deltaY > 0) {
-        // Animation complete, allow scrolling down
-        setIsBottleLocked(false);
-      } else if (!inView) {
-        setIsBottleLocked(false);
-      }
-    };
+  const bottleContainerRef = useRef(null);
+  const { scrollYProgress: bottleScrollProgress } = useScroll({
+    target: bottleContainerRef,
+  });
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [bottleProgress]);
-
-  // Calculate bottle transforms based on progress
-  const bottleY = bottleProgress === 0 ? 200 : -200 + (400 * (1 - bottleProgress));
-  const bottleRotate = 15 - (20 * bottleProgress);
-  const bottleScale = 0.8 + (0.3 * bottleProgress);
+  const bottleRotate = useTransform(bottleScrollProgress, [0, 1], [20, 0]);
+  const bottleScale = useTransform(bottleScrollProgress, [0, 1], [1.05, 1]);
+  const bottleTranslate = useTransform(bottleScrollProgress, [0, 1], [0, -100]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -240,64 +211,66 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/92f95c900_Tagline-_white-17.png"
-            alt="Move Boldly"
-            className="h-6 md:h-8 object-contain opacity-70"
-            style={{ filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.8))' }} />
-
-        </motion.div>
       </section>
 
       {/* Bottle Scroll Animation Section - FOR THE ACTIVE */}
-      <section ref={bottleScrollRef} className="relative min-h-[120vh] bg-[#f5f5f0] overflow-hidden flex items-center justify-center">
-        <div className="relative w-full max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-[#1a1a1a]">
-              FOR THE <span className="font-normal">ACTIVE</span>
-            </h2>
-          </motion.div>
+      <section className="relative overflow-hidden bg-[#f5f5f0]">
+        {/* Background blur image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a50cbd8b7_blur131.png"
+            alt="Background"
+            className="w-full h-full object-cover opacity-40"
+          />
+        </div>
 
-          <motion.div
-            animate={{ 
-              y: bottleY,
-              rotate: bottleRotate,
-              scale: bottleScale
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            className="relative w-full max-w-2xl mx-auto"
+        <div className="relative z-10">
+          <div
+            className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+            ref={bottleContainerRef}
           >
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/1b237e6e6_Untitleddesign12.png"
-              alt="Lock & Go Setting Spray"
-              className="w-full h-auto object-contain"
-              draggable={false}
-            />
-          </motion.div>
-
-          {isBottleLocked && bottleProgress < 1 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center"
+            <div
+              className="py-10 md:py-40 w-full relative"
+              style={{
+                perspective: "1000px",
+              }}
             >
-              <p className="text-sm text-[#1a1a1a]/40 font-light tracking-wider">
-                SCROLL TO REVEAL
-              </p>
-            </motion.div>
-          )}
+              {/* Header with Tagline Image */}
+              <motion.div
+                style={{
+                  translateY: bottleTranslate,
+                }}
+                className="max-w-5xl mx-auto text-center mb-12"
+              >
+                <img
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/194d2b340_Tagline-_black-16.png"
+                  alt="FOR THE ACTIVE"
+                  className="w-full max-w-4xl mx-auto h-auto object-contain"
+                />
+              </motion.div>
+
+              {/* Product Card with 3D effect */}
+              <motion.div
+                style={{
+                  rotateX: bottleRotate,
+                  scale: bottleScale,
+                  boxShadow:
+                    "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
+                }}
+                className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+              >
+                <div className="h-full w-full overflow-hidden rounded-2xl bg-[#f5f5f0] md:rounded-2xl md:p-4 flex items-center justify-center">
+                  <img
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea1be14fc_Untitleddesign12.png"
+                    alt="Lock & Go Setting Spray"
+                    className="w-full h-full object-contain"
+                    draggable={false}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
