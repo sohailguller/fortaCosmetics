@@ -137,8 +137,8 @@ export default function Home() {
 
         {/* FOR THE ACTIVE - Featured Section */}
         {/* Recreating the specific composition requested */}
-        <section className="relative py-24 md:py-32 bg-[#FDFDFD] overflow-hidden">
-          <div className="max-w-6xl mx-auto px-6 relative flex flex-col items-center justify-center min-h-[600px]">
+        <section className="relative pt-24 md:pt-32 pb-0 bg-[#FDFDFD] overflow-hidden">
+          <div className="max-w-6xl mx-auto px-6 relative flex flex-col items-center justify-end min-h-[600px]">
             
             {/* The Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#F5E6D8] opacity-60 blur-[100px] z-0" />
@@ -149,7 +149,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative z-10 w-full max-w-3xl mb-[-100px] md:mb-[-150px]"
+              className="relative z-10 w-full max-w-3xl mb-[-60px] md:mb-[-100px] mix-blend-multiply"
             >
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8e804f5ad_Tagline-_black-16.jpg"
@@ -164,7 +164,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative z-20 w-64 md:w-80 lg:w-96 rotate-12"
+              className="relative z-20 w-64 md:w-80 lg:w-96 rotate-12 translate-y-12 md:translate-y-16"
             >
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/087b1449c_Untitleddesign12.png" 
