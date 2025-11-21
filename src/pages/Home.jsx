@@ -121,8 +121,10 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase mb-6 max-w-4xl leading-none"
+              style={{ fontFamily: "var(--font-serif)" }}
             >
-              You don't have to<br/>sit still to look pretty
+              <span className="italic font-normal block mb-2 text-4xl md:text-6xl normal-case">You don't have to</span>
+              sit still to look pretty
             </motion.h1>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
