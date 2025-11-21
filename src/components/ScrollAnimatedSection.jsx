@@ -13,12 +13,12 @@ export default function ScrollAnimatedSection() {
   const bottleY = useTransform(scrollYProgress, [0, 1], [300, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[140vh] bg-[#FDFDFD] z-0">
+    <div ref={containerRef} className="relative h-[120vh] md:h-[140vh] bg-[#FDFDFD] z-0">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center py-0">
-        <div className="w-full h-full relative flex flex-col items-center justify-center max-w-md md:max-w-6xl mx-auto px-4">
+        <div className="w-full h-full relative flex flex-col items-center justify-center max-w-md md:max-w-6xl mx-auto px-6">
             
             {/* The Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full bg-[#F5E6D8] opacity-60 blur-[80px] md:blur-[100px] z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[600px] h-[250px] md:h-[600px] rounded-full bg-[#F5E6D8] opacity-60 blur-[60px] md:blur-[100px] z-0" />
 
             {/* The Tagline Text Image */}
             <motion.div 
@@ -26,7 +26,7 @@ export default function ScrollAnimatedSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative z-10 w-full max-w-3xl mb-[-60px] md:mb-[-100px] mix-blend-multiply"
+              className="relative z-10 w-full max-w-3xl mb-[-40px] md:mb-[-100px] mix-blend-multiply"
             >
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8e804f5ad_Tagline-_black-16.jpg"
@@ -38,7 +38,7 @@ export default function ScrollAnimatedSection() {
             {/* The Bottle - Animated with Scroll */}
             <motion.div 
               style={{ y: bottleY }}
-              className="relative z-20 w-[85%] md:w-auto md:max-w-sm mt-[-20px] md:mt-[-60px]"
+              className="relative z-20 w-[70%] md:w-auto md:max-w-sm mt-0 md:mt-[-60px]"
             >
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2f4783405_Untitleddesign12.png" 
