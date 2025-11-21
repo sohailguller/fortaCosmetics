@@ -67,9 +67,9 @@ export default function Home() {
           </div>
           <div className="w-1/3 flex justify-center">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e06f77cd9_PrimaryLogo-_black-06.jpg" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e1d6b875e_PrimaryLogo-_black-15.png" 
               alt="FORTA" 
-              className="h-5 md:h-6 object-contain mix-blend-multiply"
+              className="h-5 md:h-6 object-contain"
             />
           </div>
           <div className="w-1/3 flex justify-end">
