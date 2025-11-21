@@ -38,7 +38,7 @@ export default function ScrollAnimatedSection() {
             {/* The Bottle - Animated with Scroll */}
             <motion.div 
               style={{ y: bottleY, rotate: 12 }}
-              className="relative z-20 w-64 md:w-80 lg:w-96 translate-y-12 md:translate-y-16"
+              className="relative z-20 w-64 md:w-80 lg:w-96 translate-y-24 md:translate-y-32"
             >
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/087b1449c_Untitleddesign12.png" 
