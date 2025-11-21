@@ -100,41 +100,7 @@ export default function Home() {
       )}
 
       <main className="pt-16 md:pt-20">
-        {/* Hero Section - Minimalist */}
-        <section className="relative h-[80vh] w-full overflow-hidden bg-[#F5F5F5]">
-          <motion.div 
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2 }}
-            className="absolute inset-0"
-          >
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4fee4db6e_Stocksy_comp_watermarked_27722951.jpg"
-              alt="Hero"
-              className="w-full h-full object-cover object-center"
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-16 md:pb-20">
-            <motion.h1 
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-white font-serif text-4xl md:text-7xl font-normal tracking-tight mb-6 max-w-2xl leading-[1.1]"
-            >
-              You don't have to sit still to look pretty.
-            </motion.h1>
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
-                Coming 2026
-              </button>
-            </motion.div>
-          </div>
-        </section>
+        <HeroSection />
 
 
 
@@ -185,27 +151,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Editorial Section 1 - Split */}
-        <section className="flex flex-col md:grid md:grid-cols-2 bg-[#F5F5F5] w-full max-w-full overflow-hidden">
-          <div className="relative aspect-square md:aspect-auto min-h-[500px] w-full max-w-full">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ddbbe1ce2_TheVaultStock-10296.jpg"
-              alt="Editorial"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full max-w-full">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight break-words hyphens-auto">
-              Makeup that's <br className="hidden md:block" />good for your <br className="hidden md:block" />sweat.
-            </h2>
-            <p className="text-gray-600 mb-8 max-w-md leading-relaxed break-words">
-              When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
-            </p>
-            <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity max-w-full truncate">
-              Read Our Philosophy <ArrowRight className="ml-2 w-4 h-4 shrink-0" />
-            </a>
-          </div>
-        </section>
+        <EditorialSection />
 
         {/* Full Width Image/Banner */}
         <section className="relative py-32 px-6 overflow-hidden">

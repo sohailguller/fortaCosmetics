@@ -1,0 +1,49 @@
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+export default function HeroSection() {
+  const ref = useRef(null);
+  const { scrollY } = useScroll();
+  // Parallax: Image moves slower than scroll (0 to 400px down as we scroll 0 to 1000px)
+  const y = useTransform(scrollY, [0, 1000], [0, 400]);
+
+  return (
+    <section ref={ref} className="relative h-[80vh] w-full overflow-hidden bg-[#F5F5F5]">
+      <motion.div 
+        style={{ y }}
+        className="absolute inset-0"
+      >
+        <motion.img
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4fee4db6e_Stocksy_comp_watermarked_27722951.jpg"
+          alt="Hero"
+          className="w-full h-full object-cover object-center"
+        />
+      </motion.div>
+      
+      <div className="absolute inset-0 bg-black/10" />
+      
+      <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-16 md:pb-20">
+        <motion.h1 
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="text-white font-serif text-4xl md:text-7xl font-normal tracking-tight mb-6 max-w-2xl leading-[1.1]"
+        >
+          You don't have to sit still to look pretty.
+        </motion.h1>
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
+            Coming 2026
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
