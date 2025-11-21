@@ -289,9 +289,9 @@ export default function Home() {
             
             <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5">
                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d218dcbf5_Screenshot2025-11-20at103436PM.png" 
                   alt="FORTA" 
-                  className="h-4 mb-4 md:mb-0 opacity-50 mix-blend-multiply"
+                  className="h-10 mb-4 md:mb-0 mix-blend-multiply"
                 />
               <p className="text-xs text-gray-400">© 2026 FORTA COSMETICS. ALL RIGHTS RESERVED.</p>
             </div>
