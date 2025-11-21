@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
-import ScrollAnimatedSection from "@/components/ScrollAnimatedSection";
+
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -136,8 +136,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOR THE ACTIVE - Featured Section with Sticky Scroll Animation */}
-        <ScrollAnimatedSection />
+
 
         {/* Products Row - Horizontal Scroll */}
         <section id="products" className="relative z-10 py-16 md:py-24 bg-white border-t border-black/5">
