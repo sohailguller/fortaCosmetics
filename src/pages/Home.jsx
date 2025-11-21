@@ -9,11 +9,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end start"],
-  });
+  // Removed unused scroll ref that was causing hydration errors
 
   const handleWaitlistSubmit = async (e) => {
     e.preventDefault();
