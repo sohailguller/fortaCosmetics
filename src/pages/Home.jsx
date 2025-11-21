@@ -193,12 +193,12 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full min-w-0">
+          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
               Makeup that's<br/>good for your<br/>sweat.
             </h2>
-            <p className="text-gray-600 mb-8 max-w-md leading-relaxed break-words">
-              Pairing performance skincare with motion-ready makeup gives you a look that lasts as long as you do.
+            <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
+              When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
             </p>
             <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity">
               Read Our Philosophy <ArrowRight className="ml-2 w-4 h-4" />
