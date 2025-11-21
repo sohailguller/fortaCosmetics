@@ -66,11 +66,7 @@ export default function Home() {
             </button>
           </div>
           <div className="w-1/3 flex justify-center">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e1d6b875e_PrimaryLogo-_black-15.png" 
-              alt="FORTA" 
-              className="h-5 md:h-6 object-contain mix-blend-multiply"
-            />
+            <span className="font-bold text-2xl tracking-[0.2em]">FORTA</span>
           </div>
           <div className="w-1/3 flex justify-end">
             <div className="relative">
@@ -288,11 +284,7 @@ export default function Home() {
             </div>
             
             <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5">
-               <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e1d6b875e_PrimaryLogo-_black-15.png" 
-                  alt="FORTA" 
-                  className="h-4 mb-4 md:mb-0 opacity-50"
-                />
+              <span className="font-bold text-lg tracking-[0.2em] mb-4 md:mb-0 opacity-50">FORTA</span>
               <p className="text-xs text-gray-400">© 2026 FORTA COSMETICS. ALL RIGHTS RESERVED.</p>
             </div>
           </div>
