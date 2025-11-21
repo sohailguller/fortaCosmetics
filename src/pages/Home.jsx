@@ -210,9 +210,9 @@ export default function Home() {
         <section className="relative py-32 px-6 overflow-hidden">
           <div className="absolute inset-0">
              <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/60d6b25d1_IMG_5814.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/cf54f9385_Stocksy_comp_watermarked_13955321.jpg"
               alt="Texture"
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-40"
             />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
