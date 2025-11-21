@@ -150,7 +150,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex overflow-x-auto pb-10 gap-6 md:gap-8 hide-scrollbar snap-x snap-mandatory">
+            <div className="flex overflow-x-auto pb-10 gap-4 md:gap-8 hide-scrollbar snap-x snap-mandatory px-6 md:px-0 -mx-6 md:mx-0">
+              {/* Spacer for first item padding on mobile */}
+              <div className="w-2 md:hidden shrink-0" />
               {products.map((product, idx) => (
                 <motion.div 
                   key={product.id}
@@ -158,7 +160,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="min-w-[280px] md:min-w-[350px] snap-start group cursor-pointer"
+                  className="min-w-[75vw] md:min-w-[350px] snap-center md:snap-start group cursor-pointer first:pl-0"
                 >
                   <div className="relative aspect-[4/5] bg-[#F0F0F0] mb-4 overflow-hidden">
                     <img 
