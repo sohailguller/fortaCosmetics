@@ -115,23 +115,21 @@ export default function Home() {
             />
           </motion.div>
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+          <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-16 pb-24 md:pb-32">
             <motion.h1 
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase mb-6 max-w-4xl leading-none"
-              style={{ fontFamily: "var(--font-serif)" }}
+              className="text-white text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight mb-8 max-w-2xl leading-tight"
             >
-              <span className="italic font-normal block mb-2 text-4xl md:text-6xl normal-case">You don't have to</span>
-              sit still to look pretty
+              You don't have to sit still to look pretty
             </motion.h1>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
+              <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-10 py-4 font-bold text-sm tracking-widest uppercase hover:bg-white/90 transition-colors">
                 Coming 2026
               </button>
             </motion.div>
