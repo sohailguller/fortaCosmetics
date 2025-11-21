@@ -5,7 +5,7 @@ export default function ScrollAnimatedSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "center center"]
+    offset: ["start start", "end end"]
   });
 
   // Parallax animation:
@@ -13,7 +13,7 @@ export default function ScrollAnimatedSection() {
   const bottleY = useTransform(scrollYProgress, [0, 1], [300, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-screen bg-[#FDFDFD] z-0">
+    <div ref={containerRef} className="relative h-[140vh] bg-[#FDFDFD] z-0">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center py-0">
         <div className="w-full h-full relative flex flex-col items-center justify-center max-w-md md:max-w-6xl mx-auto px-4">
             

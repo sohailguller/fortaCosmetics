@@ -115,21 +115,21 @@ export default function Home() {
             />
           </motion.div>
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-16 pb-24 md:pb-32">
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
             <motion.h1 
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-white text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight mb-8 max-w-2xl leading-tight"
+              className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase mb-6 max-w-4xl leading-none"
             >
-              You don't have to sit still to look pretty
+              You don't have to<br/>sit still to look pretty
             </motion.h1>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-10 py-4 font-bold text-sm tracking-widest uppercase hover:bg-white/90 transition-colors">
+              <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
                 Coming 2026
               </button>
             </motion.div>
@@ -193,11 +193,11 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full max-w-full overflow-hidden">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight break-words">
+          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
               Makeup that's<br/>good for your<br/>sweat.
             </h2>
-            <p className="text-gray-600 mb-8 w-full max-w-full md:max-w-md leading-relaxed break-words pr-4">
+            <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
               When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
             </p>
             <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity">
@@ -210,9 +210,9 @@ export default function Home() {
         <section className="relative py-32 px-6 overflow-hidden">
           <div className="absolute inset-0">
              <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/cf54f9385_Stocksy_comp_watermarked_13955321.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/60d6b25d1_IMG_5814.png"
               alt="Texture"
-              className="w-full h-full object-cover opacity-40"
+              className="w-full h-full object-cover opacity-20"
             />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
