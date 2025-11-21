@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
 import ScrollAnimatedSection from "@/components/ScrollAnimatedSection";
+import DynamicLogo from "@/components/DynamicLogo";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -288,11 +289,9 @@ export default function Home() {
             </div>
             
             <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5">
-               <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d218dcbf5_Screenshot2025-11-20at103436PM.png" 
-                  alt="FORTA" 
-                  className="h-10 mb-4 md:mb-0 mix-blend-multiply"
-                />
+              <div className="mb-4 md:mb-0 scale-75 md:scale-100 origin-left">
+                <DynamicLogo />
+              </div>
               <p className="text-xs text-gray-400">© 2026 FORTA COSMETICS. ALL RIGHTS RESERVED.</p>
             </div>
           </div>
