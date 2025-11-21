@@ -18,12 +18,10 @@ export default function DynamicLogo() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-12 select-none overflow-hidden">
-      <span className="text-4xl md:text-5xl font-normal tracking-tighter mr-1">F</span>
-      <div className="relative flex items-center justify-center">
-         <span className="text-5xl md:text-6xl font-light -mt-2 mr-[-2px]">(</span>
-         
-         <div className="relative w-20 md:w-32 h-8 md:h-10 overflow-hidden rounded-full mx-0">
+    <div className="relative inline-block w-[160px] md:w-[220px]">
+      {/* Cycling Image Background - Positioned to align with the 'O' in FORTA */}
+      <div className="absolute inset-0 flex items-center" style={{ paddingLeft: '27%' }}>
+        <div className="relative w-[28%] aspect-[1.4/1] rounded-full overflow-hidden">
            <AnimatePresence mode="popLayout">
              <motion.img
                key={index}
@@ -36,11 +34,16 @@ export default function DynamicLogo() {
                alt="Forta Lifestyle"
              />
            </AnimatePresence>
-         </div>
-
-         <span className="text-5xl md:text-6xl font-light -mt-2 ml-[-2px]">)</span>
+        </div>
       </div>
-      <span className="text-4xl md:text-5xl font-normal tracking-tighter ml-1">RTA</span>
+
+      {/* The Logo Overlay - Using mix-blend-multiply to let image show through transparent/white parts if needed, 
+          but mainly relying on z-index if the logo has transparency in the 'O' */}
+      <img 
+        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png"
+        alt="FORTA"
+        className="relative z-10 w-full h-auto mix-blend-multiply block"
+      />
     </div>
   );
 }
