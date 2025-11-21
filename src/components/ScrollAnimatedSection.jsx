@@ -5,7 +5,7 @@ export default function ScrollAnimatedSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start end", "center center"]
   });
 
   // Parallax animation:
