@@ -140,7 +140,7 @@ export default function Home() {
         <ScrollAnimatedSection />
 
         {/* Products Row - Horizontal Scroll */}
-        <section id="products" className="py-16 md:py-24 bg-white border-t border-black/5">
+        <section id="products" className="relative z-10 py-16 md:py-24 bg-white border-t border-black/5">
           <div className="max-w-[1400px] mx-auto px-6">
             <div className="flex justify-between items-end mb-12">
               <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide">Coming Soon</h2>
