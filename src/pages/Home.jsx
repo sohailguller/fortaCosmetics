@@ -187,26 +187,24 @@ export default function Home() {
         </section>
 
         {/* Editorial Section 1 - Split */}
-        <section className="grid md:grid-cols-2 bg-[#F5F5F5] w-full">
-          <div className="relative aspect-square md:aspect-auto min-h-[500px]">
+        <section className="grid md:grid-cols-2 bg-[#F5F5F5] w-full overflow-hidden">
+          <div className="relative aspect-square md:aspect-auto min-h-[500px] w-full">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ddbbe1ce2_TheVaultStock-10296.jpg"
               alt="Editorial"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB]">
-            <div className="max-w-lg">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight break-words">
-                Makeup that's<br className="hidden md:block" />good for your<br className="hidden md:block" />sweat.
-              </h2>
-              <p className="text-gray-600 mb-8 leading-relaxed text-pretty">
-                When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
-              </p>
-              <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity">
-                Read Our Philosophy <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-            </div>
+          <div className="flex flex-col justify-center p-6 md:p-20 bg-[#EBEBEB] w-full">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
+              Makeup that's<br/>good for your<br/>sweat.
+            </h2>
+            <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
+              When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
+            </p>
+            <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity">
+              Read Our Philosophy <ArrowRight className="ml-2 w-4 h-4" />
+            </a>
           </div>
         </section>
 
