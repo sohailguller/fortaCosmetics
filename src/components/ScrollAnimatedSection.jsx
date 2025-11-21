@@ -37,11 +37,11 @@ export default function ScrollAnimatedSection() {
 
             {/* The Bottle - Animated with Scroll */}
             <motion.div 
-              style={{ y: bottleY, rotate: 12 }}
-              className="relative z-20 w-64 md:w-80 lg:w-96 translate-y-24 md:translate-y-32"
+              style={{ y: bottleY }}
+              className="relative z-20 w-[85%] md:w-auto md:max-w-sm mt-[-20px] md:mt-[-60px]"
             >
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/087b1449c_Untitleddesign12.png" 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2f4783405_Untitleddesign12.png" 
                 alt="Lock & Go Setting Spray"
                 className="w-full h-auto drop-shadow-2xl"
               />
