@@ -1,618 +1,303 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
-import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
-  const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
-  const [bottleProgress, setBottleProgress] = React.useState(0);
-  const [isBottleLocked, setIsBottleLocked] = React.useState(false);
-  const containerRef = useRef(null);
-  const scrollLockRef = useRef(null);
-  const productRevealRef = useRef(null);
-  const fourCardRef = useRef(null);
-  const testimonialsRef = useRef(null);
-  const bottleScrollRef = useRef(null);
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
 
-  // Scroll lock effect for bottle animation
-  React.useEffect(() => {
-    const handleWheel = (e) => {
-      if (!bottleScrollRef.current) return;
-      
-      const rect = bottleScrollRef.current.getBoundingClientRect();
-      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight;
-      
-      if (inView && bottleProgress < 1) {
-        e.preventDefault();
-        setIsBottleLocked(true);
-        
-        // Update progress based on scroll direction
-        const delta = e.deltaY;
-        setBottleProgress((prev) => {
-          const newProgress = prev + delta * 0.0008;
-          return Math.max(0, Math.min(1, newProgress));
-        });
-      } else if (bottleProgress >= 0.995 && e.deltaY > 0) {
-        // Animation complete (with buffer), allow scrolling down
-        setIsBottleLocked(false);
-      } else if (!inView) {
-        setIsBottleLocked(false);
-      }
-    };
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || loading) return;
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [bottleProgress]);
-
-  // Calculate bottle transforms based on progress
-  const bottleY = 200 - (400 * bottleProgress);
-  const bottleRotate = 15 - (20 * bottleProgress);
-  const bottleScale = 0.8 + (0.3 * bottleProgress);
-  const taglineY = -30 + (30 * bottleProgress);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-
-
-
-  const { scrollYProgress: scrollLockProgress } = useScroll({
-    target: scrollLockRef,
-    offset: ["start end", "end start"]
-  });
-
-  const lockY = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
-  const lockOpacity = useTransform(scrollLockProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-  const { scrollYProgress: fourCardProgress } = useScroll({
-    target: fourCardRef,
-    offset: ["start end", "end start"]
-  });
-
-  const cardY = useTransform(fourCardProgress, [0, 1], [100, -100]);
-
-  const { scrollYProgress: productProgress } = useScroll({
-    target: productRevealRef,
-    offset: ["start end", "end start"]
-  });
-
-  const productTextY = useTransform(productProgress, [0, 1], [50, -50]);
-
-  const { scrollYProgress: testimonialsProgress } = useScroll({
-    target: testimonialsRef,
-    offset: ["start end", "end start"]
-  });
-
-  const testimonialsY = useTransform(testimonialsProgress, [0, 1], [60, -60]);
-
-  const { data: videos = [] } = useQuery({
-    queryKey: ['hero-video'],
-    queryFn: () => base44.entities.Video.list('-created_date', 1),
-    initialData: []
-  });
-
-  const heroVideo = videos[0];
-
-  const testimonials = [
-  {
-    quote: "Lock & Go is the only setting spray that actually works through my training sessions. Game changer.",
-    author: "Sarah M.",
-    role: "Marathon Runner"
-  },
-  {
-    quote: "I've tried everything. This is the first product that stays put through hot yoga. Incredible.",
-    author: "Jessica K.",
-    role: "Yoga Instructor"
-  },
-  {
-    quote: "Finally, makeup that doesn't quit when I'm pushing my limits. Forta delivers.",
-    author: "Marcus T.",
-    role: "CrossFit Athlete"
-  }];
-
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    setLoading(true);
+    try {
+      await base44.integrations.Core.SendEmail({
+        to: "support@fortacosmetics.com",
+        subject: "New Waitlist Signup",
+        body: `New waitlist signup: ${email}`
+      });
+      setSubmitted(true);
+      setEmail("");
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div ref={containerRef} className="bg-[#1a1a1a]">
-      {/* Full-Screen Hero with Video Background */}
-      <section className="relative h-screen overflow-hidden">
+    <div className="bg-white">
+      {/* Hero Section - Full Screen */}
+      <section className="relative h-screen overflow-hidden bg-black">
         <motion.div
-          style={{ scale: heroScale }}
-          className="absolute inset-0">
-
-          {heroVideo ?
-          <video
-            key={heroVideo.id}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover">
-
-              <source src={heroVideo.file_url} type="video/mp4" />
-            </video> :
-
+          style={{ opacity: heroOpacity, scale: heroScale }}
+          className="absolute inset-0"
+        >
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
-            alt="Forta Hero"
-            className="w-full h-full object-cover" />
-
-          }
-        </motion.div>
-
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 h-full flex items-center justify-center px-6">
-
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-4xl">
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.5 }}
-              className="text-white mb-6 text-4xl font-light normal-case tracking-tight leading-[1.1] md:text-6xl lg:text-6xl"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}>
-
-              You don't have to sit still to look pretty.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="text-[#ffffff] mb-12 mx-auto text-lg font-light uppercase md:text-xl max-w-2xl"
-              style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>
-
-              Performance cosmetics designed for those on the move
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.1 }}>
-
-              <Link to={createPageUrl("Shop")}>
-                <motion.button
-                  whileHover={{
-                    backgroundColor: "#ffffff",
-                    color: "#1a1a1a",
-                    scale: 1.05
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group px-12 py-5 bg-black/40 backdrop-blur-sm border-2 border-white text-white text-sm font-medium tracking-[0.2em] smooth-transition rounded-full"
-                  style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
-
-                  <span className="flex items-center gap-3">
-                    EXPLORE PRODUCTS
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}>
-
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.div>
-                  </span>
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-
-
-      </section>
-
-      {/* Bottle Scroll Animation Section - FOR THE ACTIVE */}
-      <section ref={bottleScrollRef} className="relative overflow-hidden bg-[#f5f5f0] min-h-[120vh] flex items-center justify-center">
-        {/* Background blur image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a50cbd8b7_blur131.png"
-            alt="Background"
-            className="w-full h-full object-cover opacity-40"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/4fee4db6e_Stocksy_comp_watermarked_27722951.jpg"
+            alt="FORTA"
+            className="w-full h-full object-cover opacity-60"
           />
-        </div>
+        </motion.div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-8 md:pt-12">
-          {/* Header with Tagline Image */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 z-10">
           <motion.div
-            animate={{ 
-              y: taglineY
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            className="text-center mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="text-center"
           >
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/fb2344435_Tagline-_black-16.png"
-              alt="FOR THE ACTIVE"
-              className="w-full max-w-3xl mx-auto h-auto object-contain"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2616d000c_PrimaryLogo-_white-07.png"
+              alt="FORTA"
+              className="h-10 md:h-12 mx-auto mb-12"
             />
+            <h1 className="text-white text-4xl md:text-7xl lg:text-8xl mb-6 tracking-tight leading-[0.95]">
+              You don't have to<br />sit still to<br />look pretty.
+            </h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
+              className="text-white/80 text-sm md:text-base tracking-[0.2em] uppercase mt-8"
+            >
+              Coming 2026
+            </motion.p>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Just the bottle image */}
+      {/* Tagline Section */}
+      <section className="py-16 md:py-24 bg-[var(--linen)]">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            animate={{ 
-              y: bottleY,
-              rotate: bottleRotate,
-              scale: bottleScale
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            className="relative w-full max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
           >
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea1be14fc_Untitleddesign12.png"
-              alt="Lock & Go Setting Spray"
-              className="w-full h-auto object-contain"
-              draggable={false}
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d613bfc0b_Tagline-_black-16.jpg"
+              alt="FOR THE ACTIVE"
+              className="w-full max-w-4xl mx-auto"
             />
           </motion.div>
         </div>
       </section>
 
-      {/* Four-Card Grid with Parallax */}
-      <section ref={fourCardRef} className="py-24 px-6 bg-[#0f0f0f] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      {/* Split Product Section */}
+      <section className="relative">
+        <div className="grid md:grid-cols-2">
+          {/* Image Side */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative h-[60vh] md:h-screen bg-[var(--oat)]"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a4fa62c78_forta1.jpg"
+              alt="Lock & Go Setting Spray"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
-            {[
-            { title: "Shop", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg", link: "Shop" },
-            { title: "About", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg", link: "About" },
-            { title: "Performance", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg", link: "ProductDetail" },
-            { title: "Contact", image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg", link: "Contact" }].
-            map((card, index) =>
+          {/* Text Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white"
+          >
+            <div className="max-w-lg">
+              <p className="text-[var(--stone)] text-xs tracking-[0.3em] mb-6 uppercase">
+                Hero Product
+              </p>
+              <h2 className="text-black text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight leading-[1.1]">
+                Lock & Go<br />Setting Spray
+              </h2>
+              <p className="text-black/70 text-base md:text-lg leading-relaxed mb-8">
+                16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Product Showcase */}
+      <section className="py-24 md:py-32 bg-[var(--linen)]">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid md:grid-cols-3 gap-8 md:gap-12"
+          >
+            {/* Lock & Go - Featured */}
+            <div className="md:col-span-2 relative">
+              <div className="aspect-[4/5] md:aspect-[16/9] bg-white overflow-hidden">
+                <img
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/789d42f8b_forta2.jpg"
+                  alt="Lock & Go"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-2xl md:text-3xl text-black mb-2">Lock & Go</h3>
+                <p className="text-[var(--stone)] text-sm tracking-wide">Setting Spray</p>
+              </div>
+            </div>
+
+            {/* Coming Soon Products */}
+            <div className="space-y-8">
+              <div className="relative">
+                <div className="aspect-square bg-[var(--stone)] overflow-hidden flex items-center justify-center">
+                  <div className="text-center px-6">
+                    <p className="text-white/40 text-xs tracking-[0.3em] mb-3 uppercase">Coming Soon</p>
+                    <h4 className="text-white text-xl">EnduraLash<br />Mascara</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="aspect-square bg-[var(--oat)] overflow-hidden flex items-center justify-center">
+                  <div className="text-center px-6">
+                    <p className="text-black/40 text-xs tracking-[0.3em] mb-3 uppercase">Coming Soon</p>
+                    <h4 className="text-black text-xl">PR-Proof<br />Lip Stain</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Lifestyle Grid */}
+      <section className="py-0">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+          {[
+            "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/fcea49e32_Stocksy_comp_watermarked_13955321.jpg",
+            "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7eaf36d7e_TheVaultStock-10299.jpg",
+            "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ce9854577_TheVaultStock-10247.jpg",
+            "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff97ecad3_TheVaultStock-10250.jpg"
+          ].map((img, idx) => (
             <motion.div
-              key={`card-${index}`}
-              variants={itemVariants}
-              style={{ y: useTransform(cardY, (val) => val * (0.5 + index * 0.15)) }}>
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="aspect-square overflow-hidden"
+            >
+              <img
+                src={img}
+                alt=""
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-                <Link to={createPageUrl(card.link)}>
-                  <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative h-[400px] bg-[#2a2a2a] overflow-hidden cursor-pointer">
+      {/* Philosophy */}
+      <section className="py-24 md:py-32 bg-black text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-6xl lg:text-7xl mb-8 tracking-tight leading-[1.1]">
+              Built for Motion.<br />Refined for Beauty.
+            </h2>
+            <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+              Every FORTA formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-                    <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="h-full">
+      {/* Waitlist Section */}
+      <section className="py-24 md:py-32 bg-[var(--linen)]">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-black mb-6 tracking-tight">
+              Join the Waitlist
+            </h2>
+            <p className="text-black/60 text-base md:text-lg mb-12 leading-relaxed">
+              Secure your spot for our launch. Be the first to experience performance cosmetics designed for those on the move.
+            </p>
 
-                      <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover opacity-60" />
-
-                    </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
-                      <motion.h3
-                      initial={{ y: 10 }}
-                      whileHover={{ y: 0 }}
-                      className="text-white text-2xl font-light uppercase tracking-wide">
-
-                        {card.title}
-                      </motion.h3>
-                    </div>
-                  </motion.div>
-                </Link>
+            {!submitted ? (
+              <form onSubmit={handleWaitlistSubmit} className="max-w-md mx-auto">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="flex-1 px-6 py-4 bg-white border-2 border-black text-black placeholder:text-black/40 focus:outline-none text-sm tracking-wide"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-8 py-4 bg-black text-white hover:bg-black/90 transition-colors disabled:opacity-50 text-sm tracking-[0.2em] uppercase font-medium whitespace-nowrap"
+                  >
+                    {loading ? "..." : "Join"}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-black text-lg"
+              >
+                ✓ You're on the list
               </motion.div>
             )}
           </motion.div>
         </div>
       </section>
 
-      {/* Scroll-Lock Section - Full Bleed */}
-      <section ref={scrollLockRef} className="relative min-h-[80vh] flex items-center justify-center bg-[#1a1a1a]">
-        <motion.div
-          style={{ y: lockY, opacity: lockOpacity }}
-          className="w-full grid lg:grid-cols-2 items-stretch"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-200px" }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-0"
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6"
-            >
-              THE FORTA DIFFERENCE
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="text-white text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
-            >
-              Built for Motion.
-              <br />
-              <span className="text-[#a0a0a0]">Refined for Beauty.</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-[#a0a0a0] text-lg font-light leading-relaxed mb-8"
-            >
-              Every Forta formula is engineered for endurance. Our products are long-wear, durable, and made-to-last.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-            >
-              <Link to={createPageUrl("About")}>
-                <motion.button
-                  whileHover={{
-                    backgroundColor: "#8b7355",
-                    scale: 1.05
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-transparent border border-[#8b7355] text-[#8b7355] hover:text-white text-sm font-medium tracking-wider smooth-transition rounded-full"
-                >
-                  OUR STORY
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-200px" }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[500px] lg:h-auto overflow-hidden"
-          >
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
-              alt="Performance"
-              className="w-full h-full object-cover"
+      {/* Footer */}
+      <footer className="bg-black text-white py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center text-center space-y-8">
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2616d000c_PrimaryLogo-_white-07.png"
+              alt="FORTA"
+              className="h-8"
             />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Product Section - Full Bleed */}
-      <section ref={productRevealRef} className="bg-[#f5f5f0]">
-        <div className="grid lg:grid-cols-2 items-stretch">
-          <motion.div
-            initial={{ opacity: 0, x: -60, rotate: -2 }}
-            animate={productInView ? { opacity: 1, x: 0, rotate: 0 } : {}}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[600px] lg:h-auto overflow-hidden order-2 lg:order-1"
-          >
-            <motion.img
-              whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5fb18a134_productImage.jpg"
-              alt="Lock & Go"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={productInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: productTextY }}
-            className="order-1 lg:order-2 flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-32"
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={productInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-6"
-            >
-              HERO PRODUCT
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.7, duration: 1 }}
-              className="text-[#1a1a1a] text-4xl md:text-6xl font-light tracking-tight mb-8 leading-tight"
-            >
-              Lock & Go
-              <br />
-              <span className="text-[#6b6b6b]">Setting Spray</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 0.8 }}
-              className="text-[#4a4a4a] text-lg font-light leading-relaxed mb-8"
-            >
-              16-hour wear. Sweat-resistant. Transfer-proof. The setting spray that moves with you, tested in the most extreme of scenarios and trusted by anyone who demands more from their makeup.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.1, duration: 0.8 }}
-              className="flex items-center gap-4 mb-8"
-            >
-              <span className="text-3xl font-light text-[#1a1a1a]">$30</span>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={productInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.3, duration: 0.8 }}
-            >
-              <Link to={createPageUrl("ProductDetail")}>
-                <motion.button
-                  whileHover={{
-                    backgroundColor: "#1a1a1a",
-                    color: "#ffffff",
-                    scale: 1.05
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[#8b7355] text-white text-sm font-medium tracking-wider smooth-transition rounded-full"
-                >
-                  SHOP NOW
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Carousel with Parallax */}
-      <section ref={testimonialsRef} className="py-32 px-6 bg-[#0f0f0f]">
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ y: testimonialsY }}
-            className="text-[#8b7355] text-sm font-medium tracking-[0.3em] mb-12 text-center">
-
-            TESTIMONIALS
-          </motion.p>
-
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`testimonial-${currentTestimonial}`}
-                initial={{ opacity: 0, x: 100, scale: 0.95 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="text-center">
-
-                <p className="text-white text-2xl md:text-3xl font-light leading-relaxed mb-8 italic">
-                  "{testimonials[currentTestimonial].quote}"
-                </p>
-                <p className="text-[#a0a0a0] text-sm font-medium tracking-wider">
-                  {testimonials[currentTestimonial].author}
-                </p>
-                <p className="text-[#6b6b6b] text-xs font-light mt-1">
-                  {testimonials[currentTestimonial].role}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="flex justify-center gap-4 mt-12">
-              <motion.button
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
-                whileTap={{ scale: 0.9 }}
-                onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center">
-
-                <ChevronLeft className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
-                whileTap={{ scale: 0.9 }}
-                onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full border border-white/20 text-white hover:bg-white/10 smooth-transition flex items-center justify-center">
-
-                <ChevronRight className="w-5 h-5" />
-              </motion.button>
-            </div>
+            <p className="text-white/40 text-xs tracking-[0.3em] uppercase">
+              Coming 2026
+            </p>
+            <p className="text-white/60 text-sm">
+              support@fortacosmetics.com
+            </p>
+            <p className="text-white/30 text-xs">
+              © 2025 FORTA. All rights reserved.
+            </p>
           </div>
         </div>
-      </section>
-
-      {/* Final CTA with Gradient Background */}
-      <section className="relative py-32 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/25fb0a76d_Screenshot2025-10-28at60718PM.png"
-            alt="Gradient Background"
-            className="w-full h-full object-cover" />
-
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mx-auto relative z-10">
-
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="text-white text-5xl md:text-7xl font-light tracking-tight mb-8">
-            Coming Soon
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.8 }}>
-
-            <Link to={createPageUrl("Shop")}>
-              <motion.button
-                whileHover={{
-                  backgroundColor: "#1a1a1a",
-                  scale: 1.05
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="px-12 py-5 bg-white text-[#1a1a1a] text-sm font-medium tracking-[0.2em] smooth-transition rounded-full">
-
-                JOIN THE WAITLIST
-              </motion.button>
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-    </div>);
-
+      </footer>
+    </div>
+  );
 }
