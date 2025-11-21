@@ -1,11 +1,10 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { motion, useScroll, useTransform, useInView, AnimatePresence, stagger, useAnimate } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import Floating, { FloatingElement } from "@/components/ui/parallax-floating";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
@@ -17,15 +16,8 @@ export default function Home() {
   const fourCardRef = useRef(null);
   const testimonialsRef = useRef(null);
   const bottleScrollRef = useRef(null);
-  const [floatingScope, animateFloating] = useAnimate();
 
   const productInView = useInView(productRevealRef, { once: true, margin: "-200px" });
-
-  React.useEffect(() => {
-    if (floatingScope.current) {
-      animateFloating("img", { opacity: [0, 1] }, { duration: 0.5, delay: stagger(0.15) });
-    }
-  }, [floatingScope, animateFloating]);
 
   // Scroll lock effect for bottle animation
   React.useEffect(() => {
@@ -297,92 +289,6 @@ export default function Home() {
             />
           </motion.div>
         </div>
-      </section>
-
-      {/* Floating Parallax Section */}
-      <section 
-        ref={floatingScope}
-        className="relative w-full h-[600px] md:h-[800px] flex justify-center items-center bg-black overflow-hidden"
-      >
-        <motion.div
-          className="z-50 text-center space-y-4 items-center flex flex-col"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.88, delay: 1.5 }}
-        >
-          <p className="text-5xl md:text-7xl z-50 text-white font-light italic">
-            performance.
-          </p>
-        </motion.div>
-
-        <Floating sensitivity={-1} className="overflow-hidden">
-          <FloatingElement depth={0.5} className="top-[8%] left-[11%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/bb4180e94_Stocksy_comp_watermarked_2772295.jpg"
-              alt="Athletic moment"
-              className="w-16 h-16 md:w-24 md:h-24 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-          <FloatingElement depth={1} className="top-[10%] left-[32%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/20b40f83d_Stocksy_comp_watermarked_4731729.jpg"
-              alt="Performance"
-              className="w-20 h-20 md:w-28 md:h-28 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-          <FloatingElement depth={2} className="top-[2%] left-[53%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ff656c12d_Stocksy_comp_watermarked_1395532.jpg"
-              alt="Movement"
-              className="w-28 h-40 md:w-40 md:h-52 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-          <FloatingElement depth={1} className="top-[0%] left-[83%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7b0fe5c86_TheVaultStock-10413.jpg"
-              alt="Athlete"
-              className="w-24 h-24 md:w-32 md:h-32 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-
-          <FloatingElement depth={1} className="top-[40%] left-[2%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a38dfa5fb_TheVaultStock-10252.jpg"
-              alt="Active lifestyle"
-              className="w-28 h-28 md:w-36 md:h-36 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-          <FloatingElement depth={2} className="top-[70%] left-[77%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a91490198_TheVaultStock-10300.jpg"
-              alt="Motion"
-              className="w-28 h-28 md:w-36 md:h-48 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-
-          <FloatingElement depth={4} className="top-[73%] left-[15%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/277bebfa2_TheVaultStock-10219.jpg"
-              alt="Beauty in motion"
-              className="w-40 md:w-52 h-full object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-          <FloatingElement depth={1} className="top-[80%] left-[50%]">
-            <motion.img
-              initial={{ opacity: 0 }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/091d182cc_TheVaultStock-10413.jpg"
-              alt="Performance ready"
-              className="w-24 h-24 md:w-32 md:h-32 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded"
-            />
-          </FloatingElement>
-        </Floating>
       </section>
 
       {/* Four-Card Grid with Parallax */}
