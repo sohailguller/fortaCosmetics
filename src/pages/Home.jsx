@@ -56,7 +56,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-[#FDFDFD] text-black">
+    <div className="bg-[#FDFDFD] text-black overflow-x-hidden w-full">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
         <div className="flex items-center justify-between px-6 h-16 md:h-20">
