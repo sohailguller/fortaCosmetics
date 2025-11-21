@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
+import HeroSection from "@/components/home/HeroSection";
+import EditorialSection from "@/components/home/EditorialSection";
 import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
 
 
