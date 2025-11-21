@@ -13,12 +13,12 @@ export default function ScrollAnimatedSection() {
   const bottleY = useTransform(scrollYProgress, [0, 1], [300, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] bg-[#FDFDFD]">
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-end pb-0">
-        <div className="max-w-6xl mx-auto px-6 w-full relative flex flex-col items-center justify-end h-full">
+    <div ref={containerRef} className="relative h-[140vh] bg-[#FDFDFD]">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-start pt-32 md:pt-48">
+        <div className="max-w-6xl mx-auto px-6 w-full relative flex flex-col items-center justify-start">
             
             {/* The Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#F5E6D8] opacity-60 blur-[100px] z-0" />
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#F5E6D8] opacity-60 blur-[100px] z-0" />
 
             {/* The Tagline Text Image */}
             <motion.div 
