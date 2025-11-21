@@ -115,14 +115,14 @@ export default function Home() {
             />
           </motion.div>
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+          <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-16 md:pb-20">
             <motion.h1 
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-white text-5xl md:text-7xl font-bold tracking-tight uppercase mb-6 max-w-4xl leading-none"
+              className="text-white font-serif text-4xl md:text-7xl font-normal tracking-tight mb-6 max-w-2xl leading-[1.1]"
             >
-              You don't have to<br/>sit still to look pretty
+              You don't have to sit still to look pretty.
             </motion.h1>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -210,9 +210,9 @@ export default function Home() {
         <section className="relative py-32 px-6 overflow-hidden">
           <div className="absolute inset-0">
              <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/60d6b25d1_IMG_5814.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f284f176_Stocksy_comp_watermarked_13955321.jpg"
               alt="Texture"
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-40"
             />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
