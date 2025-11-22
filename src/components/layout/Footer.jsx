@@ -47,7 +47,7 @@ export default function Footer() {
                 alt="FORTA" 
                 className="h-10 md:h-12 object-contain mix-blend-multiply relative z-20 pointer-events-none" 
               />
-              <div className="absolute top-[8%] bottom-[8%] left-[17.5%] w-[40%] z-10">
+              <div className="absolute top-[12%] bottom-[12%] left-[16%] w-[40%] z-10">
                 <LogoCarousel className="w-full h-full" />
               </div>
             </div>
