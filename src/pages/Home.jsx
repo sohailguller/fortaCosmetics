@@ -31,6 +31,14 @@ export default function Home() {
 
     setLoading(true);
     try {
+      // Check for duplicates
+      const existing = await base44.entities.Waitlist.filter({ email });
+      if (existing.length > 0) {
+        alert("You are already on the waitlist!");
+        setSubmitted(true);
+        return;
+      }
+
       // Store in database and send notification in parallel
       await Promise.all([
         base44.entities.Waitlist.create({ email }),
@@ -45,8 +53,7 @@ export default function Home() {
       setEmail("");
     } catch (error) {
       console.error("Error:", error);
-      // If error is likely a duplicate or other issue, still show success to user to be nice, 
-      // unless it's a critical failure. For now, we'll just log it.
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
