@@ -94,7 +94,7 @@ export default function Home() {
                       src={product.image} 
                       alt={product.name}
                       loading="eager"
-                      className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${idx > 0 ? 'blur-xl group-hover:blur-md' : ''}`}
+                      className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${idx > 0 ? 'blur-lg group-hover:blur-sm' : ''}`}
                     />
                     {idx === 0 && (
                       <div className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
