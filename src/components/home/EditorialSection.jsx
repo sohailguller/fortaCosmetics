@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
 
 export default function EditorialSection() {
   const containerRef = useRef(null);
@@ -34,9 +36,9 @@ export default function EditorialSection() {
         <p className="text-gray-600 mb-8 max-w-md leading-relaxed break-words">
           When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
         </p>
-        <a href="#" className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity max-w-full truncate">
+        <Link to={createPageUrl("About")} className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity max-w-full truncate">
           Read Our Philosophy <ArrowRight className="ml-2 w-4 h-4 shrink-0" />
-        </a>
+        </Link>
       </div>
     </section>
   );
