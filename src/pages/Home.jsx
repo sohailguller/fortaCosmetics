@@ -49,14 +49,14 @@ export default function Home() {
       id: 2,
       name: "EnduraLash",
       type: "Mascara",
-      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/789d42f8b_forta2.jpg",
+      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e4c34cb15_ChatGPTImageNov21202510_39_57PM.png",
       price: "COMING SOON"
     },
     {
       id: 3,
       name: "PR-Proof",
       type: "Lip Stain",
-      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/c44b0a46c_pexels-n-voitkevich-4944691.jpg",
+      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f13b61ea_ChatGPTImageNov21202510_39_51PM.png",
       price: "COMING SOON"
     }
   ];
@@ -94,7 +94,7 @@ export default function Home() {
                       src={product.image} 
                       alt={product.name}
                       loading="eager"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${idx > 0 ? 'blur-xl group-hover:blur-md' : ''}`}
                     />
                     {idx === 0 && (
                       <div className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
