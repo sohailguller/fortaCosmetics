@@ -12,8 +12,11 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const emailFormRef = useRef(null);
 
-  // Removed unused scroll ref that was causing hydration errors
+  const scrollToEmailForm = () => {
+    emailFormRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleWaitlistSubmit = async (e) => {
     e.preventDefault();
@@ -105,7 +108,10 @@ export default function Home() {
                   <h3 className="font-bold text-lg uppercase">{product.name}</h3>
                   <p className="text-gray-500 text-sm mb-1">{product.type}</p>
                   <p className="font-medium text-sm tracking-wide">{product.price}</p>
-                  <button className="mt-4 w-full border border-black py-2 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">
+                  <button 
+                    onClick={scrollToEmailForm}
+                    className="mt-4 w-full border border-black py-2 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+                  >
                     Join Waitlist
                   </button>
                 </motion.div>
@@ -117,7 +123,7 @@ export default function Home() {
         <EditorialSection />
 
         {/* Full Width Image/Banner */}
-        <section className="relative py-32 px-6 overflow-hidden">
+        <section ref={emailFormRef} className="relative py-32 px-6 overflow-hidden">
           <div className="absolute inset-0">
              <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f284f176_Stocksy_comp_watermarked_13955321.jpg"
