@@ -10,7 +10,7 @@ export default function About() {
       
       <main className="flex-grow">
         {/* Hero Title Section */}
-        <div className="pt-32 md:pt-48 pb-8 px-6 border-b border-black/5">
+        <div className="pt-24 md:pt-32 pb-8 px-6 border-b border-black/5">
           <div className="max-w-[1400px] mx-auto">
              <motion.h1 
               initial={{ opacity: 0, y: 20 }}
