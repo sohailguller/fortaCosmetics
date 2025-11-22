@@ -111,7 +111,7 @@ export default function Home() {
                   >
                     Join Waitlist
                   </button>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
