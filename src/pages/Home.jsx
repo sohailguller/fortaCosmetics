@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import HeroSection from "@/components/home/HeroSection";
 import EditorialSection from "@/components/home/EditorialSection";
@@ -84,22 +84,28 @@ export default function Home() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white flex flex-col p-6">
-          <div className="flex justify-between items-center mb-10">
-            <span className="font-bold">MENU</span>
-            <button onClick={() => setMobileMenuOpen(false)}>
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-          <nav className="space-y-6 text-2xl font-bold">
-            <a href="#" className="block">SHOP ALL</a>
-            <a href="#" className="block">SKINCARE</a>
-            <a href="#" className="block">MAKEUP</a>
-            <a href="#" className="block">SETS</a>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "100vh", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-50 bg-white flex flex-col p-6 overflow-hidden"
+          >
+            <div className="flex justify-between items-center mb-10">
+              <span className="font-bold tracking-widest">MENU</span>
+              <button onClick={() => setMobileMenuOpen(false)}>
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <nav className="space-y-4">
+              <a href="/" className="block text-lg font-medium hover:opacity-60 transition-opacity">Home</a>
+              <a href="#" className="block text-lg font-medium hover:opacity-60 transition-opacity">About</a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main className="pt-16 md:pt-20">
         <HeroSection />
