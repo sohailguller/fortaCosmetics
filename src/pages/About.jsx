@@ -16,7 +16,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-center md:text-left"
+              className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-left"
             >
               Our Story
             </motion.h1>
