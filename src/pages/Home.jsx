@@ -21,17 +21,32 @@ export default function Home() {
   const handleWaitlistSubmit = async (e) => {
     e.preventDefault();
     if (!email || loading) return;
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
     try {
-      await base44.integrations.Core.SendEmail({
-        to: "support@fortacosmetics.com",
-        subject: "New Waitlist Signup",
-        body: `New waitlist signup: ${email}`
-      });
+      // Store in database and send notification in parallel
+      await Promise.all([
+        base44.entities.Waitlist.create({ email }),
+        base44.integrations.Core.SendEmail({
+          to: "support@fortacosmetics.com",
+          subject: "New Waitlist Signup",
+          body: `New waitlist signup: ${email}`
+        })
+      ]);
+      
       setSubmitted(true);
       setEmail("");
     } catch (error) {
       console.error("Error:", error);
+      // If error is likely a duplicate or other issue, still show success to user to be nice, 
+      // unless it's a critical failure. For now, we'll just log it.
     } finally {
       setLoading(false);
     }
