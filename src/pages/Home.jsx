@@ -47,7 +47,7 @@ export default function Home() {
       setEmail("");
     } catch (error) {
       console.error("Error:", error);
-      alert("Something went wrong. Please try again.");
+      alert(`Something went wrong: ${error.message || "Please try again."}`);
     } finally {
       setLoading(false);
     }
