@@ -171,7 +171,9 @@ export default function Home() {
                 </button>
               </form>
             ) : (
-              <div className="text-lg font-bold text-green-600">WELCOME TO THE CLUB.</div>
+              <div className="bg-black text-white px-8 py-3 font-bold text-sm uppercase tracking-widest inline-block">
+                YOU'RE IN. THE MOVEMENT AWAITS.
+              </div>
             )}
           </div>
         </section>
