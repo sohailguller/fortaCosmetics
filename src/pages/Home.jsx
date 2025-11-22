@@ -98,7 +98,7 @@ export default function Home() {
                     />
                     {idx === 0 && (
                       <div className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
-                        Best Seller
+                        Debut Product
                       </div>
                     )}
                   </div>
