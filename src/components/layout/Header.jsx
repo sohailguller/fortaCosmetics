@@ -89,8 +89,7 @@ export default function Header() {
               <div className="pt-8 border-t border-gray-100">
                 <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Socials</p>
                 <div className="flex gap-4 text-sm font-medium">
-                  <a href="#" className="hover:underline">Instagram</a>
-                  <a href="#" className="hover:underline">TikTok</a>
+                  <a href="https://www.instagram.com/fortacosmetics" target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
                 </div>
               </div>
             </motion.div>
