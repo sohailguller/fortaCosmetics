@@ -31,23 +31,17 @@ export default function Home() {
 
     setLoading(true);
     try {
-      // Check for duplicates
-      const existing = await base44.entities.Waitlist.filter({ email });
-      if (existing.length > 0) {
+      const response = await base44.functions.invoke("joinWaitlist", { email });
+      
+      if (response.data.status === 'already_registered') {
         alert("You are already on the waitlist!");
         setSubmitted(true);
         return;
       }
 
-      // Store in database and send notification in parallel
-      await Promise.all([
-        base44.entities.Waitlist.create({ email }),
-        base44.integrations.Core.SendEmail({
-          to: "support@fortacosmetics.com",
-          subject: "New Waitlist Signup",
-          body: `New waitlist signup: ${email}`
-        })
-      ]);
+      if (response.data.error) {
+        throw new Error(response.data.error);
+      }
       
       setSubmitted(true);
       setEmail("");
