@@ -1,16 +1,17 @@
 import React, { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import HeroSection from "@/components/home/HeroSection";
 import EditorialSection from "@/components/home/EditorialSection";
-import { ArrowRight, Menu, ShoppingBag, X } from "lucide-react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { ArrowRight } from "lucide-react";
 
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Removed unused scroll ref that was causing hydration errors
 
@@ -59,53 +60,7 @@ export default function Home() {
 
   return (
     <div className="bg-[#FDFDFD] text-black overflow-x-hidden w-full">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
-        <div className="flex items-center justify-between px-6 h-16 md:h-20">
-          <div className="w-1/3 flex items-center">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
-          <div className="w-1/3 flex justify-center">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
-              alt="FORTA" 
-              className="h-5 md:h-6 object-contain mix-blend-multiply"
-            />
-          </div>
-          <div className="w-1/3 flex justify-end">
-            <div className="relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-black rounded-full"></span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "100vh", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-50 bg-white flex flex-col p-6 overflow-hidden"
-          >
-            <div className="flex justify-between items-center mb-10">
-              <span className="font-bold tracking-widest">MENU</span>
-              <button onClick={() => setMobileMenuOpen(false)}>
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <nav className="space-y-4">
-              <a href="/" className="block text-lg font-medium hover:opacity-60 transition-opacity">Home</a>
-              <a href="#" className="block text-lg font-medium hover:opacity-60 transition-opacity">About</a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Header />
 
       <main className="pt-16 md:pt-20">
         <HeroSection />
@@ -202,54 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer - Minimal */}
-        <footer className="bg-white border-t border-black/10 pt-16 pb-8 px-6">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
-              <div>
-                <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">Shop</h4>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li><a href="#" className="hover:text-black">All Products</a></li>
-                  <li><a href="#" className="hover:text-black">Sets</a></li>
-                  <li><a href="#" className="hover:text-black">Gift Cards</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">About</h4>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li><a href="#" className="hover:text-black">Our Story</a></li>
-                  <li><a href="#" className="hover:text-black">Ingredients</a></li>
-                  <li><a href="#" className="hover:text-black">Sustainability</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">Support</h4>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li><a href="#" className="hover:text-black">FAQ</a></li>
-                  <li><a href="#" className="hover:text-black">Contact</a></li>
-                  <li><a href="#" className="hover:text-black">Returns</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">Social</h4>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li><a href="#" className="hover:text-black">Instagram</a></li>
-                  <li><a href="#" className="hover:text-black">TikTok</a></li>
-                  <li><a href="#" className="hover:text-black">Twitter</a></li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5">
-               <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d218dcbf5_Screenshot2025-11-20at103436PM.png" 
-                  alt="FORTA" 
-                  className="h-10 mb-4 md:mb-0 mix-blend-multiply"
-                />
-              <p className="text-xs text-gray-400">© 2026 FORTA COSMETICS. ALL RIGHTS RESERVED.</p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </div>
   );
