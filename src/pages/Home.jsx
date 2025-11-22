@@ -172,7 +172,7 @@ export default function Home() {
               </form>
             ) : (
               <div className="bg-black text-white px-8 py-3 font-bold text-sm uppercase tracking-widest inline-block">
-                YOU'RE IN. THE MOVEMENT AWAITS.
+                YOU'RE IN.
               </div>
             )}
           </div>
