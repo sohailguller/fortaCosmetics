@@ -23,7 +23,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-24">
+        <div className="max-w-[1400px] mx-auto px-6 py-6 md:py-12">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             
             {/* Sticky Image Column - Widened to show both founders */}
@@ -50,7 +50,7 @@ export default function About() {
             </div>
 
             {/* Content Column - Simplified Text */}
-            <div className="md:col-span-5 flex flex-col justify-center space-y-8 md:space-y-12 py-8 md:py-12">
+            <div className="md:col-span-5 flex flex-col justify-start space-y-6 md:space-y-8 pt-0">
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
