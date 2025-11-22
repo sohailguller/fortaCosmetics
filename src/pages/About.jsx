@@ -10,15 +10,15 @@ export default function About() {
       
       <main className="flex-grow">
         {/* Hero Title Section */}
-        <div className="pt-32 md:pt-48 pb-12 md:pb-24 px-6 border-b border-black/5">
+        <div className="pt-32 md:pt-48 pb-8 px-6 border-b border-black/5">
           <div className="max-w-[1400px] mx-auto">
              <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-[12vw] md:text-[8vw] leading-[0.9] font-bold tracking-tighter uppercase text-center md:text-left"
+              className="text-4xl md:text-6xl font-bold tracking-tight uppercase text-center md:text-left"
             >
-              Built for <br className="md:hidden"/>Motion
+              Our Story
             </motion.h1>
           </div>
         </div>
