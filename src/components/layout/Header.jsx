@@ -26,10 +26,7 @@ export default function Header() {
             </Link>
           </div>
           <div className="w-1/3 flex justify-end">
-            <div className="relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-black rounded-full"></span>
-            </div>
+            <ShoppingBag className="w-5 h-5" />
           </div>
         </div>
       </header>
