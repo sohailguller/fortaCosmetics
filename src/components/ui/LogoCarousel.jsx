@@ -7,7 +7,7 @@ const images = [
   "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/0f3cec397_Stocksy_comp_watermarked_27722951.jpg"
 ];
 
-export default function LogoCarousel() {
+export default function LogoCarousel({ className }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function LogoCarousel() {
   const prevIndex = (index - 1 + images.length) % images.length;
 
   return (
-    <div className="relative h-8 w-20 md:h-10 md:w-24 rounded-full overflow-hidden mx-0.5 bg-gray-200">
+    <div className={`relative rounded-full overflow-hidden bg-gray-200 ${className}`}>
       {/* Background Image (The one being wiped over) */}
       <img
         src={images[prevIndex]}
