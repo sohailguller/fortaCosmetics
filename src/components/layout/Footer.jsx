@@ -1,4 +1,5 @@
 import React from "react";
+import LogoCarousel from "@/components/ui/LogoCarousel";
 
 export default function Footer() {
   return (
@@ -40,11 +41,11 @@ export default function Footer() {
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d218dcbf5_Screenshot2025-11-20at103436PM.png" 
-              alt="FORTA" 
-              className="h-10 mb-4 md:mb-0 mix-blend-multiply"
-            />
+            <div className="flex items-center gap-1 mb-4 md:mb-0 select-none">
+              <span className="font-bold text-3xl md:text-4xl tracking-tighter">F</span>
+              <LogoCarousel />
+              <span className="font-bold text-3xl md:text-4xl tracking-tighter">RTA</span>
+            </div>
           <p className="text-xs text-gray-400">© 2026 FORTA COSMETICS. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
