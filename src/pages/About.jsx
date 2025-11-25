@@ -58,15 +58,10 @@ export default function About() {
               <h2 className="text-[#0A1E36] text-3xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
                 <p>
-                  Our brand was founded by WNBA star Lexie Hull and her former Stanford roommate, Sarah Guller. 
-                  After graduating, we realized the beauty industry was missing products built for people whose lives don't slow down.
+                  Our brand was founded by WNBA star Lexie Hull and her former Stanford roommate, Sarah Guller. After graduating, we realized the beauty industry was missing products built for people whose lives don't slow down. We wanted makeup that could keep up with workouts, long workdays, and everything in between - without the constant need to reapply. That mission inspired us to create a brand made specifically for the active, with formulas designed to last through sweat, movement, and all the demands of a busy day (or night).
                 </p>
                 <p>
-                  We wanted makeup that could keep up with workouts, long workdays, and everything in between - without the constant need to reapply. 
-                  That mission inspired us to create a brand made specifically for the active, with formulas designed to last through sweat, movement, and all the demands of a busy day.
-                </p>
-                <p>
-                  Whatever the day brings, life in motion shouldn't feel like a compromise. We're here to make sure it doesn't.
+                  At the heart of our brand is a belief that confidence should carry you from morning to night. We want you to feel empowered, fresh, and unstoppable no matter what your schedule holds. Every product we create is meant to support your lifestyle, not restrict it. With our makeup, you don't have to pause your life to look and feel your best - because you never have to sit still to look pretty.
                 </p>
               </div>
               <div className="mt-12 font-handwriting text-4xl text-[#0A1E36]">
