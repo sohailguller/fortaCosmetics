@@ -40,10 +40,7 @@ export default function About() {
         {/* Hero Section */}
         <section className="relative h-[40vh] flex items-center overflow-hidden z-0">
           <div className="relative z-10 w-full px-6">
-            <motion.img
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
               alt="FORTA Tagline"
               className="h-16 md:h-24 object-contain"
@@ -54,12 +51,7 @@ export default function About() {
         {/* Story Section - Foreground */}
         <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start order-2 md:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <h2 className="text-black text-3xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
                 <p>
@@ -72,8 +64,8 @@ export default function About() {
               <div className="mt-12 font-handwriting text-4xl text-black">
                 Lexie + Sarah
               </div>
-            </motion.div>
-          </div>
+              </div>
+              </div>
           
           <div className="relative h-[50vh] md:h-auto order-1 md:order-2 overflow-hidden">
              <img 
@@ -113,11 +105,7 @@ export default function About() {
         {/* Community Section */}
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">
                 Rethinking Beauty Together
               </h2>
@@ -133,9 +121,9 @@ export default function About() {
                 className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
               >
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
-              </a>
-            </motion.div>
-          </div>
+                </a>
+                </div>
+                </div>
 
           <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
             <img 
