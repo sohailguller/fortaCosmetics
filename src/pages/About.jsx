@@ -39,7 +39,7 @@ export default function About() {
 
         {/* Hero Section */}
         <section className="relative h-[40vh] flex items-center overflow-hidden z-0">
-          <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full flex justify-start">
+          <div className="relative z-10 w-full px-6">
             <motion.img
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,23 +87,14 @@ export default function About() {
         {/* Values Section */}
         <section className="relative z-0 text-white py-12 px-6">
           <div className="max-w-[1400px] mx-auto relative z-10">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-16"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-16">
               Our Values
-            </motion.h2>
-            
+            </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
               {values.map((value, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
                   className="flex flex-col items-center"
                 >
                   <div className="mb-6">
@@ -113,7 +104,7 @@ export default function About() {
                   <p className="text-white/80 max-w-xs mx-auto leading-relaxed font-light">
                     {value.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
