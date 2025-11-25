@@ -24,7 +24,7 @@ export default function About() {
   ];
 
   return (
-    <div className="bg-white min-h-screen font-sans selection:bg-[#0A1E36] selection:text-white">
+    <div className="bg-white min-h-screen font-sans selection:bg-black selection:text-white">
       <Header />
       
       <main className="pt-16 md:pt-20 relative">
@@ -60,7 +60,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-[#0A1E36] text-3xl font-bold mb-8">Our Story</h2>
+              <h2 className="text-black text-3xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
                 <p>
                   Our brand was founded by WNBA star Lexie Hull and her former Stanford roommate, Sarah Guller. After graduating, we realized the beauty industry was missing products built for people whose lives don't slow down. We wanted makeup that could keep up with workouts, long workdays, and everything in between - without the constant need to reapply. That mission inspired us to create a brand made specifically for the active, with formulas designed to last through sweat, movement, and all the demands of a busy day (or night).
@@ -69,7 +69,7 @@ export default function About() {
                   At the heart of our brand is a belief that confidence should carry you from morning to night. We want you to feel empowered, fresh, and unstoppable no matter what your schedule holds. Every product we create is meant to support your lifestyle, not restrict it. With our makeup, you don't have to pause your life to look and feel your best - because you never have to sit still to look pretty.
                 </p>
               </div>
-              <div className="mt-12 font-handwriting text-4xl text-[#0A1E36]">
+              <div className="mt-12 font-handwriting text-4xl text-black">
                 Lexie + Sarah
               </div>
             </motion.div>
@@ -91,7 +91,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-medium text-center mb-16"
+              className="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-16"
             >
               Our Values
             </motion.h2>
@@ -109,8 +109,8 @@ export default function About() {
                   <div className="mb-6 p-4 rounded-full bg-white/5 border border-white/10">
                     {value.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{value.title}</h3>
-                  <p className="text-white/70 max-w-xs mx-auto leading-relaxed">
+                  <h3 className="text-xl font-bold uppercase tracking-wide mb-4">{value.title}</h3>
+                  <p className="text-white/80 max-w-xs mx-auto leading-relaxed font-light">
                     {value.description}
                   </p>
                 </motion.div>
@@ -127,7 +127,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-[#0A1E36] text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">
                 Rethinking Beauty Together
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
@@ -139,7 +139,7 @@ export default function About() {
                 href="https://www.instagram.com/fortacosmetics" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#E3B34D] text-[#0A1E36] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
               >
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
               </a>
