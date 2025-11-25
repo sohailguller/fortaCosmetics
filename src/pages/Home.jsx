@@ -135,7 +135,7 @@ export default function Home() {
         <EditorialSection />
 
         {/* Full Width Image/Banner */}
-        <section ref={emailFormRef} className="relative py-32 px-6 overflow-hidden">
+        <section id="waitlist" ref={emailFormRef} className="relative py-32 px-6 overflow-hidden">
           <div className="absolute inset-0">
              <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f284f176_Stocksy_comp_watermarked_13955321.jpg"

@@ -27,7 +27,7 @@ export default function HeroSection() {
           You don't have to sit still to look pretty.
         </h1>
         <div>
-          <button onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
+          <button onClick={() => document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
             Coming 2026: Join the Waitlist
           </button>
         </div>
