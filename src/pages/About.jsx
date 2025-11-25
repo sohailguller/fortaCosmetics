@@ -29,20 +29,25 @@ export default function About() {
       
       <main className="pt-16 md:pt-20">
         {/* Hero Section */}
-        <section className="relative h-[60vh] bg-[#0A1E36] flex items-center overflow-hidden">
-          {/* Background Texture/Gradient */}
-          <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1E36]/80 to-[#0A1E36]" />
+        <section className="relative h-[60vh] bg-white flex items-center overflow-hidden">
+          {/* Blurred Background */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/af665d005_blur10.png"
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
           
-          <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full">
-            <motion.h1 
+          <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full flex justify-center">
+            <motion.img
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-4xl md:text-7xl font-medium text-white tracking-tight max-w-3xl leading-tight"
-            >
-              For Whatever the Day Brings
-            </motion.h1>
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5dba06792_Tagline-_black-16.png"
+              alt="FORTA Tagline"
+              className="h-16 md:h-24 object-contain"
+            />
           </div>
         </section>
 
