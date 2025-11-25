@@ -1,18 +1,18 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Shield, Zap, Sparkles, ArrowRight } from "lucide-react";
+import { Smile, Droplets, Sparkles, ArrowRight } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export default function About() {
   const values = [
     {
-      icon: <Shield className="w-10 h-10" />,
+      icon: <Smile className="w-10 h-10" />,
       title: "Trusted",
       description: "Backed by science, tested in real life.",
     },
     {
-      icon: <Zap className="w-10 h-10" />,
+      icon: <Droplets className="w-10 h-10" />,
       title: "Seamless",
       description: "Fits right into your routine.",
     },
