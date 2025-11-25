@@ -147,7 +147,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-bold mb-8 uppercase tracking-tight">
               Built for Motion.<br/>Refined for Beauty.
             </h2>
-            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-light">
               Join the waitlist to be the first to experience the future of active beauty.
             </p>
             

@@ -33,7 +33,7 @@ export default function EditorialSection() {
         <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight break-words hyphens-auto">
           Makeup that's <br className="hidden md:block" />good for your <br className="hidden md:block" />sweat.
         </h2>
-        <p className="text-gray-600 mb-8 max-w-md leading-relaxed break-words">
+        <p className="text-gray-600 mb-8 max-w-md leading-relaxed font-light break-words">
           When you pair effective, performance-tested skincare with makeup that's formulated for motion, the result is simple: a look that lasts as long as you do.
         </p>
         <Link to={createPageUrl("About")} className="inline-flex items-center font-bold text-sm uppercase tracking-widest border-b border-black pb-1 self-start hover:opacity-60 transition-opacity max-w-full truncate">
