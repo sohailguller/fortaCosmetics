@@ -109,7 +109,7 @@ export default function About() {
                   <div className="mb-6">
                     {value.icon}
                   </div>
-                  <h3 className="text-xl font-bold uppercase tracking-wide mb-4">{value.title}</h3>
+                  <h3 className="text-xl font-bold tracking-tight mb-4">{value.title}</h3>
                   <p className="text-white/80 max-w-xs mx-auto leading-relaxed font-light">
                     {value.description}
                   </p>
