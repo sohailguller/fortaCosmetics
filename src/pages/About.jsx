@@ -120,8 +120,8 @@ export default function About() {
         </section>
 
         {/* Community Section */}
-        <section className="relative z-10 flex flex-col md:flex-row min-h-[70vh] bg-white">
-          <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[30%]">
+        <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
+          <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ export default function About() {
             </motion.div>
           </div>
 
-          <div className="relative h-[50vh] md:h-auto md:w-[70%] overflow-hidden">
+          <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/878f59a7a_Stocksy_comp_watermarked_3925193.jpg" 
               alt="Beauty in Motion" 
