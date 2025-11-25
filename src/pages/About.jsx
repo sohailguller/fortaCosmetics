@@ -38,7 +38,7 @@ export default function About() {
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "out" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl md:text-7xl font-medium text-white tracking-tight max-w-3xl leading-tight"
             >
               For Whatever the Day Brings
