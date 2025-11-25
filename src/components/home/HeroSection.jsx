@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -9,13 +9,16 @@ export default function HeroSection() {
 
   return (
     <section ref={ref} className="relative h-[80vh] w-full overflow-hidden bg-[#F5F5F5]">
-      <div className="absolute inset-0">
+      <motion.div 
+        style={{ y }}
+        className="absolute inset-0"
+      >
         <img
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7de5db18c_Stocksy_comp_watermarked_27722951-Edited.jpg"
           alt="Hero"
           className="w-full h-full object-cover object-center"
         />
-      </div>
+      </motion.div>
       
       <div className="absolute inset-0 bg-black/10" />
       
