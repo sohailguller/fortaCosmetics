@@ -148,7 +148,7 @@ export default function About() {
 
           <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/878f59a7a_Stocksy_comp_watermarked_3925193.jpg" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png" 
               alt="Beauty in Motion" 
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
             />
