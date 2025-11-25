@@ -1,23 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Smile, Droplets, Sparkles, ArrowRight } from "lucide-react";
+import { Shield, Zap, Sparkles, ArrowRight } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export default function About() {
   const values = [
     {
-      icon: <Smile className="w-8 h-8 mb-4" />,
+      icon: <Shield className="w-10 h-10" />,
       title: "Trusted",
       description: "Backed by science, tested in real life.",
     },
     {
-      icon: <Droplets className="w-8 h-8 mb-4" />,
+      icon: <Zap className="w-10 h-10" />,
       title: "Seamless",
       description: "Fits right into your routine.",
     },
     {
-      icon: <Sparkles className="w-8 h-8 mb-4" />,
+      icon: <Sparkles className="w-10 h-10" />,
       title: "Radiant",
       description: "Ready for whatever the day brings.",
     },
@@ -106,7 +106,7 @@ export default function About() {
                   transition={{ delay: index * 0.2 }}
                   className="flex flex-col items-center"
                 >
-                  <div className="mb-6 p-4 rounded-full bg-white/5 border border-white/10">
+                  <div className="mb-6">
                     {value.icon}
                   </div>
                   <h3 className="text-xl font-bold uppercase tracking-wide mb-4">{value.title}</h3>
