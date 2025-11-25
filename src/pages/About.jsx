@@ -120,7 +120,7 @@ export default function About() {
         </section>
 
         {/* Community Section */}
-        <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
+        <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[70vh] bg-white">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
