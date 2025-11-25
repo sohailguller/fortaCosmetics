@@ -27,32 +27,32 @@ export default function About() {
     <div className="bg-white min-h-screen font-sans selection:bg-[#0A1E36] selection:text-white">
       <Header />
       
-      <main className="pt-16 md:pt-20">
+      <main className="pt-16 md:pt-20 relative">
+        {/* Continuous Blurred Background for Hero and Values */}
+        <div className="absolute inset-0 top-0 bottom-0 pointer-events-none">
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5242c4b12_blur1.png"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         {/* Hero Section */}
-        <section className="relative h-[60vh] bg-white flex items-center overflow-hidden">
-          {/* Blurred Background */}
-          <div className="absolute inset-0">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/af665d005_blur10.png"
-              alt="Background"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
+        <section className="relative h-[60vh] flex items-center overflow-hidden z-0">
           <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full flex justify-start">
             <motion.img
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5dba06792_Tagline-_black-16.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
               alt="FORTA Tagline"
               className="h-16 md:h-24 object-contain"
             />
           </div>
         </section>
 
-        {/* Story Section */}
-        <section className="grid grid-cols-1 md:grid-cols-2 min-h-[80vh]">
+        {/* Story Section - Foreground */}
+        <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start order-2 md:order-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -85,8 +85,8 @@ export default function About() {
         </section>
 
         {/* Values Section */}
-        <section className="bg-[#0A1E36] text-white py-24 px-6">
-          <div className="max-w-[1400px] mx-auto">
+        <section className="relative z-0 text-white py-24 px-6">
+          <div className="max-w-[1400px] mx-auto relative z-10">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -148,8 +148,8 @@ export default function About() {
 
           <div className="relative h-[50vh] md:h-auto overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1621891370930-396e575c5e95?q=80&w=2070&auto=format&fit=crop" 
-              alt="Community Hands" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ccc580bcf_TheVaultStock-10299.jpg" 
+              alt="Runner in Motion" 
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
             />
           </div>
