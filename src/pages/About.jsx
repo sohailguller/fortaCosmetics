@@ -38,7 +38,7 @@ export default function About() {
         </div>
 
         {/* Hero Section */}
-        <section className="relative h-[60vh] flex items-center overflow-hidden z-0">
+        <section className="relative h-[40vh] flex items-center overflow-hidden z-0">
           <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full flex justify-start">
             <motion.img
               initial={{ opacity: 0, y: 30 }}
@@ -85,7 +85,7 @@ export default function About() {
         </section>
 
         {/* Values Section */}
-        <section className="relative z-0 text-white py-24 px-6">
+        <section className="relative z-0 text-white py-12 px-6">
           <div className="max-w-[1400px] mx-auto relative z-10">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
