@@ -28,7 +28,7 @@ export default function HeroSection() {
         </h1>
         <div>
           <button onClick={() => document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
-            Coming 2026: Join the Waitlist
+            Join the Waitlist
           </button>
         </div>
       </div>
