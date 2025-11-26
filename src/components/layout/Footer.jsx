@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-black/10 pt-16 pb-8 px-6">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div>
             <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">Shop</h4>
             <ul className="space-y-3 text-sm text-gray-600">
@@ -27,6 +27,16 @@ export default function Footer() {
               <li>
                 <a href="https://www.instagram.com/fortacosmetics" target="_blank" rel="noopener noreferrer" className="hover:text-black flex items-center gap-2">
                   <Instagram className="w-5 h-5" /> Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold text-sm uppercase mb-6 tracking-wider">Contact</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>
+                <a href="mailto:help@fortacosmetics.com" className="hover:text-black">
+                  help@fortacosmetics.com
                 </a>
               </li>
             </ul>
