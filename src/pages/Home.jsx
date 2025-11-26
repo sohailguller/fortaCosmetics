@@ -81,7 +81,7 @@ export default function Home() {
       <Header />
 
       {/* Moving Banner */}
-      <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-black text-white py-1.5 overflow-hidden">
+      <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-[#1e3a5f] text-white py-1.5 overflow-hidden">
         <div className="flex animate-marquee">
           <div className="flex items-center whitespace-nowrap pr-8">
             {Array.from({ length: 20 }).map((_, i) => (
@@ -208,7 +208,7 @@ export default function Home() {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 15s linear infinite;
         }
       `}</style>
     </div>
