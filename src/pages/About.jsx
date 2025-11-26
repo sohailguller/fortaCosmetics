@@ -38,13 +38,13 @@ export default function About() {
         </div>
 
         {/* Hero Section */}
-        <section className="relative h-[40vh] flex items-center overflow-hidden z-0">
-          <div className="relative z-10 w-full px-6">
+        <section className="relative h-[20vh] flex items-center overflow-hidden z-0">
+          <div className="relative z-10 w-full px-6 flex justify-center">
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
               alt="FORTA Tagline"
-              className="h-16 md:h-24 object-contain" />
-
+              className="h-10 md:h-14 object-contain"
+            />
           </div>
         </section>
 
@@ -64,8 +64,8 @@ export default function About() {
               <div className="mt-12 font-handwriting text-4xl text-black">
                 Lexie + Sarah
               </div>
-              </div>
-              </div>
+            </div>
+          </div>
           
           <div className="relative h-[50vh] md:h-auto order-1 md:order-2 overflow-hidden">
              <img
@@ -76,61 +76,37 @@ export default function About() {
           </div>
         </section>
 
-        {/* Values Section */}
-        <section className="relative z-0 text-white py-12 px-6">
-          <div className="max-w-[1400px] mx-auto relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-16">
-              Our Values
-            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
-              {values.map((value, index) =>
-              <div
-                key={index}
-                className="flex flex-col items-center">
-
-                  <div className="mb-6">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight mb-4">{value.title}</h3>
-                  <p className="text-white/80 max-w-xs mx-auto leading-relaxed font-light">
-                    {value.description}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
 
         {/* Community Section */}
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
+          <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
+              alt="Beauty in Motion"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+            />
+          </div>
+
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
             <div>
               <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community
 
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">We're building a community that's excited about not slowing down.
-
-If Forta's mission to blend performance and beauty resonates with you, we'd love to hear from you! 
-
+              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
+                We're building a community that's excited about showing up for their skin and making the most of every day.
+                <br /><br />
+                Be a part of it - use #InMotion to show us where FORTA takes you!
               </p>
               <a
                 href="https://www.instagram.com/fortacosmetics"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors">
-
+                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
+              >
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
-                </a>
-                </div>
-                </div>
-
-          <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
-              alt="Beauty in Motion"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
-
+              </a>
+            </div>
           </div>
         </section>
       </main>
