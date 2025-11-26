@@ -80,7 +80,23 @@ export default function Home() {
     <div className="bg-[#FDFDFD] text-black overflow-x-hidden w-full">
       <Header />
 
-      <main className="pt-16 md:pt-20">
+      {/* Moving Banner */}
+      <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-black text-white py-3 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap">
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+          <span className="inline-block px-8 text-sm font-bold tracking-widest">COMING 2026</span>
+        </div>
+      </div>
+
+      <main className="pt-[88px] md:pt-[108px]">
         <HeroSection />
 
 
@@ -179,6 +195,17 @@ export default function Home() {
 
         <Footer />
       </main>
+
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: inline-block;
+          animation: marquee 20s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }
