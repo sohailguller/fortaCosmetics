@@ -6,22 +6,22 @@ import Footer from "@/components/layout/Footer";
 
 export default function About() {
   const values = [
-    {
-      icon: <Smile className="w-10 h-10" />,
-      title: "Trusted",
-      description: "Backed by science, tested in real life.",
-    },
-    {
-      icon: <Droplets className="w-10 h-10" />,
-      title: "Seamless",
-      description: "Fits right into your routine.",
-    },
-    {
-      icon: <Sparkles className="w-10 h-10" />,
-      title: "Radiant",
-      description: "Ready for whatever the day brings.",
-    },
-  ];
+  {
+    icon: <Smile className="w-10 h-10" />,
+    title: "Trusted",
+    description: "Backed by science, tested in real life."
+  },
+  {
+    icon: <Droplets className="w-10 h-10" />,
+    title: "Seamless",
+    description: "Fits right into your routine."
+  },
+  {
+    icon: <Sparkles className="w-10 h-10" />,
+    title: "Radiant",
+    description: "Ready for whatever the day brings."
+  }];
+
 
   return (
     <div className="bg-white min-h-screen font-sans selection:bg-black selection:text-white">
@@ -30,11 +30,11 @@ export default function About() {
       <main className="pt-16 md:pt-20 relative">
         {/* Continuous Blurred Background for Hero and Values */}
         <div className="absolute inset-0 top-0 bottom-0 pointer-events-none">
-          <img 
+          <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5242c4b12_blur1.png"
             alt="Background"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+
         </div>
 
         {/* Hero Section */}
@@ -43,8 +43,8 @@ export default function About() {
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
               alt="FORTA Tagline"
-              className="h-16 md:h-24 object-contain"
-            />
+              className="h-16 md:h-24 object-contain" />
+
           </div>
         </section>
 
@@ -68,11 +68,11 @@ export default function About() {
               </div>
           
           <div className="relative h-[50vh] md:h-auto order-1 md:order-2 overflow-hidden">
-             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/6cb7a40f6_founderImage.jpg" 
-              alt="Lexie Hull and Sarah Guller" 
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105"
-            />
+             <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/6cb7a40f6_founderImage.jpg"
+              alt="Lexie Hull and Sarah Guller"
+              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105" />
+
           </div>
         </section>
 
@@ -84,11 +84,11 @@ export default function About() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center"
-                >
+              {values.map((value, index) =>
+              <div
+                key={index}
+                className="flex flex-col items-center">
+
                   <div className="mb-6">
                     {value.icon}
                   </div>
@@ -97,7 +97,7 @@ export default function About() {
                     {value.description}
                   </p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </section>
@@ -106,31 +106,31 @@ export default function About() {
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
             <div>
-              <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">
-                Rethinking Beauty Together
+              <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community
+
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
                 We're building a community that's excited about showing up for their skin and making the most of every day.
-                <br/><br/>
+                <br /><br />
                 Be a part of it - use #InMotion to show us where FORTA takes you!
               </p>
-              <a 
-                href="https://www.instagram.com/fortacosmetics" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/fortacosmetics"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
-              >
+                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors">
+
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
                 </a>
                 </div>
                 </div>
 
           <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png" 
-              alt="Beauty in Motion" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
-            />
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
+              alt="Beauty in Motion"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+
           </div>
         </section>
       </main>
@@ -143,6 +143,6 @@ export default function About() {
           font-family: 'Nothing You Could Do', cursive;
         }
       `}</style>
-    </div>
-  );
+    </div>);
+
 }
