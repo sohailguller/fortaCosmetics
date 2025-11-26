@@ -84,7 +84,7 @@ export default function Home() {
       <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-[#1e3a5f] text-white py-1.5 overflow-hidden">
         <div className="flex animate-marquee">
           <div className="flex items-center whitespace-nowrap">
-            {Array.from({ length: 40 }).map((_, i) => (
+            {Array.from({ length: 20 }).map((_, i) => (
               <React.Fragment key={i}>
                 <span className="text-xs font-bold tracking-widest">COMING 2026</span>
                 <span className="mx-6">•</span>
@@ -92,7 +92,7 @@ export default function Home() {
             ))}
           </div>
           <div className="flex items-center whitespace-nowrap">
-            {Array.from({ length: 40 }).map((_, i) => (
+            {Array.from({ length: 20 }).map((_, i) => (
               <React.Fragment key={i}>
                 <span className="text-xs font-bold tracking-widest">COMING 2026</span>
                 <span className="mx-6">•</span>
@@ -204,11 +204,11 @@ export default function Home() {
 
       <style>{`
         @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 20s linear infinite;
+          animation: marquee 15s linear infinite;
         }
       `}</style>
     </div>
