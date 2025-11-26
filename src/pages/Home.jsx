@@ -62,16 +62,16 @@ export default function Home() {
     },
     {
       id: 2,
-      name: "EnduraLash",
-      type: "Mascara",
-      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e4c34cb15_ChatGPTImageNov21202510_39_57PM.png",
+      name: "PR-Proof",
+      type: "Lip Stain",
+      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f13b61ea_ChatGPTImageNov21202510_39_51PM.png",
       price: "COMING SOON"
     },
     {
       id: 3,
-      name: "PR-Proof",
-      type: "Lip Stain",
-      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f13b61ea_ChatGPTImageNov21202510_39_51PM.png",
+      name: "EnduraLash",
+      type: "Mascara",
+      image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e4c34cb15_ChatGPTImageNov21202510_39_57PM.png",
       price: "COMING SOON"
     }
   ];
