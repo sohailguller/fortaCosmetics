@@ -80,6 +80,14 @@ export default function About() {
 
         {/* Community Section */}
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
+          <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
+              alt="Beauty in Motion"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+            />
+          </div>
+
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
             <div>
               <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community
@@ -99,14 +107,6 @@ export default function About() {
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-          </div>
-
-          <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
-              alt="Beauty in Motion"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
-
           </div>
         </section>
       </main>
