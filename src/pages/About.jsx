@@ -38,13 +38,13 @@ export default function About() {
         </div>
 
         {/* Hero Section */}
-        <section className="relative h-[40vh] flex items-center overflow-hidden z-0">
-          <div className="relative z-10 w-full px-6">
+        <section className="relative h-[20vh] flex items-center overflow-hidden z-0">
+          <div className="relative z-10 w-full px-6 flex justify-center">
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
               alt="FORTA Tagline"
-              className="h-16 md:h-24 object-contain" />
-
+              className="h-10 md:h-14 object-contain"
+            />
           </div>
         </section>
 
@@ -76,31 +76,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Values Section */}
-        <section className="relative z-0 text-white py-12 px-6">
-          <div className="max-w-[1400px] mx-auto relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide text-center mb-16">
-              Our Values
-            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
-              {values.map((value, index) =>
-              <div
-                key={index}
-                className="flex flex-col items-center">
-
-                  <div className="mb-6">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight mb-4">{value.title}</h3>
-                  <p className="text-white/80 max-w-xs mx-auto leading-relaxed font-light">
-                    {value.description}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
 
         {/* Community Section */}
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
