@@ -109,10 +109,10 @@ export default function About() {
               <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community
 
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
-                We're building a community that's excited about showing up for their skin and making the most of every day.
-                <br /><br />
-                Be a part of it - use #InMotion to show us where FORTA takes you!
+              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">We're building a community that's excited about not slowing down.
+
+If Forta's mission to blend performance and beauty resonates with you, we'd love to hear from you! 
+
               </p>
               <a
                 href="https://www.instagram.com/fortacosmetics"
