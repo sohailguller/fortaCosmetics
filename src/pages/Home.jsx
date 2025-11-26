@@ -83,7 +83,7 @@ export default function Home() {
       {/* Moving Banner */}
       <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-[#1e3a5f] text-white py-1.5 overflow-hidden">
         <div className="flex animate-marquee">
-          <div className="flex items-center whitespace-nowrap pr-8">
+          <div className="flex items-center whitespace-nowrap">
             {Array.from({ length: 20 }).map((_, i) => (
               <React.Fragment key={i}>
                 <span className="text-xs font-bold tracking-widest">COMING 2026</span>
