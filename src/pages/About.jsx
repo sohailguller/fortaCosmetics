@@ -102,7 +102,7 @@ export default function About() {
                 href="https://www.instagram.com/fortacosmetics"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#E3B34D] text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#D4A032] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1e3a5f] text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#2a4d7f] transition-colors"
               >
                 Find us @fortacosmetics <ArrowRight className="w-4 h-4" />
               </a>
