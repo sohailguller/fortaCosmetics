@@ -36,7 +36,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-600">
               <li>
                 <a href="mailto:help@fortacosmetics.com" className="hover:text-black">
-                  help@fortacosmetics.com
+                  Email Us
                 </a>
               </li>
             </ul>
