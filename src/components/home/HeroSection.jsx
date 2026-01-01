@@ -8,7 +8,7 @@ export default function HeroSection() {
   const y = useTransform(scrollY, [0, 1000], [0, 400]);
 
   return (
-    <section ref={ref} className="relative h-[80vh] w-full overflow-hidden bg-[#F5F5F5]">
+    <section ref={ref} className="relative h-screen w-full overflow-hidden bg-[#F5F5F5]">
       <motion.div 
         style={{ y }}
         className="absolute inset-0 flex"
@@ -32,7 +32,7 @@ export default function HeroSection() {
       
       <div className="absolute inset-0 bg-black/10" />
       
-      <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-12 md:pb-16">
+      <div className="absolute bottom-8 left-6 md:bottom-12 md:left-12 flex flex-col items-start text-left">
         <h1 className="text-white font-serif text-xl md:text-3xl font-normal tracking-tight mb-4 max-w-xl leading-[1.2]">
           You don't have to sit still to look pretty.
         </h1>
