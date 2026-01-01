@@ -11,12 +11,22 @@ export default function HeroSection() {
     <section ref={ref} className="relative h-[80vh] w-full overflow-hidden bg-[#F5F5F5]">
       <motion.div 
         style={{ y }}
-        className="absolute inset-0"
+        className="absolute inset-0 flex"
       >
         <img
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/7de5db18c_Stocksy_comp_watermarked_27722951-Edited.jpg"
-          alt="Hero"
-          className="w-full h-full object-cover object-center"
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/542f0db57_2-05636.jpg"
+          alt="Hero Left"
+          className="w-1/3 h-full object-cover"
+        />
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/46dc5bbc1_2-04837.jpg"
+          alt="Hero Center"
+          className="w-1/3 h-full object-cover"
+        />
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f7d92cc35_2-05543.jpg"
+          alt="Hero Right"
+          className="w-1/3 h-full object-cover"
         />
       </motion.div>
       
