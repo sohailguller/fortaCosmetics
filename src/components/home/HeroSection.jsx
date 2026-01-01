@@ -32,12 +32,12 @@ export default function HeroSection() {
       
       <div className="absolute inset-0 bg-black/10" />
       
-      <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-16 md:pb-20">
-        <h1 className="text-white font-serif text-4xl md:text-7xl font-normal tracking-tight mb-6 max-w-2xl leading-[1.1]">
+      <div className="absolute inset-0 flex flex-col justify-end items-start text-left p-6 md:p-12 pb-12 md:pb-16">
+        <h1 className="text-white font-serif text-xl md:text-3xl font-normal tracking-tight mb-4 max-w-xl leading-[1.2]">
           You don't have to sit still to look pretty.
         </h1>
         <div>
-          <button onClick={() => document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
+          <button onClick={() => document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth'})} className="bg-white text-black px-5 py-2 font-bold text-xs tracking-widest uppercase hover:bg-black hover:text-white transition-colors">
             Join the Waitlist
           </button>
         </div>
