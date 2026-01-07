@@ -9,24 +9,27 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
-        <div className="flex items-center justify-between px-6 h-16 md:h-20">
-          <div className="w-1/3 flex items-center">
-            <button onClick={() => setMobileMenuOpen(true)}>
-              <Menu className="w-6 h-6" />
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 h-14 md:h-16">
+          <nav className="flex items-center gap-8 md:gap-12">
+            <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+              HOME
+            </Link>
+            <Link to={createPageUrl("About")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+              ABOUT
+            </Link>
+            <button onClick={() => setMobileMenuOpen(true)} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+              FUTURE
             </button>
-          </div>
-          <div className="w-1/3 flex justify-center">
+          </nav>
+          <div className="flex justify-end">
             <Link to={createPageUrl("Home")}>
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
                 alt="FORTA" 
-                className="h-5 md:h-6 object-contain mix-blend-multiply"
+                className="h-4 md:h-5 object-contain mix-blend-multiply"
               />
             </Link>
-          </div>
-          <div className="w-1/3 flex justify-end">
-            <ShoppingBag className="w-5 h-5" />
           </div>
         </div>
       </header>
