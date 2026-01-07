@@ -69,7 +69,7 @@ export default function About() {
           
           <div className="relative h-[50vh] md:h-auto order-1 md:order-2 overflow-hidden">
              <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/6cb7a40f6_founderImage.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/77e0495c9_2-04310.jpg"
               alt="Lexie Hull and Sarah Guller"
               className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105" />
 
