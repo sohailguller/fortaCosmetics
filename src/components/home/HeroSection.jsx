@@ -21,9 +21,9 @@ export default function HeroSection() {
         />
       </div>
       
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-black/20 md:bg-black/10" />
       
-      <div className="absolute bottom-20 left-6 md:bottom-24 md:left-12 flex flex-col items-start text-left">
+      <div className="absolute bottom-20 left-6 md:bottom-24 md:left-12 flex flex-col items-start text-left bg-black/40 md:bg-transparent p-4 md:p-0 rounded-lg md:rounded-none">
         <h1 className="text-white font-serif text-xl md:text-3xl font-normal tracking-tight mb-4 max-w-xl leading-[1.2]">
           You don't have to sit still to look pretty.
         </h1>
