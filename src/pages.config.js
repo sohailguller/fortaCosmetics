@@ -1,13 +1,13 @@
 import About from './pages/About';
-import Home from './pages/Home';
 import VideoUploader from './pages/VideoUploader';
+import Home from './pages/Home';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "About": About,
-    "Home": Home,
     "VideoUploader": VideoUploader,
+    "Home": Home,
 }
 
 export const pagesConfig = {

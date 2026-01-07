@@ -71,7 +71,7 @@ export default function About() {
              <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/77e0495c9_2-04310.jpg"
               alt="Lexie Hull and Sarah Guller"
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105" />
+              className="absolute inset-0 w-full h-full object-cover object-[center_30%] transition-transform duration-1000 hover:scale-105" />
 
           </div>
         </section>
