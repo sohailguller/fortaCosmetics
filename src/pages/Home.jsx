@@ -108,7 +108,7 @@ export default function Home() {
 
 
         {/* Products Row - Horizontal Scroll */}
-        <section id="products" className="relative z-10 py-16 md:py-24 bg-white border-t border-black/5">
+        <section id="products" className="relative z-20 py-16 md:py-24 bg-white border-t border-black/5">
           <div className="max-w-[1400px] mx-auto px-6">
             <div className="flex justify-between items-end mb-12">
               <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide">Coming Soon</h2>
@@ -157,7 +157,7 @@ export default function Home() {
         <EditorialSection />
 
         {/* Full Width Image/Banner */}
-        <section id="waitlist" ref={emailFormRef} className="relative py-32 px-6 overflow-hidden">
+        <section id="waitlist" ref={emailFormRef} className="relative z-20 py-32 px-6 overflow-hidden bg-white">
           <div className="absolute inset-0">
              <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f284f176_Stocksy_comp_watermarked_13955321.jpg"

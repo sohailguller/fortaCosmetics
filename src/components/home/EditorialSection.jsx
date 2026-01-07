@@ -16,7 +16,7 @@ export default function EditorialSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section className="flex flex-col md:grid md:grid-cols-2 bg-[#F5F5F5] w-full max-w-full overflow-hidden">
+    <section className="relative z-20 flex flex-col md:grid md:grid-cols-2 bg-[#F5F5F5] w-full max-w-full overflow-hidden">
       <div ref={containerRef} className="relative aspect-square md:aspect-auto min-h-[500px] w-full max-w-full overflow-hidden">
         <motion.div 
             style={{ y, scale: 1.2 }} 
