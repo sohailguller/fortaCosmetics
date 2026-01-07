@@ -2,7 +2,7 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-[#F5F5F5]">
+    <section className="relative h-[70vh] md:h-screen w-full overflow-hidden bg-[#F5F5F5]">
       <div className="absolute inset-0 flex">
         <img
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/542f0db57_2-05636.jpg"
