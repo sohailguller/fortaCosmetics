@@ -140,7 +140,7 @@ export default function Home() {
                     )}
                   </div>
                   <h3 className="font-bold text-lg uppercase">{product.name}</h3>
-                  <p className={`text-gray-500 text-sm mb-1 ${product.id > 1 ? 'blur-sm' : ''}`}>{product.type}</p>
+                  <p className={`text-gray-500 text-sm mb-1 ${product.id > 1 ? 'blur-[1.5px]' : ''}`}>{product.type}</p>
                   <p className="font-medium text-sm tracking-wide">{product.price}</p>
                   <button 
                     onClick={scrollToEmailForm}
