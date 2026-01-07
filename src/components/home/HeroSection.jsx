@@ -2,8 +2,8 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[70vh] md:h-screen w-full overflow-hidden mb-0">
-      <div className="fixed top-0 left-0 right-0 h-[70vh] md:h-screen flex z-0">
+    <section className="relative h-[60vh] md:h-screen w-full overflow-hidden mb-0">
+        <div className="fixed top-0 left-0 right-0 h-[60vh] md:h-screen flex z-0">
         <img
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/542f0db57_2-05636.jpg"
           alt="Hero Left"
