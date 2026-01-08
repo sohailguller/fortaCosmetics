@@ -18,7 +18,7 @@ export default function HeroSection() {
               loop
               muted
               playsInline
-              className="w-full h-auto"
+              className="w-full h-[70vh] md:h-auto object-cover md:object-contain"
             >
               <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
             </video>
