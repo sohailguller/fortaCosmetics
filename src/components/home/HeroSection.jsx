@@ -11,14 +11,14 @@ export default function HeroSection() {
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <section ref={containerRef} className="relative w-full overflow-hidden mb-0">
-            <motion.div style={{ y }} className="relative z-0">
+        <section ref={containerRef} className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden mb-0">
+            <motion.div style={{ y }} className="relative z-0 w-full h-full">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-[70vh] md:h-auto object-cover md:object-contain"
+              className="w-full h-full object-cover"
             >
               <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
             </video>
