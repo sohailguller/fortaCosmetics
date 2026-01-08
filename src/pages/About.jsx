@@ -38,23 +38,12 @@ export default function About() {
         </div>
 
         {/* Hero Section */}
-        <section className="relative h-[20vh] flex items-center overflow-hidden z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
-          </video>
-          <div className="relative z-10 w-full px-6 flex justify-center">
-            <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
-              alt="FORTA Tagline"
-              className="h-10 md:h-14 object-contain"
-            />
-          </div>
+        <section className="relative h-[20vh] flex items-center justify-center overflow-hidden z-0">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
+            alt="FORTA Tagline"
+            className="h-10 md:h-14 object-contain relative z-10"
+          />
         </section>
 
         {/* Story Section - Foreground */}
