@@ -10,11 +10,11 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
-              <div className="max-w-[1400px] mx-auto flex items-center justify-between px-4 md:px-12 h-14 md:h-16">
-                {/* Mobile: Hamburger left, Logo center */}
+              <div className="max-w-full mx-auto flex items-center justify-between px-4 h-14 md:h-16">
+                {/* Mobile: Hamburger left */}
                 <button 
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden p-1 hover:bg-gray-100 rounded transition-colors"
+                  className="md:hidden p-1 hover:bg-gray-100 rounded transition-colors z-10"
                 >
                   <Menu className="w-5 h-5" />
                 </button>
@@ -32,8 +32,8 @@ export default function Header() {
                   </Link>
                 </nav>
 
-                {/* Logo - Centered on Mobile, Right on Desktop */}
-                <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-auto md:translate-x-0 md:ml-auto">
+                {/* Logo - Always Centered */}
+                <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-1/2 md:-translate-x-1/2">
                   <Link to={createPageUrl("Home")}>
                     <img 
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
@@ -42,6 +42,14 @@ export default function Header() {
                     />
                   </Link>
                 </div>
+
+                {/* Shopping Bag - Right Side */}
+                <button 
+                  disabled
+                  className="p-1 opacity-40 cursor-not-allowed z-10"
+                >
+                  <ShoppingBag className="w-5 h-5" />
+                </button>
               </div>
             </header>
 
