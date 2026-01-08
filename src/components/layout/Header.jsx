@@ -33,7 +33,7 @@ export default function Header() {
                 </nav>
 
                 {/* Logo - Always Centered */}
-                <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-1/2 md:-translate-x-1/2">
+                <div className="absolute left-1/2 -translate-x-1/2">
                   <Link to={createPageUrl("Home")}>
                     <img 
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
@@ -46,9 +46,9 @@ export default function Header() {
                 {/* Shopping Bag - Right Side */}
                 <button 
                   disabled
-                  className="p-1 opacity-40 cursor-not-allowed z-10"
+                  className="p-1 cursor-not-allowed z-10"
                 >
-                  <ShoppingBag className="w-5 h-5" />
+                  <ShoppingBag className="w-5 h-5 text-black" />
                 </button>
               </div>
             </header>
