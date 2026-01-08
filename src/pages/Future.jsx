@@ -14,7 +14,7 @@ export default function Future() {
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/23cd346df_TheVaultStock-10414.jpg"
               alt="Children playing sports"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
             />
           </div>
           
@@ -40,24 +40,20 @@ export default function Future() {
               Want to Support?
             </h2>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
               <a
                 href="mailto:help@fortacosmetics.com?subject=Donation%20Inquiry"
-                className="w-full sm:w-auto bg-black text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                className="w-full sm:w-48 bg-black text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-gray-800 transition-colors text-center"
               >
                 Donate
               </a>
               <a
                 href="mailto:help@fortacosmetics.com"
-                className="w-full sm:w-auto border-2 border-black text-black px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+                className="w-full sm:w-48 border-2 border-black text-black px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-colors text-center"
               >
                 Write to Us
               </a>
             </div>
-            
-            <p className="text-sm text-gray-500 tracking-wide">
-              help@fortacosmetics.com
-            </p>
           </div>
         </section>
       </main>
