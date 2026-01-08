@@ -26,8 +26,8 @@ export default function HeroSection() {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-black/10 z-0" />
 
-            <div className="absolute bottom-12 left-8 md:bottom-16 md:left-16 flex flex-col items-start text-left z-10">
-              <h1 className="text-white font-serif text-xl md:text-3xl font-normal tracking-tight mb-4 max-w-xl leading-[1.2] drop-shadow-lg md:drop-shadow-none">
+            <div className="absolute bottom-8 left-6 md:bottom-16 md:left-16 flex flex-col items-start text-left z-10 max-w-[90%] md:max-w-xl">
+              <h1 className="text-white font-serif text-lg md:text-3xl font-normal tracking-tight mb-4 leading-[1.2] drop-shadow-lg md:drop-shadow-none">
                 You don't have to sit still to look pretty.
               </h1>
               <div>

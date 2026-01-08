@@ -54,55 +54,40 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
             />
-            
-            {/* Drawer */}
+
+            {/* Dropdown Menu */}
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={{ left: 0.5, right: 0.05 }}
-              onDragEnd={(e, { offset, velocity }) => {
-                if (offset.x < -100 || velocity.x < -500) {
-                  setMobileMenuOpen(false);
-                }
-              }}
-              className="fixed top-0 left-0 bottom-0 w-[85vw] md:w-[400px] z-50 bg-white shadow-2xl p-6 flex flex-col"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed top-14 left-0 w-full z-50 bg-white shadow-xl border-b border-black/10"
             >
-              <div className="flex justify-between items-center mb-12">
-                <span className="font-bold tracking-widest text-sm">MENU</span>
-                <button onClick={() => setMobileMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <nav className="space-y-6 flex-1">
+              <nav className="flex flex-col">
                 <Link 
                   to={createPageUrl("Home")} 
-                  className="block text-3xl font-light tracking-tight hover:translate-x-2 transition-transform duration-300" 
+                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Home
+                  HOME
                 </Link>
                 <Link 
                   to={createPageUrl("About")} 
-                  className="block text-3xl font-light tracking-tight hover:translate-x-2 transition-transform duration-300" 
+                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  About
+                  ABOUT
+                </Link>
+                <Link 
+                  to={createPageUrl("Future")} 
+                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  FUTURE
                 </Link>
               </nav>
-
-              <div className="pt-8 border-t border-gray-100">
-                <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Socials</p>
-                <div className="flex gap-4 text-sm font-medium">
-                  <a href="https://www.instagram.com/fortacosmetics" target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
-                </div>
-              </div>
             </motion.div>
           </>
         )}
