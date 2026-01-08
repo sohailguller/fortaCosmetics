@@ -11,22 +11,22 @@ export default function HeroSection() {
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <section ref={containerRef} className="relative h-[60vh] md:h-screen w-full overflow-hidden mb-0">
-            <motion.div style={{ y }} className="absolute top-0 left-0 right-0 h-[60vh] md:h-screen z-0">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
-              </video>
-            </motion.div>
+        <section ref={containerRef} className="relative w-full overflow-hidden mb-0">
+            <motion.div style={{ y }} className="relative z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+            >
+              <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
+            </video>
+          </motion.div>
 
-            <div className="absolute top-0 left-0 right-0 h-[60vh] md:h-screen bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-black/10 z-0" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-black/10 z-0" />
 
-            <div className="absolute bottom-20 left-8 md:bottom-24 md:left-16 flex flex-col items-start text-left z-10">
+            <div className="absolute bottom-12 left-8 md:bottom-16 md:left-16 flex flex-col items-start text-left z-10">
               <h1 className="text-white font-serif text-xl md:text-3xl font-normal tracking-tight mb-4 max-w-xl leading-[1.2] drop-shadow-lg md:drop-shadow-none">
                 You don't have to sit still to look pretty.
               </h1>
