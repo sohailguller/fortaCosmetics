@@ -6,6 +6,7 @@ import { createPageUrl } from "@/utils";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function Header() {
             <Link to={createPageUrl("About")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
               ABOUT
             </Link>
-            <button onClick={() => setMobileMenuOpen(true)} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+            <button onClick={() => setShowComingSoon(true)} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
               FUTURE
             </button>
           </nav>
@@ -94,6 +95,27 @@ export default function Header() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showComingSoon && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowComingSoon(false)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="text-white text-4xl md:text-6xl font-bold tracking-widest"
+            >
+              COMING SOON
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
