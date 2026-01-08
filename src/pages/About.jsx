@@ -27,7 +27,7 @@ export default function About() {
     <div className="bg-white min-h-screen font-sans selection:bg-black selection:text-white">
       <Header />
       
-      <main className="pt-16 md:pt-20 relative">
+      <main className="pt-14 md:pt-16 relative">
         {/* Continuous Blurred Background for Hero and Values */}
         <div className="absolute inset-0 top-0 bottom-0 pointer-events-none">
           <img

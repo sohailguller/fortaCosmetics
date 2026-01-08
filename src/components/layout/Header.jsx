@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white">
               <div className="max-w-full mx-auto flex items-center justify-between px-4 h-14 md:h-16">
                 {/* Mobile: Hamburger left */}
                 <button 
