@@ -10,11 +10,11 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
-              <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 md:px-12 h-14 md:h-16">
+              <div className="max-w-[1400px] mx-auto flex items-center justify-between px-4 md:px-12 h-14 md:h-16">
                 {/* Mobile: Hamburger left, Logo center */}
                 <button 
-                  onClick={() => setMobileMenuOpen(true)}
-                  className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="md:hidden p-1 hover:bg-gray-100 rounded transition-colors"
                 >
                   <Menu className="w-5 h-5" />
                 </button>
