@@ -12,22 +12,16 @@ export default function HeroSection() {
 
     return (
         <section ref={containerRef} className="relative h-[60vh] md:h-screen w-full overflow-hidden mb-0">
-            <motion.div style={{ y }} className="absolute top-0 left-0 right-0 h-[60vh] md:h-screen flex z-0">
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/542f0db57_2-05636.jpg"
-                alt="Hero Left"
-                className="w-1/3 h-full object-cover"
-              />
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/46dc5bbc1_2-04837.jpg"
-                alt="Hero Center"
-                className="w-1/3 h-full object-cover"
-              />
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/f7d92cc35_2-05543.jpg"
-                alt="Hero Right"
-                className="w-1/3 h-full object-cover"
-              />
+            <motion.div style={{ y }} className="absolute top-0 left-0 right-0 h-[60vh] md:h-screen z-0">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
+              </video>
             </motion.div>
 
             <div className="absolute top-0 left-0 right-0 h-[60vh] md:h-screen bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-black/10 z-0" />
