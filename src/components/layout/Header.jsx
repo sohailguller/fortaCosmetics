@@ -10,29 +10,40 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 md:px-12 h-14 md:h-16">
-          <nav className="flex items-center gap-8 md:gap-12">
-            <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
-              HOME
-            </Link>
-            <Link to={createPageUrl("About")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
-              ABOUT
-            </Link>
-            <Link to={createPageUrl("Future")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
-              FUTURE
-            </Link>
-          </nav>
-          <div className="flex justify-end">
-            <Link to={createPageUrl("Home")}>
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
-                alt="FORTA" 
-                className="h-4 md:h-5 object-contain mix-blend-multiply"
-              />
-            </Link>
-          </div>
-        </div>
-      </header>
+              <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 md:px-12 h-14 md:h-16">
+                {/* Mobile: Hamburger left, Logo center */}
+                <button 
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+
+                {/* Desktop Navigation - Hidden on Mobile */}
+                <nav className="hidden md:flex items-center gap-8 md:gap-12">
+                  <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+                    HOME
+                  </Link>
+                  <Link to={createPageUrl("About")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+                    ABOUT
+                  </Link>
+                  <Link to={createPageUrl("Future")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+                    FUTURE
+                  </Link>
+                </nav>
+
+                {/* Logo - Centered on Mobile, Right on Desktop */}
+                <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-auto md:translate-x-0 md:ml-auto">
+                  <Link to={createPageUrl("Home")}>
+                    <img 
+                      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
+                      alt="FORTA" 
+                      className="h-4 md:h-5 object-contain mix-blend-multiply"
+                    />
+                  </Link>
+                </div>
+              </div>
+            </header>
 
       <AnimatePresence>
         {mobileMenuOpen && (
