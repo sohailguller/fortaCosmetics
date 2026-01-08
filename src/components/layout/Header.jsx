@@ -14,7 +14,7 @@ export default function Header() {
                 {/* Mobile: Hamburger left */}
                 <button 
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden p-1 hover:bg-gray-100 rounded transition-colors z-10"
+                  className="md:hidden p-3 hover:bg-gray-100 rounded transition-colors z-10 relative"
                 >
                   <Menu className="w-5 h-5" />
                 </button>
@@ -34,11 +34,11 @@ export default function Header() {
 
                 {/* Logo - Always Centered */}
                 <div className="absolute left-1/2 -translate-x-1/2 z-10">
-                  <Link to={createPageUrl("Home")} className="block">
+                  <Link to={createPageUrl("Home")} className="block py-3 px-4">
                     <img 
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
                       alt="FORTA" 
-                      className="h-4 md:h-5 object-contain mix-blend-multiply pointer-events-auto"
+                      className="h-4 md:h-5 object-contain mix-blend-multiply"
                     />
                   </Link>
                 </div>
@@ -46,7 +46,7 @@ export default function Header() {
                 {/* Shopping Bag - Right Side */}
                 <button 
                   disabled
-                  className="p-1 cursor-not-allowed z-10"
+                  className="p-3 cursor-not-allowed z-10 relative"
                 >
                   <ShoppingBag className="w-5 h-5 text-black" />
                 </button>
