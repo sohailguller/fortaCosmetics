@@ -33,12 +33,12 @@ export default function Header() {
                 </nav>
 
                 {/* Logo - Always Centered */}
-                <div className="absolute left-1/2 -translate-x-1/2">
-                  <Link to={createPageUrl("Home")}>
+                <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                  <Link to={createPageUrl("Home")} className="block">
                     <img 
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ea4583fe7_PrimaryLogo-_black-06.png" 
                       alt="FORTA" 
-                      className="h-4 md:h-5 object-contain mix-blend-multiply"
+                      className="h-4 md:h-5 object-contain mix-blend-multiply pointer-events-auto"
                     />
                   </Link>
                 </div>
