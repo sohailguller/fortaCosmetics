@@ -12,9 +12,9 @@ export default function Future() {
         <section className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
           <div className="relative h-[50vh] md:h-auto overflow-hidden">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/23cd346df_TheVaultStock-10414.jpg"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/d95166f34_Screenshot2026-01-08at102546AM.png"
               alt="Children playing sports"
-              className="w-full h-full object-cover grayscale"
+              className="w-full h-full object-cover object-[center_45%] grayscale"
             />
           </div>
           
