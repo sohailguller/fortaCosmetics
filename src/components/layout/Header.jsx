@@ -22,14 +22,14 @@ export default function Header() {
               </button>
 
               <nav className="hidden md:flex items-center gap-8 md:gap-12">
-                <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+                <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-bold tracking-wider hover:opacity-60 transition-opacity">
                   HOME
                 </Link>
-                <Link to={createPageUrl("About")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
+                <Link to={createPageUrl("About")} className="text-xs md:text-sm font-bold tracking-wider hover:opacity-60 transition-opacity">
                   ABOUT
                 </Link>
-                <Link to={createPageUrl("Future")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
-                  FUTURE
+                <Link to={createPageUrl("Future")} className="text-xs md:text-sm font-bold tracking-wider hover:opacity-60 transition-opacity">
+                  IMPACT
                 </Link>
               </nav>
             </div>
@@ -82,24 +82,24 @@ export default function Header() {
               <nav className="flex flex-col">
                 <Link 
                   to={createPageUrl("Home")} 
-                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
+                  className="px-8 py-4 text-sm font-bold tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   HOME
                 </Link>
                 <Link 
                   to={createPageUrl("About")} 
-                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
+                  className="px-8 py-4 text-sm font-bold tracking-wider hover:bg-gray-50 transition-colors border-b border-black/5" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   ABOUT
                 </Link>
                 <Link 
                   to={createPageUrl("Future")} 
-                  className="px-8 py-4 text-sm font-medium tracking-wider hover:bg-gray-50 transition-colors" 
+                  className="px-8 py-4 text-sm font-bold tracking-wider hover:bg-gray-50 transition-colors" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  FUTURE
+                  IMPACT
                 </Link>
               </nav>
             </motion.div>
