@@ -81,7 +81,7 @@ export default function Home() {
       <Header />
 
       {/* Moving Banner */}
-      <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-[#1e3a5f] text-white py-1 md:py-1.5 overflow-hidden">
+      <div className="fixed top-14 md:top-16 left-0 right-0 z-40 bg-[#1e3a5f] text-white py-1 md:py-1.5 overflow-hidden">
         <div className="flex animate-marquee">
           <div className="flex items-center whitespace-nowrap">
             {Array.from({ length: 80 }).map((_, i) => (
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="pt-[80px] md:pt-[96px]">
+      <main className="pt-[68px] md:pt-[80px]">
         <HeroSection />
 
 

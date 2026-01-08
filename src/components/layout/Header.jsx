@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 h-14 md:h-16">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8 md:px-12 h-14 md:h-16">
           <nav className="flex items-center gap-8 md:gap-12">
             <Link to={createPageUrl("Home")} className="text-xs md:text-sm font-medium tracking-wider hover:opacity-60 transition-opacity">
               HOME
