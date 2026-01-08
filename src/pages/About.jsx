@@ -80,7 +80,7 @@ export default function About() {
         <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
           <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
             <img
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/2b4719d3b_Screenshot2025-11-24at64340PM.png"
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e071df351_2-04926.jpg"
               alt="Beauty in Motion"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
             />
