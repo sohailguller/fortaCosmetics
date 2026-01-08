@@ -8,50 +8,54 @@ export default function Future() {
       <Header />
       
       <main className="pt-16 md:pt-20">
-        {/* Hero Section with Foundation Info */}
-        <section className="max-w-4xl mx-auto px-6 py-20 md:py-32">
-          <div className="text-center space-y-8">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-black">
-              Forta Impact Foundation
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto font-light">
-              From day one, Forta committed to giving back—pledging 1% of all proceeds to organizations that help children in underprivileged communities gain access to sports. We believe that the opportunity to play, move, and be part of a team at a young age can be life-changing. Every child deserves the chance to experience the joy and empowerment that sports can bring, regardless of their background or circumstances.
-            </p>
-          </div>
-        </section>
-
-        {/* Image Section */}
-        <section className="max-w-6xl mx-auto px-6 py-12">
-          <div className="aspect-[16/9] bg-gray-200 overflow-hidden">
+        {/* Foundation Section - Image Left, Text Right */}
+        <section className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
+          <div className="relative h-[50vh] md:h-auto overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?w=1200&h=675&fit=crop"
+              src="https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?w=800&h=1000&fit=crop"
               alt="Children playing sports"
               className="w-full h-full object-cover grayscale"
             />
           </div>
+          
+          <div className="bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center">
+            <div className="max-w-lg">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 tracking-tight">
+                Forta Impact Foundation
+              </h1>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-light mb-8">
+                From day one, Forta committed to giving back—pledging 1% of all proceeds to organizations that help children in underprivileged communities gain access to sports.
+              </p>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-light">
+                We believe that the opportunity to play, move, and be part of a team at a young age can be life-changing. Every child deserves the chance to experience the joy and empowerment that sports can bring, regardless of their background or circumstances.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Support Section */}
-        <section className="max-w-4xl mx-auto px-6 py-20 md:py-32">
-          <div className="text-center space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
+        <section className="py-24 md:py-32 px-6">
+          <div className="max-w-2xl mx-auto text-center space-y-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Want to Support?
             </h2>
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center pt-8">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="mailto:help@fortacosmetics.com?subject=Donation%20Inquiry"
-                className="bg-black text-white px-12 py-4 font-bold text-sm uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                className="w-full sm:w-auto bg-black text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-gray-800 transition-colors"
               >
                 Donate
               </a>
               <a
                 href="mailto:help@fortacosmetics.com"
-                className="border-2 border-black text-black px-12 py-4 font-bold text-sm uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+                className="w-full sm:w-auto border-2 border-black text-black px-10 py-4 font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
               >
                 Write to Us
               </a>
             </div>
-            <p className="text-sm text-gray-500 pt-4">
+            
+            <p className="text-sm text-gray-500 tracking-wide">
               help@fortacosmetics.com
             </p>
           </div>
