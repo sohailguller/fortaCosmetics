@@ -28,14 +28,6 @@ export default function About() {
       <Header />
       
       <main className="pt-14 md:pt-16 relative">
-        {/* Continuous Blurred Background for Hero and Values */}
-        <div className="absolute inset-0 top-0 bottom-0 pointer-events-none">
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5242c4b12_blur1.png"
-            alt="Background"
-            className="w-full h-full object-cover" />
-
-        </div>
 
         {/* Story Section - Foreground */}
         <section className="relative z-20 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
@@ -67,6 +59,13 @@ export default function About() {
 
         {/* Hero Section */}
         <section className="relative h-[15vh] flex items-center justify-center overflow-hidden z-0">
+          <div className="absolute inset-0 pointer-events-none">
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/5242c4b12_blur1.png"
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/985f7ecb5_Tagline-_white-17.png"
             alt="FORTA Tagline"
