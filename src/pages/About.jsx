@@ -38,7 +38,7 @@ export default function About() {
         </div>
 
         {/* Story Section - Foreground */}
-        <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
+        <section className="relative z-20 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start order-2 md:order-1">
             <div>
               <h2 className="text-black text-3xl md:text-4xl font-bold mb-8">Our Story</h2>
@@ -75,7 +75,7 @@ export default function About() {
         </section>
 
         {/* Community Section */}
-        <section className="relative z-10 flex flex-col md:flex-row min-h-[40vh] bg-white">
+        <section className="relative z-20 flex flex-col md:flex-row min-h-[40vh] bg-white">
           <div className="relative h-[50vh] md:h-auto md:w-[60%] overflow-hidden">
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e071df351_2-04926.jpg"
