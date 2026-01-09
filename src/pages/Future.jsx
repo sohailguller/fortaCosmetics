@@ -23,10 +23,10 @@ export default function Future() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 tracking-tight">
                 Forta Impact Foundation
               </h1>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-light mb-8">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
                 From day one, Forta committed to giving back—pledging 1% of all proceeds to organizations that help children in underprivileged communities gain access to sports.
               </p>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-light mb-12">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-12">
                 We believe that the opportunity to play, move, and be part of a team at a young age can be life-changing. Every child deserves the chance to experience the joy and empowerment that sports can bring, regardless of their background or circumstances.
               </p>
 
