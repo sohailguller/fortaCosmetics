@@ -12,16 +12,28 @@ export default function HeroSection() {
 
     return (
         <section ref={containerRef} className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden mb-0">
-            <motion.div style={{ y }} className="relative z-0 w-full h-full">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
-            </video>
+            <motion.div style={{ y }} className="relative z-0 w-full h-full grid grid-cols-3 gap-0">
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ba36fd682_2-04926.jpg"
+                  alt="Hero 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e071df351_2-04926.jpg"
+                  alt="Hero 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a42d95cbd_2-04310.jpg"
+                  alt="Hero 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
           </motion.div>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-black/10 z-0" />
