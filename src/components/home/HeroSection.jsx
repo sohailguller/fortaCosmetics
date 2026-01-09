@@ -15,22 +15,22 @@ export default function HeroSection() {
             <motion.div style={{ y }} className="relative z-0 w-full h-full grid grid-cols-3 gap-0">
               <div className="w-full h-full overflow-hidden">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/ba36fd682_2-04926.jpg"
-                  alt="Hero 1"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/daffde46e_2-05636.jpg"
+                  alt="Close up"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full h-full overflow-hidden">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/e071df351_2-04926.jpg"
-                  alt="Hero 2"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/0ece8cd19_2-04837.jpg"
+                  alt="Product box"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="w-full h-full overflow-hidden">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/a42d95cbd_2-04310.jpg"
-                  alt="Hero 3"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/62101ac0e_2-05543.jpg"
+                  alt="Hair swing"
                   className="w-full h-full object-cover"
                 />
               </div>
