@@ -157,19 +157,24 @@ export default function Home() {
         <EditorialSection />
 
         {/* Full Width Image/Banner */}
-        <section id="waitlist" ref={emailFormRef} className="relative z-20 py-32 px-6 overflow-hidden bg-white">
+        <section id="waitlist" ref={emailFormRef} className="relative z-20 py-32 px-6 overflow-hidden bg-black">
           <div className="absolute inset-0">
-             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68fae7032e9ee5cc70e1bfa7/8f284f176_Stocksy_comp_watermarked_13955321.jpg"
-              alt="Texture"
-              className="w-full h-full object-cover opacity-40"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="https://res.cloudinary.com/dihudketx/video/upload/MOV_9179_c0vews.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/50" />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 uppercase tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 uppercase tracking-tight text-white">
               Built for Motion.<br/>Refined for Beauty.
             </h2>
-            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
               Join the waitlist to be the first to experience the future of active beauty.
             </p>
             
@@ -180,19 +185,19 @@ export default function Home() {
                   placeholder="ENTER YOUR EMAIL" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 bg-transparent border-b border-black py-3 px-2 focus:outline-none placeholder:text-black/40 font-medium"
+                  className="flex-1 bg-transparent border-b border-white py-3 px-2 focus:outline-none placeholder:text-white/60 font-medium text-white"
                   required
                 />
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="bg-black text-white px-8 py-3 font-bold text-sm uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                  className="bg-white text-black px-8 py-3 font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition-colors"
                 >
                   {loading ? "..." : "Join"}
                 </button>
               </form>
             ) : (
-              <div className="bg-black text-white px-8 py-3 font-bold text-sm uppercase tracking-widest inline-block">
+              <div className="bg-white text-black px-8 py-3 font-bold text-sm uppercase tracking-widest inline-block">
                 YOU'RE IN.
               </div>
             )}
