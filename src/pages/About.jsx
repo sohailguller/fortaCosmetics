@@ -50,8 +50,8 @@ export default function About() {
         <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start order-2 md:order-1">
             <div>
-              <h2 className="text-black text-3xl font-bold mb-8">Our Story</h2>
-              <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+              <h2 className="text-black text-3xl md:text-4xl font-bold mb-8">Our Story</h2>
+              <div className="space-y-6 text-gray-700 text-base md:text-lg leading-relaxed">
                 <p>
                   Our brand was founded by WNBA star Lexie Hull and her former Stanford roommate, Sarah Guller. After graduating, we realized the beauty industry was missing products built for people whose lives don't slow down. We wanted makeup that could keep up with workouts, long workdays, and everything in between - without the constant need to reapply. That mission inspired us to create a brand made specifically for the active, with formulas designed to last through sweat, movement, and all the demands of a busy day (or night).
                 </p>
@@ -88,10 +88,8 @@ export default function About() {
 
           <div className="bg-white p-8 md:p-20 flex flex-col justify-center items-start md:w-[40%]">
             <div>
-              <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community
-
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
+              <h2 className="text-black text-3xl md:text-4xl font-bold mb-6">Join Our Community</h2>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-10 max-w-md">
                 We're building a community that refuses to slow down.
                 <br /><br />
                 If Forta's mission in blending performance and beauty resonates, we'd love to hear from you!
