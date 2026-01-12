@@ -6,10 +6,12 @@ export default function ScrollHeroSection() {
   const [loadedImages, setLoadedImages] = useState([]);
   const [loadProgress, setLoadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [sequenceComplete, setSequenceComplete] = useState(false);
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const frameIndexRef = useRef(0);
   const rafRef = useRef(null);
+  const scrollAccumulator = useRef(0);
 
   // Fetch frames list
   useEffect(() => {
@@ -90,27 +92,51 @@ export default function ScrollHeroSection() {
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
   };
 
-  // Scroll handler with RAF
+  // Freeze scroll until sequence completes
   useEffect(() => {
-    if (isLoading || loadedImages.length === 0) return;
+    if (isLoading || sequenceComplete) return;
 
-    const handleScroll = () => {
+    const preventScroll = (e) => {
+      e.preventDefault();
+    };
+
+    // Prevent scrolling
+    document.body.style.overflow = "hidden";
+    document.addEventListener("wheel", preventScroll, { passive: false });
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("wheel", preventScroll);
+      document.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isLoading, sequenceComplete]);
+
+  // Wheel handler to scrub through frames
+  useEffect(() => {
+    if (isLoading || loadedImages.length === 0 || sequenceComplete) return;
+
+    const handleWheel = (e) => {
+      e.preventDefault();
+      
       if (rafRef.current) return;
 
       rafRef.current = requestAnimationFrame(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const rect = container.getBoundingClientRect();
-        const scrollHeight = container.offsetHeight - window.innerHeight;
-        const scrolled = -rect.top;
-        const progress = Math.max(0, Math.min(scrolled / scrollHeight, 1));
+        scrollAccumulator.current += e.deltaY;
         
-        const frameIndex = Math.floor(progress * (loadedImages.length - 1));
+        // Map accumulated scroll to frame index
+        const pixelsPerFrame = 30; // Adjust for sensitivity
+        const targetFrame = Math.floor(scrollAccumulator.current / pixelsPerFrame);
+        const frameIndex = Math.max(0, Math.min(targetFrame, loadedImages.length - 1));
         
         if (frameIndex !== frameIndexRef.current) {
           frameIndexRef.current = frameIndex;
           drawFrame(frameIndex);
+          
+          // Check if sequence is complete
+          if (frameIndex === loadedImages.length - 1) {
+            setSequenceComplete(true);
+          }
         }
 
         rafRef.current = null;
@@ -125,17 +151,17 @@ export default function ScrollHeroSection() {
       drawFrame(frameIndexRef.current);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", handleResize);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [isLoading, loadedImages]);
+  }, [isLoading, loadedImages, sequenceComplete]);
 
   return (
     <>
@@ -169,10 +195,10 @@ export default function ScrollHeroSection() {
         )}
       </AnimatePresence>
 
-      {/* Scroll Container */}
-      <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
-        {/* Sticky Canvas Hero */}
-        <div className="sticky top-0 w-full h-screen overflow-hidden">
+      {/* Hero Container */}
+      <div ref={containerRef} className="relative">
+        {/* Fixed Canvas Hero */}
+        <div className={`${sequenceComplete ? 'relative' : 'fixed'} top-0 left-0 w-full h-screen overflow-hidden z-10`}>
           <canvas
             ref={canvasRef}
             className="w-full h-full"
