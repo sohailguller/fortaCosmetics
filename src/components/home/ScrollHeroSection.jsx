@@ -122,28 +122,33 @@ export default function ScrollHeroSection() {
       if (rafRef.current) return;
 
       rafRef.current = requestAnimationFrame(() => {
-        scrollAccumulator.current += e.deltaY;
+        // Only allow scrolling forward
+        if (e.deltaY > 0) {
+          scrollAccumulator.current += e.deltaY;
+        }
         
         // Map accumulated scroll to frame index
-        const pixelsPerFrame = 30; // Adjust for sensitivity
+        const pixelsPerFrame = 20; // Adjust for sensitivity
         const targetFrame = Math.floor(scrollAccumulator.current / pixelsPerFrame);
         const frameIndex = Math.max(0, Math.min(targetFrame, loadedImages.length - 1));
         
         if (frameIndex !== frameIndexRef.current) {
           frameIndexRef.current = frameIndex;
           drawFrame(frameIndex);
-          
-          // Check if sequence is complete
-          if (frameIndex === loadedImages.length - 1) {
-            setSequenceComplete(true);
-          }
+        }
+        
+        // Check if sequence is complete (reached last frame)
+        if (frameIndex === loadedImages.length - 1) {
+          setSequenceComplete(true);
         }
 
         rafRef.current = null;
       });
     };
 
-    // Initial draw
+    // Initialize at frame 0
+    frameIndexRef.current = 0;
+    scrollAccumulator.current = 0;
     drawFrame(0);
 
     // Handle resize
