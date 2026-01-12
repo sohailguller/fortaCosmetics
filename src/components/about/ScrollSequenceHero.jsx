@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const BASE_URL = "https://raw.githubusercontent.com/sohailguller/fortaImages/main";
 const FRAME_COUNT = 119;
 
-export default function ScrollSequenceHero() {
+export default function ScrollSequenceHero({ showBanner = false }) {
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const [images, setImages] = useState([]);
@@ -107,7 +107,7 @@ export default function ScrollSequenceHero() {
         ref={containerRef}
         className="relative h-[300vh]"
       >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden`}>
           {images.length > 0 && (
             <img
               src={images[currentFrame]}

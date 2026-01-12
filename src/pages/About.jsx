@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Smile, Droplets, Sparkles, ArrowRight } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ScrollSequenceHero from "@/components/about/ScrollSequenceHero";
 
 export default function About() {
   const values = [
@@ -28,9 +27,7 @@ export default function About() {
     <div className="bg-white min-h-screen font-sans selection:bg-black selection:text-white">
       <Header />
 
-      <ScrollSequenceHero />
-
-      <main className="relative">
+      <main className="pt-14 md:pt-16 relative">
 
         {/* Story Section - Foreground */}
         <section className="relative z-20 grid grid-cols-1 md:grid-cols-2 min-h-[80vh] bg-white shadow-2xl">
