@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// GitHub raw URLs for the sequence frames
-const BASE_URL = "https://raw.githubusercontent.com/sohailguller/fortaImages/main";
-const FRAME_COUNT = 119;
+// Fetch frame URLs dynamically from GitHub Pages
+async function getFrameUrls() {
+  const base = "https://sohailguller.github.io/fortaImages/";
+  const names = await (await fetch(base + "frames.json")).json();
+  return names.map(n => base + n);
+}
 
 export default function ScrollSequenceHero({ showBanner = false }) {
   const [loading, setLoading] = useState(true);
@@ -14,36 +17,37 @@ export default function ScrollSequenceHero({ showBanner = false }) {
 
   // Preload all images
   useEffect(() => {
-    const imagePromises = [];
-    const loadedImages = [];
+    async function loadImages() {
+      try {
+        const frameUrls = await getFrameUrls();
+        const imagePromises = [];
+        const loadedImages = [];
 
-    for (let i = 0; i < FRAME_COUNT; i++) {
-      const frameNumber = String(i).padStart(3, '0');
-      const url = `${BASE_URL}/frame_${frameNumber}_delay-0.041s.webp`;
-      
-      const promise = new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-          loadedImages[i] = url;
-          setLoadProgress(((i + 1) / FRAME_COUNT) * 100);
-          resolve();
-        };
-        img.onerror = reject;
-        img.src = url;
-      });
-      
-      imagePromises.push(promise);
-    }
+        frameUrls.forEach((url, i) => {
+          const promise = new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+              loadedImages[i] = url;
+              setLoadProgress(((i + 1) / frameUrls.length) * 100);
+              resolve();
+            };
+            img.onerror = reject;
+            img.src = url;
+          });
+          
+          imagePromises.push(promise);
+        });
 
-    Promise.all(imagePromises)
-      .then(() => {
+        await Promise.all(imagePromises);
         setImages(loadedImages);
         setTimeout(() => setLoading(false), 300);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error loading images:", err);
         setLoading(false);
-      });
+      }
+    }
+
+    loadImages();
   }, []);
 
   // Handle scroll to update frame
@@ -62,7 +66,7 @@ export default function ScrollSequenceHero({ showBanner = false }) {
       const progress = Math.max(0, Math.min(1, scrolled / scrollHeight));
       
       // Map to frame index
-      const frameIndex = Math.floor(progress * (FRAME_COUNT - 1));
+      const frameIndex = Math.floor(progress * (images.length - 1));
       setCurrentFrame(frameIndex);
     };
 
