@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 // GitHub raw URLs for the sequence frames
 const BASE_URL = "https://raw.githubusercontent.com/sohailguller/fortaImages/main";
-const FRAME_COUNT = 60; // Adjust based on actual frame count
+const FRAME_COUNT = 119;
 
 export default function ScrollSequenceHero() {
   const [loading, setLoading] = useState(true);
