@@ -1,45 +1,44 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Fetch frame URLs dynamically from GitHub Pages
-async function getFrameUrls() {
-  const base = "https://sohailguller.github.io/fortaImages/";
-  const names = await (await fetch(base + "frames.json")).json();
-  return names.map(n => base + n);
-}
-
 export default function ScrollSequenceHero({ showBanner = false }) {
   const [loading, setLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [images, setImages] = useState([]);
+  const [frameUrls, setFrameUrls] = useState([]);
   const [currentFrame, setCurrentFrame] = useState(0);
   const containerRef = useRef(null);
 
-  // Preload all images
+  // Fetch and preload all images
   useEffect(() => {
     async function loadImages() {
       try {
-        const frameUrls = await getFrameUrls();
-        const imagePromises = [];
-        const loadedImages = [];
+        // Fetch frame list
+        const base = "https://sohailguller.github.io/fortaImages/";
+        const response = await fetch(base + "frames.json");
+        const names = await response.json();
+        const urls = names.map(n => base + n);
+        
+        console.log("Loaded frame URLs:", urls.length);
+        setFrameUrls(urls);
 
-        frameUrls.forEach((url, i) => {
-          const promise = new Promise((resolve, reject) => {
+        // Preload all images
+        const promises = urls.map((url, i) => {
+          return new Promise((resolve, reject) => {
             const img = new Image();
             img.onload = () => {
-              loadedImages[i] = url;
-              setLoadProgress(((i + 1) / frameUrls.length) * 100);
+              setLoadProgress(((i + 1) / urls.length) * 100);
               resolve();
             };
-            img.onerror = reject;
+            img.onerror = (e) => {
+              console.error("Failed to load:", url);
+              reject(e);
+            };
             img.src = url;
           });
-          
-          imagePromises.push(promise);
         });
 
-        await Promise.all(imagePromises);
-        setImages(loadedImages);
+        await Promise.all(promises);
+        console.log("All images preloaded");
         setTimeout(() => setLoading(false), 300);
       } catch (err) {
         console.error("Error loading images:", err);
@@ -52,7 +51,7 @@ export default function ScrollSequenceHero({ showBanner = false }) {
 
   // Handle scroll to update frame
   useEffect(() => {
-    if (loading || images.length === 0) return;
+    if (loading || frameUrls.length === 0) return;
 
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -66,7 +65,7 @@ export default function ScrollSequenceHero({ showBanner = false }) {
       const progress = Math.max(0, Math.min(1, scrolled / scrollHeight));
       
       // Map to frame index
-      const frameIndex = Math.floor(progress * (images.length - 1));
+      const frameIndex = Math.floor(progress * (frameUrls.length - 1));
       setCurrentFrame(frameIndex);
     };
 
@@ -74,7 +73,7 @@ export default function ScrollSequenceHero({ showBanner = false }) {
     handleScroll(); // Initial call
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, images]);
+  }, [loading, frameUrls]);
 
   return (
     <>
@@ -111,10 +110,10 @@ export default function ScrollSequenceHero({ showBanner = false }) {
         ref={containerRef}
         className="relative h-[300vh]"
       >
-        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden`}>
-          {images.length > 0 && (
+        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden bg-white`}>
+          {frameUrls.length > 0 && (
             <img
-              src={images[currentFrame]}
+              src={frameUrls[currentFrame]}
               alt="FORTA Hero"
               className="absolute inset-0 w-full h-full object-cover"
             />
