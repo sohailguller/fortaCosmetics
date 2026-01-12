@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { base44 } from "@/api/base44Client";
-import HeroSection from "@/components/home/HeroSection";
+import ScrollHeroSection from "@/components/home/ScrollHeroSection";
 import EditorialSection from "@/components/home/EditorialSection";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -103,7 +103,7 @@ export default function Home() {
       </div>
 
       <main className="pt-[68px] md:pt-[80px]">
-        <HeroSection />
+        <ScrollHeroSection />
 
 
 

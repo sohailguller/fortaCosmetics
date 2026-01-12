@@ -1,15 +1,15 @@
-import About from './pages/About';
 import Future from './pages/Future';
-import Home from './pages/Home';
 import VideoUploader from './pages/VideoUploader';
+import Home from './pages/Home';
+import About from './pages/About';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "About": About,
     "Future": Future,
-    "Home": Home,
     "VideoUploader": VideoUploader,
+    "Home": Home,
+    "About": About,
 }
 
 export const pagesConfig = {
