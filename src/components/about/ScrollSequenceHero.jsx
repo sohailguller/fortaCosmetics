@@ -108,14 +108,17 @@ export default function ScrollSequenceHero({ showBanner = false }) {
       {/* Scroll-driven sequence hero */}
       <div 
         ref={containerRef}
-        className="relative h-[300vh]"
+        className="relative h-[400vh]"
       >
-        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden bg-white`}>
+        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden bg-black`}>
           {frameUrls.length > 0 && (
             <img
               src={frameUrls[currentFrame]}
               alt="FORTA Hero"
+              loading="eager"
+              decoding="sync"
               className="absolute inset-0 w-full h-full object-cover"
+              style={{ imageRendering: 'high-quality' }}
             />
           )}
         </div>

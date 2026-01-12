@@ -105,10 +105,8 @@ export default function Home() {
       <main>
         <ScrollSequenceHero showBanner={true} />
 
-
-
         {/* Products Row - Horizontal Scroll */}
-        <section id="products" className="relative z-20 pt-16 md:pt-24 pb-16 md:pb-24 bg-white border-t border-black/5">
+        <section id="products" className="relative z-20 pt-16 md:pt-24 pb-16 md:pb-24 bg-white">
           <div className="max-w-[1400px] mx-auto px-6">
             <div className="flex justify-between items-end mb-12">
               <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide">Coming Soon</h2>
