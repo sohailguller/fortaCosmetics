@@ -26,7 +26,7 @@ export default function About() {
   return (
     <div className="bg-white min-h-screen font-sans selection:bg-black selection:text-white">
       <Header />
-
+      
       <main className="pt-14 md:pt-16 relative">
 
         {/* Story Section - Foreground */}
