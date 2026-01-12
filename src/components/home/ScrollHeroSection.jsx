@@ -128,7 +128,7 @@ export default function ScrollHeroSection() {
         }
         
         // Map accumulated scroll to frame index
-        const pixelsPerFrame = 20; // Adjust for sensitivity
+        const pixelsPerFrame = 50; // Adjust for sensitivity
         const targetFrame = Math.floor(scrollAccumulator.current / pixelsPerFrame);
         const frameIndex = Math.max(0, Math.min(targetFrame, loadedImages.length - 1));
         
