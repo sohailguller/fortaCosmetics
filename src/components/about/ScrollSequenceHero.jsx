@@ -37,13 +37,11 @@ export default function ScrollSequenceHero({ showBanner = false }) {
 
     Promise.all(imagePromises)
       .then(() => {
-        console.log("All images loaded:", loadedImages.length);
         setImages(loadedImages);
         setTimeout(() => setLoading(false), 300);
       })
       .catch((err) => {
         console.error("Error loading images:", err);
-        alert(`Failed to load images: ${err.message}`);
         setLoading(false);
       });
   }, []);
@@ -109,17 +107,13 @@ export default function ScrollSequenceHero({ showBanner = false }) {
         ref={containerRef}
         className="relative h-[300vh]"
       >
-        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden bg-gray-100`}>
-          {images.length > 0 ? (
+        <div className={`sticky ${showBanner ? 'top-[68px] md:top-[80px]' : 'top-0'} h-screen w-full overflow-hidden`}>
+          {images.length > 0 && (
             <img
               src={images[currentFrame]}
               alt="FORTA Hero"
               className="absolute inset-0 w-full h-full object-cover"
             />
-          ) : !loading && (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-              <p>Failed to load images. Check console for details.</p>
-            </div>
           )}
         </div>
       </div>
