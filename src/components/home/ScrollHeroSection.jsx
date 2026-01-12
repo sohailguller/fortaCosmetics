@@ -196,9 +196,9 @@ export default function ScrollHeroSection() {
       </AnimatePresence>
 
       {/* Hero Container */}
-      <div ref={containerRef} className="relative">
+      <div ref={containerRef} className="relative" style={{ minHeight: sequenceComplete ? 'auto' : '100vh' }}>
         {/* Fixed Canvas Hero */}
-        <div className={`${sequenceComplete ? 'relative' : 'fixed'} top-0 left-0 w-full h-screen overflow-hidden z-10`}>
+        <div className={`${sequenceComplete ? 'relative' : 'fixed'} top-0 left-0 w-full h-screen overflow-hidden z-30`}>
           <canvas
             ref={canvasRef}
             className="w-full h-full"
