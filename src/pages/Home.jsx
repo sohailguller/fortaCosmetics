@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { base44 } from "@/api/base44Client";
-import FrameSequenceHero from "@/components/home/FrameSequenceHero";
+import ScrollSequenceHero from "@/components/about/ScrollSequenceHero";
 import EditorialSection from "@/components/home/EditorialSection";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -102,8 +102,8 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="pt-[68px] md:pt-[80px]">
-        <FrameSequenceHero />
+      <main>
+        <ScrollSequenceHero showBanner={true} />
 
 
 
