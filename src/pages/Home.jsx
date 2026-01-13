@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { base44 } from "@/api/base44Client";
+import { supabase } from "@/api/supabaseClient";
 import HeroSection from "@/components/home/HeroSection";
 import EditorialSection from "@/components/home/EditorialSection";
 import Header from "@/components/layout/Header";
@@ -30,16 +30,20 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const response = await base44.functions.invoke("joinWaitlist", { email });
-      
-      if (response.data.status === 'already_registered') {
-        alert("You are already on the waitlist!");
-        setSubmitted(true);
-        return;
-      }
+      // Insert email into Supabase waitlist table
+      const { data, error } = await supabase
+        .from('waitlist')
+        .insert([{ email: email.toLowerCase().trim() }])
+        .select();
 
-      if (response.data.error) {
-        throw new Error(response.data.error);
+      if (error) {
+        // Check if it's a duplicate email error (unique constraint violation)
+        if (error.code === '23505' || error.message.includes('duplicate') || error.message.includes('unique')) {
+          alert("You are already on the waitlist!");
+          setSubmitted(true);
+          return;
+        }
+        throw new Error(error.message);
       }
       
       setSubmitted(true);
